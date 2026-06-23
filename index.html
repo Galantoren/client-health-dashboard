@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimove Daily Health Check</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --deep-violet: #2D1B69;
+    --optimove-purple: #6B46C1;
+    --electric-lime: #C8E61F;
+    --bg: #FBFAF7;
+    --card: #FFFFFF;
+    --border: #ECE9DE;
+    --text-dark: #0F0F0E;
+    --text-mid: #4A4A5A;
+    --text-light: #8A8A9A;
+    --red: #E53E3E;
+    --orange: #DD6B20;
+    --green: #38A169;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    max-width: 430px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    overflow-x: hidden;
+  }
+
+  /* PAGE TRANSITIONS */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── SHARED HEADER ─── */
+  .header {
+    background: var(--deep-violet);
+    padding: 20px 16px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .back-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.45);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.15s;
+  }
+  .back-btn:active { color: rgba(255,255,255,0.85); }
+  .header-client {
+    font-size: 19px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.4px;
+    line-height: 1.1;
+  }
+  .header-date {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .header-badge {
+    background: var(--electric-lime);
+    color: var(--deep-violet);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+
+  /* ─── HOME PAGE ─── */
+  .home-header-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-light);
+    padding: 20px 16px 8px;
+  }
+
+  /* CLIENT CARD */
+  .client-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin: 0 16px 10px;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: box-shadow 0.15s;
+  }
+  .client-card:active { box-shadow: 0 0 0 2px var(--optimove-purple); }
+
+  .client-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 10px;
+  }
+  .client-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--deep-violet);
+  }
+  .client-url {
+    font-size: 10px;
+    color: var(--text-light);
+    margin-top: 1px;
+  }
+  .client-increase {
+    text-align: right;
+  }
+  .client-increase-num {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+  }
+  .client-increase-num.na { color: var(--text-light); font-size: 14px; }
+  .client-increase-label {
+    font-size: 9px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+  }
+  .client-increase-sig {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  /* MINI BATCH DOTS */
+  .client-batch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px 13px;
+  }
+  .mini-batch-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .mini-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .mini-dot.green { background: var(--green); }
+  .mini-dot.orange { background: var(--orange); }
+  .mini-dot.red { background: var(--red); }
+  .mini-batch-label {
+    font-size: 9px;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+  .mini-batch-sep {
+    width: 1px;
+    height: 10px;
+    background: var(--border);
+    margin: 0 2px;
+  }
+
+  /* ─── DETAIL PAGE ─── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin: 0 16px 10px;
+    overflow: hidden;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    gap: 10px;
+  }
+  .card-header:active { background: var(--bg); }
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .card-icon.green { background: #F0FFF4; }
+  .card-icon.red { background: #FFF5F5; }
+  .card-icon.grey { background: #F5F5F5; }
+  .card-icon.purple { background: #F3EEFF; }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+  .card-subtitle {
+    font-size: 11px;
+    color: var(--text-mid);
+    margin-top: 2px;
+  }
+  .card-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .card-badge.green { background: #DCFCE7; color: #166534; }
+  .card-badge.red { background: #FEE2E2; color: #991B1B; }
+  .card-badge.orange { background: #FEF3C7; color: #92400E; }
+  .card-badge.purple { background: #EDE9FE; color: #5B21B6; }
+  .card-badge.grey { background: #F3F4F6; color: #374151; }
+  .chevron {
+    font-size: 12px;
+    color: var(--text-light);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .chevron.open { transform: rotate(180deg); }
+  .card-body { display: none; border-top: 1px solid var(--border); }
+  .card-body.open { display: block; }
+
+  /* BATCH CARD */
+  .batch-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin: 0 16px 10px;
+    overflow: hidden;
+  }
+  .batch-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px 11px;
+    border-bottom: 1px solid var(--border);
+  }
+  .batch-card-title { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+  .batch-card-sub { font-size: 11px; color: var(--text-mid); margin-top: 1px; }
+  .batch-pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .batch-pill {
+    background: var(--card);
+    padding: 11px 10px 12px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .batch-pill:last-child { border-right: none; }
+  .batch-pill-dot { width: 7px; height: 7px; border-radius: 50%; margin: 0 auto 6px; }
+  .batch-pill-dot.green { background: var(--green); }
+  .batch-pill-dot.orange { background: var(--orange); }
+  .batch-pill-label { font-size: 10px; font-weight: 500; color: var(--text-mid); line-height: 1.3; margin-bottom: 4px; }
+  .batch-pill-status { font-size: 10px; font-weight: 600; display: inline-block; }
+  .batch-pill-status.green { color: var(--green); }
+  .batch-pill-status.orange { color: var(--orange); }
+  .batch-info {
+    padding: 9px 14px 10px;
+    font-size: 11px;
+    color: var(--text-mid);
+    line-height: 1.5;
+    background: #FFFAF0;
+    border-top: 1px solid var(--border);
+  }
+
+  /* INCREASE */
+  .increase-block { padding: 20px 16px; text-align: center; }
+  .increase-na { font-size: 36px; font-weight: 800; color: var(--text-light); letter-spacing: 4px; margin-bottom: 6px; }
+  .increase-detail { font-size: 12px; color: var(--text-mid); margin-bottom: 12px; }
+  .increase-note-box {
+    padding: 10px 12px;
+    background: #FEFCE8;
+    border-left: 3px solid var(--electric-lime);
+    border-radius: 0 8px 8px 0;
+    text-align: left;
+    font-size: 11px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* CAMPAIGN BUBBLES */
+  .camp-section { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .camp-section:last-child { border-bottom: none; }
+  .camp-section-label {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--text-light); margin-bottom: 8px; padding-left: 2px;
+  }
+  .camp-bubble-row { display: flex; gap: 7px; flex-wrap: wrap; }
+  .camp-bubble {
+    flex: 1;
+    min-width: 48px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+  .camp-bubble.highlight-red { background: #FFF5F5; border-color: #FECACA; }
+  .camp-bubble.highlight-orange { background: #FFFBEB; border-color: #FDE68A; }
+  .camp-bubble.highlight-violet { background: #F3EEFF; border-color: #DDD6FE; }
+  .camp-bubble-num {
+    font-size: 20px; font-weight: 800; color: var(--deep-violet); line-height: 1; margin-bottom: 4px;
+  }
+  .camp-bubble-num.red { color: var(--red); }
+  .camp-bubble-num.orange { color: var(--orange); }
+  .camp-bubble-num.violet { color: var(--optimove-purple); }
+  .camp-bubble-num.dim { color: var(--text-light); }
+  .camp-bubble-label {
+    font-size: 9px; font-weight: 600; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.3;
+  }
+
+  /* FLAG TABLE */
+  .flag-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 8px 16px; background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .flag-header span {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--text-light);
+  }
+  .flag-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 10px 16px; border-bottom: 1px solid var(--border); align-items: start;
+  }
+  .flag-row:last-child { border-bottom: none; }
+  .flag-tg { font-size: 11px; color: var(--text-dark); font-weight: 500; line-height: 1.4; }
+  .flag-action { font-size: 10px; color: var(--text-mid); line-height: 1.4; word-break: break-all; }
+  .chip {
+    display: inline-block; font-size: 8px; font-weight: 800; text-transform: uppercase;
+    padding: 1px 5px; border-radius: 4px; margin-bottom: 3px; letter-spacing: 0.3px;
+  }
+  .chip-failed { background: #FEE2E2; color: #991B1B; }
+  .chip-nocust { background: #FEF9C3; color: #854D0E; }
+
+  /* TOP 5 */
+  .top5-empty { padding: 16px; font-size: 12px; color: var(--text-mid); line-height: 1.6; background: var(--bg); }
+
+  /* PROCESS NOTE */
+  .process-note {
+    margin: 0 16px 10px;
+    padding: 13px 14px;
+    background: #F3EEFF;
+    border-left: 3px solid var(--optimove-purple);
+    border-radius: 0 10px 10px 0;
+  }
+  .process-note-title {
+    font-size: 11px; font-weight: 700; color: var(--optimove-purple);
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 7px;
+  }
+  .process-note p { font-size: 12px; color: var(--text-mid); line-height: 1.55; margin-bottom: 5px; }
+  .process-note p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HOME PAGE
+════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-client">Health Check</div>
+        <div class="home-header-sub">22 Jun 2026 · Yesterday's data</div>
+      </div>
+      <div class="header-badge">OPTIMOVE</div>
+    </div>
+  </div>
+
+  <div class="section-label">Your clients</div>
+
+  <!-- IRONFX -->
+  <div class="client-card" onclick="goTo('ironfx')">
+    <div class="client-card-top">
+      <div>
+        <div class="client-name">IronFX</div>
+        <div class="client-url">ironfx.optimove.net</div>
+      </div>
+      <div class="client-increase">
+        <div class="client-increase-num na">N/A</div>
+        <div class="client-increase-label">Increase</div>
+        <div class="client-increase-sig" style="color:var(--text-light);">No control group</div>
+      </div>
+    </div>
+    <div class="client-batch">
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Data</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot orange"></div>
+        <span class="mini-batch-label">Executed</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OLYBET -->
+  <div class="client-card" onclick="goTo('olybet')">
+    <div class="client-card-top">
+      <div>
+        <div class="client-name">OlyBet</div>
+        <div class="client-url">olybet.optimove.net</div>
+      </div>
+      <div class="client-increase">
+        <div class="client-increase-num">$87.1K</div>
+        <div class="client-increase-label">Increase</div>
+        <div class="client-increase-sig">✓ Significant</div>
+      </div>
+    </div>
+    <div class="client-batch">
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Data</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Executed</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERBET -->
+  <div class="client-card" onclick="goTo('interbet')">
+    <div class="client-card-top">
+      <div>
+        <div class="client-name">Interbet</div>
+        <div class="client-url">interbet.optimove.net</div>
+      </div>
+      <div class="client-increase">
+        <div class="client-increase-num na">—</div>
+        <div class="client-increase-label">Increase</div>
+        <div class="client-increase-sig" style="color:var(--text-light);">Not checked</div>
+      </div>
+    </div>
+    <div class="client-batch">
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Data</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Executed</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SODASTREAM -->
+  <div class="client-card" onclick="goTo('sodastream')">
+    <div class="client-card-top">
+      <div>
+        <div class="client-name">SodaStream</div>
+        <div class="client-url">sodastream.optimove.net</div>
+      </div>
+      <div class="client-increase">
+        <div class="client-increase-num na">—</div>
+        <div class="client-increase-label">Increase</div>
+        <div class="client-increase-sig" style="color:var(--text-light);">Not checked</div>
+      </div>
+    </div>
+    <div class="client-batch">
+      <div class="mini-batch-item">
+        <div class="mini-dot red"></div>
+        <span class="mini-batch-label">Data</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot red"></div>
+        <span class="mini-batch-label">Executed</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot red"></div>
+        <span class="mini-batch-label">Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PEPSICO -->
+  <div class="client-card" onclick="goTo('pepsico')">
+    <div class="client-card-top">
+      <div>
+        <div class="client-name">PepsiCo</div>
+        <div class="client-url">pepsico.optimove.net</div>
+      </div>
+      <div class="client-increase">
+        <div class="client-increase-num na">—</div>
+        <div class="client-increase-label">Increase</div>
+        <div class="client-increase-sig" style="color:var(--text-light);">Not checked</div>
+      </div>
+    </div>
+    <div class="client-batch">
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Data</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Executed</span>
+      </div>
+      <div class="mini-batch-sep"></div>
+      <div class="mini-batch-item">
+        <div class="mini-dot green"></div>
+        <span class="mini-batch-label">Analysis</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════
+     IRONFX DETAIL PAGE
+════════════════════════════════════════ -->
+<div class="page" id="page-ironfx">
+
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <button class="back-btn" onclick="goHome()">‹</button>
+        <div>
+          <div class="header-client">IronFX</div>
+          <div class="header-date">22 Jun 2026 · ironfx.optimove.net</div>
+        </div>
+      </div>
+      <div class="header-badge">HEALTH CHECK</div>
+    </div>
+  </div>
+
+  <div class="section-label">Batch process</div>
+  <div class="batch-card">
+    <div class="batch-card-header">
+      <div>
+        <div class="batch-card-title">Batch status</div>
+        <div class="batch-card-sub">Last data: 21 Jun 2026 — fresh</div>
+      </div>
+      <span class="card-badge green">OK</span>
+    </div>
+    <div class="batch-pills">
+      <div class="batch-pill">
+        <div class="batch-pill-dot green"></div>
+        <div class="batch-pill-label">Data Updated</div>
+        <span class="batch-pill-status green">Complete</span>
+      </div>
+      <div class="batch-pill">
+        <div class="batch-pill-dot orange"></div>
+        <div class="batch-pill-label">Campaigns Executed</div>
+        <span class="batch-pill-status orange">Error</span>
+      </div>
+      <div class="batch-pill">
+        <div class="batch-pill-dot green"></div>
+        <div class="batch-pill-label">Analysis &amp; Reporting</div>
+        <span class="batch-pill-status green">Complete</span>
+      </div>
+    </div>
+    <div class="batch-info">
+      ⚠️ "Campaigns Executed" error is expected — <em>run anyway / re-evaluate</em> campaigns recalculate target groups at execution. Not a real failure.
+    </div>
+  </div>
+
+  <div class="section-label">Yesterday's Mission Control</div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle('increase')">
+      <div class="card-left">
+        <div class="card-icon grey">📊</div>
+        <div>
+          <div class="card-title">Daily Increase</div>
+          <div class="card-subtitle">No control group data today</div>
+        </div>
+      </div>
+      <span class="card-badge grey">N/A</span>
+      <span class="chevron" id="chevron-increase">▾</span>
+    </div>
+    <div class="card-body" id="body-increase">
+      <div class="increase-block">
+        <div class="increase-na">— —</div>
+        <div class="increase-detail">Test response rate: <strong>2.74%</strong> · Control: —</div>
+        <div class="increase-note-box">No holdout / control-group customers registered for any campaign on 21 Jun. Increase is not computable — report as N/A, not $0.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle('campaigns')">
+      <div class="card-left">
+        <div class="card-icon purple">🎯</div>
+        <div>
+          <div class="card-title">Campaign breakdown</div>
+          <div class="card-subtitle">Yesterday · Triggered + Scheduled</div>
+        </div>
+      </div>
+      <span class="card-badge purple">140 total</span>
+      <span class="chevron" id="chevron-campaigns">▾</span>
+    </div>
+    <div class="card-body" id="body-campaigns">
+      <div class="camp-section">
+        <div class="camp-section-label">Triggered</div>
+        <div class="camp-bubble-row">
+          <div class="camp-bubble highlight-violet">
+            <div class="camp-bubble-num violet">31</div>
+            <div class="camp-bubble-label">Active</div>
+          </div>
+          <div class="camp-bubble">
+            <div class="camp-bubble-num dim">0</div>
+            <div class="camp-bubble-label">Inactive</div>
+          </div>
+        </div>
+      </div>
+      <div class="camp-section">
+        <div class="camp-section-label">Scheduled · 109 total</div>
+        <div class="camp-bubble-row">
+          <div class="camp-bubble">
+            <div class="camp-bubble-num">56</div>
+            <div class="camp-bubble-label">Running</div>
+          </div>
+          <div class="camp-bubble">
+            <div class="camp-bubble-num">4</div>
+            <div class="camp-bubble-label">Active</div>
+          </div>
+          <div class="camp-bubble">
+            <div class="camp-bubble-num">2</div>
+            <div class="camp-bubble-label">Scheduled</div>
+          </div>
+          <div class="camp-bubble highlight-orange">
+            <div class="camp-bubble-num orange">46</div>
+            <div class="camp-bubble-label">No Customers</div>
+          </div>
+          <div class="camp-bubble highlight-red">
+            <div class="camp-bubble-num red">1</div>
+            <div class="camp-bubble-label">Failed</div>
+          </div>
+          <div class="camp-bubble">
+            <div class="camp-bubble-num dim">0</div>
+            <div class="camp-bubble-label">Part. Failed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle('bad')">
+      <div class="card-left">
+        <div class="card-icon red">🚩</div>
+        <div>
+          <div class="card-title">Flagged campaigns</div>
+          <div class="card-subtitle">1 Failed · 46 No Customers</div>
+        </div>
+      </div>
+      <span class="card-badge red">47 flags</span>
+      <span class="chevron" id="chevron-bad">▾</span>
+    </div>
+    <div class="card-body" id="body-bad">
+      <div class="flag-header">
+        <span>Target Group</span>
+        <span>Action</span>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-failed">FAILED</span><br>Customers with negative profit</div>
+        <div class="flag-action">Consecutive Losing Trades</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Trade without Stop-Loss</div>
+        <div class="flag-action">Trade Without Stop-Loss</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners lost deposited +2000 (1) – Cmpgn 9</div>
+        <div class="flag-action">CHRN_EC_LOSS_DH_BL_05_EM_AM</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners Profited Balance $200+ (1) – Cmpgn 3</div>
+        <div class="flag-action">CHRN_EC_PROF_BAL_H_03_EM_Strategy</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners lost &amp; deposited -2000 Balance $200+ (1)</div>
+        <div class="flag-action">CHRN_EC_LOSS_DL_BH_01_SMS_Tradecopier</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Clients received deposit rejected</div>
+        <div class="flag-action">RJD-01-SMS</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Inactive | Funded, did not login 14 days</div>
+        <div class="flag-action">INCT-EBNS-01 → INCT-TGO-01 (7 campaigns)</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>JA automated – Not Deposited under specific IB</div>
+        <div class="flag-action">JA – Not deposited (8 campaigns)</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Rejected Deposits NOT JP (3) – Cmpgn 2</div>
+        <div class="flag-action">RJD-01-SMS</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Funded clients with profitable trades</div>
+        <div class="flag-action">Become a Strategy Provider</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>7-day email series (1)</div>
+        <div class="flag-action">Subscribe to 7-day series (Cmpgns 1–7)</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>RND New Stream (1)(1) – Cmpgn 11</div>
+        <div class="flag-action">1AM</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners lost deposited +2000 (1) – Cmpgn 3</div>
+        <div class="flag-action">CHRN_EC_LOSS_DH_BL_01_SMS_Spreads</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners lost deposited +2000 (1) – Cmpgn 8</div>
+        <div class="flag-action">CHRN_EC_LOSS_DH_BL_05_EM_Tools</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners lost deposited +2000 $200+ series</div>
+        <div class="flag-action">CHRN_EC_LOSS_DH_BH series (Cmpgns 1–9)</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners no trading – Cmpgn 1</div>
+        <div class="flag-action">CHRN_EC_NOTRD_01_EM_AM</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners Profited Balance $200+ (1) – Cmpgn 6</div>
+        <div class="flag-action">CHRN_EC_PROF_BAL_H_05_EM_Potential</div>
+      </div>
+      <div class="flag-row">
+        <div class="flag-tg"><span class="chip chip-nocust">NO CUSTOMERS</span><br>Churners lost deposited +2000 (1)(1)(1)</div>
+        <div class="flag-action">CHRN_EC_LOSS_DH_BL series (Cmpgns 1–3)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" onclick="toggle('top5')">
+      <div class="card-left">
+        <div class="card-icon grey">🏆</div>
+        <div>
+          <div class="card-title">Top 5 by Increase</div>
+          <div class="card-subtitle">Not available today</div>
+        </div>
+      </div>
+      <span class="card-badge grey">N/A</span>
+      <span class="chevron" id="chevron-top5">▾</span>
+    </div>
+    <div class="card-body" id="body-top5">
+      <div class="top5-empty">
+        No campaigns had control groups on 21 Jun. Increase values are non-computable across every row — Top 5 ranking cannot be produced.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Process notes</div>
+  <div class="process-note">
+    <div class="process-note-title">📋 Note</div>
+    <p><strong>Zero-Increase days:</strong> When no campaigns have control groups, the correct report is "N/A" — not $0. This is itself worth flagging to the client.</p>
+  </div>
+
+</div><!-- /page-ironfx -->
+
+
+<!-- ═══════════════════════════════════════
+     PLACEHOLDER DETAIL PAGES
+════════════════════════════════════════ -->
+<div class="page" id="page-olybet">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <button class="back-btn" onclick="goHome()">‹</button>
+        <div>
+          <div class="header-client">OlyBet</div>
+          <div class="header-date">22 Jun 2026 · olybet.optimove.net</div>
+        </div>
+      </div>
+      <div class="header-badge">HEALTH CHECK</div>
+    </div>
+  </div>
+  <div class="section-label">Coming soon</div>
+  <div class="process-note" style="margin-top:0;">
+    <div class="process-note-title">📋 Placeholder</div>
+    <p>OlyBet detail page — populate with yesterday's run data.</p>
+  </div>
+</div>
+
+<div class="page" id="page-interbet">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <button class="back-btn" onclick="goHome()">‹</button>
+        <div>
+          <div class="header-client">Interbet</div>
+          <div class="header-date">22 Jun 2026 · interbet.optimove.net</div>
+        </div>
+      </div>
+      <div class="header-badge">HEALTH CHECK</div>
+    </div>
+  </div>
+  <div class="section-label">Coming soon</div>
+  <div class="process-note" style="margin-top:0;">
+    <div class="process-note-title">📋 Placeholder</div>
+    <p>Interbet detail page — populate with yesterday's run data.</p>
+  </div>
+</div>
+
+<div class="page" id="page-sodastream">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <button class="back-btn" onclick="goHome()">‹</button>
+        <div>
+          <div class="header-client">SodaStream</div>
+          <div class="header-date">22 Jun 2026 · sodastream.optimove.net</div>
+        </div>
+      </div>
+      <div class="header-badge">HEALTH CHECK</div>
+    </div>
+  </div>
+  <div class="section-label">Coming soon</div>
+  <div class="process-note" style="margin-top:0;">
+    <div class="process-note-title">📋 Placeholder</div>
+    <p>SodaStream detail page — populate with yesterday's run data.</p>
+  </div>
+</div>
+
+<div class="page" id="page-pepsico">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-left">
+        <button class="back-btn" onclick="goHome()">‹</button>
+        <div>
+          <div class="header-client">PepsiCo</div>
+          <div class="header-date">22 Jun 2026 · pepsico.optimove.net</div>
+        </div>
+      </div>
+      <div class="header-badge">HEALTH CHECK</div>
+    </div>
+  </div>
+  <div class="section-label">Coming soon</div>
+  <div class="process-note" style="margin-top:0;">
+    <div class="process-note-title">📋 Placeholder</div>
+    <p>PepsiCo detail page — populate with yesterday's run data.</p>
+  </div>
+</div>
+
+
+<script>
+  function goTo(client) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + client).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function goHome() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-home').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function toggle(id) {
+    const body = document.getElementById('body-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const open = body.classList.contains('open');
+    body.classList.toggle('open', !open);
+    chevron.classList.toggle('open', !open);
+  }
+</script>
+
+</body>
+</html>
