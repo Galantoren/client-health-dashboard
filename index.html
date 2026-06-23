@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Optimove AI Backlog</title>
+<title>Optimove CS AI - Backlog</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,15 +12,11 @@
     --bg: #070b14; --surface: #0d1321; --surface2: #0b1020;
     --border: #1a2234; --border2: #263047;
     --text: #f0f4ff; --muted: #6b7f9e; --subtle: #3d4f6a;
-    --accent: #6366f1; --accent2: #818cf8;
-    --green: #10b981; --amber: #f59e0b; --red: #ef4444; --purple: #a78bfa;
-    /* Optimove brand */
     --deep-violet: #2D1B69; --opt-purple: #6B46C1; --lime: #C8E61F;
   }
 
   body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-  /* ── HEADER ── */
   .header {
     padding: 20px 36px; border-bottom: 1px solid var(--border);
     background: linear-gradient(180deg, #0a0f1e 0%, var(--bg) 100%);
@@ -31,7 +27,7 @@
     width: 40px; height: 40px;
     background: linear-gradient(135deg, var(--deep-violet) 0%, var(--opt-purple) 60%, var(--lime) 100%);
     border-radius: 11px; display: flex; align-items: center; justify-content: center;
-    font-size: 17px; font-weight: 800; color: white; letter-spacing: -0.5px;
+    font-size: 17px; font-weight: 800; color: white;
     box-shadow: 0 0 24px rgba(107,70,193,0.5); flex-shrink: 0;
   }
   .logo-text h1 { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
@@ -39,11 +35,8 @@
   .header-badges { display: flex; gap: 8px; }
   .badge { font-size: 11px; font-weight: 500; padding: 4px 11px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted); background: var(--surface); }
 
-  /* ── LAYOUT ── */
-  .layout { display: grid; grid-template-columns: 1fr 390px; min-height: calc(100vh - 81px); }
-
-  /* ── BOARD ── */
-  .board-area { padding: 28px 32px; overflow-y: auto; }
+  .layout { display: grid; grid-template-columns: 1fr; min-height: calc(100vh - 81px); }
+  .board-area { padding: 28px 32px; }
   .board-section-label {
     font-size: 10px; font-weight: 700; color: var(--subtle);
     text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px;
@@ -56,7 +49,7 @@
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 14px; padding: 20px 20px 18px;
     cursor: pointer; transition: all 0.2s ease;
-    position: relative; overflow: hidden;
+    position: relative; overflow: hidden; max-width: 560px;
   }
   .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
   .card.ongoing::before { background: linear-gradient(180deg, #f87171, #ef4444); }
@@ -69,87 +62,26 @@
   .card-status { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
   .status-ongoing { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
   .status-planned { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
-  .card-sprint { font-size: 10px; color: var(--subtle); font-weight: 600; letter-spacing: 0.3px; }
+  .card-sprint { font-size: 10px; color: var(--subtle); font-weight: 600; }
   .card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 5px; letter-spacing: -0.2px; }
   .card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
   .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
   .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 5px; }
-  .tag-ai { background: #1e1b4b; color: #a5b4fc; border: 1px solid #312e81; }
+  .tag-ai   { background: #1e1b4b; color: #a5b4fc; border: 1px solid #312e81; }
   .tag-html { background: #172554; color: #93c5fd; border: 1px solid #1e3a8a; }
-  .tag-mcp { background: #1a2e1a; color: #86efac; border: 1px solid #166534; }
+  .tag-mcp  { background: #1a2e1a; color: #86efac; border: 1px solid #166534; }
   .tag-mobile { background: #1c1917; color: #a8a29e; border: 1px solid #44403c; }
-  .tag-ops { background: #2d1b1b; color: #fca5a5; border: 1px solid #7f1d1d; }
-  .tag-agent { background: #1a1625; color: #c4b5fd; border: 1px solid #4c1d95; }
+  .tag-ops  { background: #2d1b1b; color: #fca5a5; border: 1px solid #7f1d1d; }
+  .tag-agent{ background: #1a1625; color: #c4b5fd; border: 1px solid #4c1d95; }
   .tag-data { background: #1a2420; color: #6ee7b7; border: 1px solid #065f46; }
+  .card-launch { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--opt-purple); font-weight: 600; }
 
-  /* launch hint */
-  .card-launch {
-    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
-    display: flex; align-items: center; gap: 6px;
-    font-size: 11px; color: var(--opt-purple); font-weight: 600;
-  }
-  .card-launch-icon { font-size: 12px; }
-
-  /* ── Q&A PANEL ── */
-  .qa-panel { border-left: 1px solid var(--border); background: var(--surface2); display: flex; flex-direction: column; max-height: calc(100vh - 81px); overflow: hidden; }
-  .qa-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
-  .qa-header h2 { font-size: 14px; font-weight: 700; color: var(--text); }
-  .qa-header p { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .progress-bar-wrap { margin-top: 14px; }
-  .progress-label { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-bottom: 5px; font-weight: 500; }
-  .progress-track { height: 3px; background: var(--border); border-radius: 10px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--opt-purple), var(--purple)); border-radius: 10px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
-  .qa-scroll { overflow-y: auto; flex: 1; padding: 22px 24px 24px; }
-  .q-block { margin-bottom: 26px; }
-  .q-block.answered .q-text { color: #94a3b8; }
-  .q-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent2); margin-bottom: 7px; }
-  .q-dot { width: 5px; height: 5px; background: var(--opt-purple); border-radius: 50%; flex-shrink: 0; }
-  .q-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 10px; }
-  .options { display: flex; flex-direction: column; gap: 6px; }
-  .opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; cursor: pointer; font-size: 12px; color: #8899bb; transition: all 0.15s; text-align: left; width: 100%; font-family: 'Inter', sans-serif; line-height: 1.45; }
-  .opt:hover { border-color: rgba(107,70,193,0.5); color: var(--text); background: rgba(107,70,193,0.05); }
-  .opt.selected { border-color: var(--opt-purple); color: var(--text); background: rgba(107,70,193,0.1); }
-  .opt.selected .opt-check { background: var(--opt-purple); border-color: var(--opt-purple); color: white; }
-  .opt-check { width: 18px; height: 18px; min-width: 18px; border-radius: 50%; border: 1.5px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; transition: all 0.15s; margin-top: 1px; color: transparent; }
-  .opt-multi { border-radius: 5px !important; }
-  .q-divider { height: 1px; background: var(--border); margin: 6px 0 24px; }
-  .summary-box { background: rgba(107,70,193,0.07); border: 1px solid rgba(107,70,193,0.22); border-radius: 12px; padding: 16px; margin-top: 8px; display: none; }
-  .summary-box.show { display: block; animation: fadeUp 0.3s ease; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-  .summary-box h4 { font-size: 11px; font-weight: 700; color: var(--accent2); margin-bottom: 10px; }
-  .summary-item { font-size: 11px; color: #94a3b8; margin-bottom: 6px; display: flex; gap: 6px; align-items: flex-start; line-height: 1.5; }
-  .summary-key { color: var(--muted); white-space: nowrap; font-weight: 500; }
-  .cta-btn { width: 100%; margin-top: 14px; padding: 13px; background: linear-gradient(135deg, var(--deep-violet) 0%, var(--opt-purple) 100%); border: none; border-radius: 10px; color: white; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; font-family: 'Inter', sans-serif; display: none; box-shadow: 0 4px 20px rgba(107,70,193,0.35); }
-  .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-  .qa-footer { padding: 14px 24px; border-top: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
-  .footer-status { font-size: 11px; color: var(--muted); text-align: center; font-weight: 500; }
-  .qa-scroll::-webkit-scrollbar { width: 4px; }
-  .qa-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 10px; }
-
-  /* ══════════════════════════════
-     MODAL OVERLAY
-  ══════════════════════════════ */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; z-index: 1000;
-    background: rgba(7,11,20,0.85); backdrop-filter: blur(6px);
-    align-items: center; justify-content: center; padding: 20px;
-  }
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(7,11,20,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: var(--bg); border: 1px solid var(--border2);
-    border-radius: 18px; width: 100%; max-width: 1100px;
-    max-height: 90vh; overflow: hidden;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7);
-    display: flex; flex-direction: column;
-    animation: modalIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
-  }
+  .modal-box { background: var(--bg); border: 1px solid var(--border2); border-radius: 18px; width: 100%; max-width: 1100px; max-height: 90vh; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.7); display: flex; flex-direction: column; animation: modalIn 0.25s cubic-bezier(0.34,1.56,0.64,1); }
   @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-  .modal-header {
-    padding: 16px 24px; border-bottom: 1px solid var(--border);
-    background: var(--deep-violet);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-shrink: 0;
-  }
+  .modal-header { padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--deep-violet); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .modal-header-left { display: flex; align-items: center; gap: 12px; }
   .modal-tag { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: rgba(200,230,31,0.15); color: var(--lime); border: 1px solid rgba(200,230,31,0.25); text-transform: uppercase; letter-spacing: 0.5px; }
   .modal-title { font-size: 15px; font-weight: 700; color: white; }
@@ -157,33 +89,16 @@
   .modal-close:hover { background: rgba(255,255,255,0.2); color: white; }
   .modal-body { flex: 1; overflow: hidden; display: flex; }
 
-  /* ══════════════════════════════
-     PROMPT GENERATOR INSIDE MODAL
-  ══════════════════════════════ */
-  .pg-left {
-    width: 50%; border-right: 1px solid var(--border);
-    overflow-y: auto; padding: 28px 28px;
-    display: flex; flex-direction: column; gap: 22px;
-    background: #FBFAF7; color: #0F0F0E;
-  }
-  .pg-right {
-    width: 50%; background: var(--deep-violet);
-    overflow-y: auto; display: flex; flex-direction: column;
-    position: relative;
-  }
-  .pg-right::before {
-    content: ''; position: absolute; right: -60px; top: -60px;
-    width: 250px; height: 250px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,230,31,0.1) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .pg-right-inner { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; z-index: 1; position: relative; }
+  /* PROMPT GENERATOR */
+  .pg-left { width: 50%; border-right: 1px solid var(--border); overflow-y: auto; padding: 28px; display: flex; flex-direction: column; gap: 22px; background: #FBFAF7; color: #0F0F0E; }
+  .pg-right { width: 50%; background: var(--deep-violet); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .pg-right::before { content: ''; position: absolute; right: -60px; top: -60px; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(200,230,31,0.1) 0%, transparent 65%); pointer-events: none; }
+  .pg-right-inner { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; z-index: 1; position: relative; overflow: hidden; }
 
-  /* pg field styles */
   .pg-step-row { display: flex; align-items: center; gap: 8px; }
   .pg-step-num { width: 20px; height: 20px; border-radius: 50%; background: var(--deep-violet); color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .pg-step-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--deep-violet); }
-  .pg-field-label { font-size: 11px; font-weight: 500; color: #6B6860; margin-bottom: 5px; }
+  .pg-field-label { font-size: 11px; font-weight: 500; color: #6B6860; margin-bottom: 6px; }
   .pg-input { width: 100%; padding: 10px 12px; background: white; border: 1.5px solid #ECE9DE; border-radius: 9px; font-size: 13px; font-weight: 500; color: #0F0F0E; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.15s; }
   .pg-input:focus { border-color: var(--opt-purple); }
   .pg-input::placeholder { color: #A8A59C; font-weight: 400; }
@@ -192,14 +107,28 @@
   .pg-preset { display: flex; align-items: center; justify-content: space-between; padding: 10px 13px; background: white; border: 1.5px solid #ECE9DE; border-radius: 9px; cursor: pointer; transition: all 0.15s; }
   .pg-preset:hover { border-color: var(--opt-purple); background: rgba(107,70,193,0.04); }
   .pg-preset.selected { border-color: var(--opt-purple); background: rgba(107,70,193,0.07); }
-  .pg-preset-left { display: flex; align-items: center; gap: 10px; }
+  .pg-preset-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
   .pg-preset-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
   .pg-preset-icon.pdf { background: #FCEBEB; }
   .pg-preset-icon.html { background: #E6F1FB; }
+  .pg-preset-icon.opt { background: linear-gradient(135deg, #2D1B69, #6B46C1); color: white; font-size: 12px; font-weight: 800; }
   .pg-preset-name { font-size: 12px; font-weight: 600; color: #0F0F0E; }
   .pg-preset-meta { font-size: 10px; color: #A8A59C; margin-top: 1px; }
+  .pg-preset-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
   .pg-preset-check { width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid #ECE9DE; display: flex; align-items: center; justify-content: center; font-size: 9px; color: transparent; transition: all 0.15s; flex-shrink: 0; }
   .pg-preset.selected .pg-preset-check { background: var(--opt-purple); border-color: var(--opt-purple); color: white; }
+  .pg-eye-btn { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid #DDD9CC; background: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; transition: all 0.15s; color: #A8A59C; flex-shrink: 0; line-height: 1; }
+  .pg-eye-btn:hover { border-color: var(--opt-purple); color: var(--opt-purple); background: rgba(107,70,193,0.06); }
+
+  /* preview overlay */
+  .pg-preview-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(7,11,20,0.75); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 24px; }
+  .pg-preview-overlay.open { display: flex; }
+  .pg-preview-box { background: white; border-radius: 16px; overflow: hidden; width: 720px; max-width: 95vw; max-height: 82vh; box-shadow: 0 28px 70px rgba(0,0,0,0.55); display: flex; flex-direction: column; animation: modalIn 0.2s ease; }
+  .pg-preview-header { padding: 12px 18px; background: var(--deep-violet); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .pg-preview-title { font-size: 13px; font-weight: 700; color: white; }
+  .pg-preview-close { background: rgba(255,255,255,0.15); border: none; color: white; width: 28px; height: 28px; border-radius: 7px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .pg-preview-close:hover { background: rgba(255,255,255,0.25); }
+  .pg-preview-frame iframe { width: 100%; height: 520px; border: none; display: block; }
 
   .pg-or { display: flex; align-items: center; gap: 8px; }
   .pg-or span { font-size: 10px; color: #A8A59C; font-weight: 500; white-space: nowrap; }
@@ -212,7 +141,6 @@
   .pg-upload-text span { color: var(--opt-purple); font-weight: 600; }
   .pg-uploaded { font-size: 11px; color: var(--opt-purple); font-weight: 600; margin-top: 5px; display: none; }
   .pg-uploaded.show { display: block; }
-
   .pg-textarea { width: 100%; min-height: 110px; padding: 10px 12px; background: white; border: 1.5px solid #ECE9DE; border-radius: 9px; font-size: 12px; line-height: 1.6; color: #0F0F0E; font-family: 'Inter', sans-serif; resize: vertical; outline: none; transition: border-color 0.15s; }
   .pg-textarea:focus { border-color: var(--opt-purple); }
   .pg-textarea::placeholder { color: #A8A59C; }
@@ -223,63 +151,50 @@
   .pg-tog.on { border-color: var(--opt-purple); background: rgba(107,70,193,0.07); color: var(--deep-violet); font-weight: 600; }
   .pg-tog-dot { width: 6px; height: 6px; border-radius: 50%; background: #DDD9CC; flex-shrink: 0; transition: background 0.15s; }
   .pg-tog.on .pg-tog-dot { background: var(--lime); }
-
   .pg-gen-btn { width: 100%; padding: 12px; background: var(--deep-violet); border: none; border-radius: 10px; color: white; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .pg-gen-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
-  /* right side */
-  .pg-output-bar { display: flex; align-items: center; justify-content: space-between; }
+  .pg-output-bar { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .pg-output-title { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
   .pg-copy-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; border: none; background: var(--lime); color: var(--deep-violet); box-shadow: 0 0 16px rgba(200,230,31,0.25); }
   .pg-copy-btn:hover { opacity: 0.85; }
   .pg-copy-btn.success { background: rgba(200,230,31,0.15); color: var(--lime); border: 1px solid rgba(200,230,31,0.3); }
 
-  .pg-prompt-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; flex: 1; display: flex; flex-direction: column; min-height: 300px; }
-  .pg-prompt-toolbar { padding: 9px 14px; background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; }
+  .pg-prompt-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .pg-prompt-toolbar { padding: 9px 14px; background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .pg-prompt-toolbar-label { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; }
   .pg-char-count { font-size: 9px; color: rgba(255,255,255,0.2); font-family: 'JetBrains Mono', monospace; }
-  .pg-prompt-content { flex: 1; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.7; color: rgba(255,255,255,0.72); white-space: pre-wrap; overflow-y: auto; min-height: 260px; }
-  .pg-prompt-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 260px; gap: 10px; text-align: center; }
+  .pg-prompt-content { flex: 1; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.7; color: rgba(255,255,255,0.72); white-space: pre-wrap; overflow-y: auto; }
+  .pg-prompt-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 10px; text-align: center; padding: 40px; }
   .pg-prompt-empty-icon { font-size: 28px; opacity: 0.35; }
   .pg-prompt-empty-text { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); }
   .pg-prompt-empty-sub { font-size: 10px; color: rgba(255,255,255,0.18); }
+  .pg-copy-bottom { width: 100%; padding: 9px 14px; background: none; border: none; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.22); cursor: pointer; transition: color 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
+  .pg-copy-bottom:hover { color: rgba(255,255,255,0.5); }
+  .pg-copy-bottom.success { color: rgba(200,230,31,0.65); }
 
-  .pg-dest-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; }
-  .pg-dest-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .pg-dest-card { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
-  .pg-dest-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-1px); }
-  .pg-dest-icon { font-size: 18px; }
-  .pg-dest-name { font-size: 12px; font-weight: 700; color: white; }
-  .pg-dest-sub { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 1px; }
-
-  /* ══════════════════════════════
-     HEALTH CHECK MODAL
-  ══════════════════════════════ */
+  /* HEALTH CHECK */
   .hc-wrap { width: 100%; overflow-y: auto; background: #FBFAF7; }
-  /* all health check styles scoped inside .hc-wrap */
   .hc-wrap * { box-sizing: border-box; }
-  .hc-wrap .hc-inner { max-width: 440px; margin: 0 auto; padding-bottom: 40px; }
-
+  .hc-inner { max-width: 440px; margin: 0 auto; padding-bottom: 40px; }
   .hc-header { background: #2D1B69; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 10; }
   .hc-header-top { display: flex; align-items: center; justify-content: space-between; }
-  .hc-header-left { display: flex; align-items: center; gap: 8px; }
-  .hc-back-btn { background: none; border: none; color: rgba(255,255,255,0.45); font-size: 18px; cursor: pointer; padding: 0 2px; line-height: 1; transition: color 0.15s; }
-  .hc-back-btn:active { color: rgba(255,255,255,0.85); }
+  .hc-header-left { display: flex; align-items: center; gap: 10px; }
+  .hc-back-btn { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.82); font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 20px; cursor: pointer; line-height: 1; transition: all 0.15s; white-space: nowrap; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+  .hc-back-btn:hover { background: rgba(255,255,255,0.22); color: white; border-color: rgba(255,255,255,0.35); }
+  .hc-back-btn:active { background: rgba(255,255,255,0.3); }
   .hc-client-name { font-size: 19px; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
   .hc-header-date { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.4px; text-transform: uppercase; margin-top: 2px; }
   .hc-badge { background: #C8E61F; color: #2D1B69; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.4px; white-space: nowrap; }
-  .hc-home-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; letter-spacing: 0.3px; }
+  .hc-home-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; }
   .hc-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #8A8A9A; padding: 20px 16px 8px; }
-
   .hc-page { display: none; }
   .hc-page.active { display: block; }
-
   .hc-client-card { background: white; border: 1px solid #ECE9DE; border-radius: 16px; margin: 0 16px 10px; overflow: hidden; cursor: pointer; transition: box-shadow 0.15s; }
   .hc-client-card:hover { box-shadow: 0 0 0 2px #6B46C1; }
   .hc-client-card-top { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; }
   .hc-client-cname { font-size: 15px; font-weight: 700; color: #2D1B69; }
   .hc-client-url { font-size: 10px; color: #8A8A9A; margin-top: 1px; }
-  .hc-client-increase { text-align: right; }
   .hc-inc-num { font-size: 17px; font-weight: 800; color: #38A169; line-height: 1; }
   .hc-inc-num.na { color: #8A8A9A; font-size: 14px; }
   .hc-inc-label { font-size: 9px; color: #8A8A9A; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px; }
@@ -287,79 +202,57 @@
   .hc-client-batch { display: flex; align-items: center; gap: 6px; padding: 0 16px 13px; }
   .hc-mini-batch-item { display: flex; align-items: center; gap: 4px; }
   .hc-mini-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .hc-mini-dot.green { background: #38A169; }
-  .hc-mini-dot.orange { background: #DD6B20; }
-  .hc-mini-dot.red { background: #E53E3E; }
+  .hc-mini-dot.green { background: #38A169; } .hc-mini-dot.orange { background: #DD6B20; } .hc-mini-dot.red { background: #E53E3E; }
   .hc-mini-label { font-size: 9px; color: #8A8A9A; white-space: nowrap; }
   .hc-mini-sep { width: 1px; height: 10px; background: #ECE9DE; margin: 0 2px; }
-
   .hc-card { background: white; border: 1px solid #ECE9DE; border-radius: 14px; margin: 0 16px 10px; overflow: hidden; }
   .hc-card-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; gap: 10px; }
   .hc-card-header:active { background: #FBFAF7; }
   .hc-card-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
   .hc-card-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-  .hc-card-icon.green { background: #F0FFF4; }
-  .hc-card-icon.red { background: #FFF5F5; }
-  .hc-card-icon.grey { background: #F5F5F5; }
-  .hc-card-icon.purple { background: #F3EEFF; }
+  .hc-card-icon.green { background: #F0FFF4; } .hc-card-icon.red { background: #FFF5F5; } .hc-card-icon.grey { background: #F5F5F5; } .hc-card-icon.purple { background: #F3EEFF; }
   .hc-card-title { font-size: 13px; font-weight: 600; color: #0F0F0E; line-height: 1.2; }
   .hc-card-subtitle { font-size: 11px; color: #4A4A5A; margin-top: 2px; }
   .hc-cbadge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 8px; flex-shrink: 0; white-space: nowrap; }
-  .hc-cbadge.green { background: #DCFCE7; color: #166534; }
-  .hc-cbadge.red { background: #FEE2E2; color: #991B1B; }
-  .hc-cbadge.orange { background: #FEF3C7; color: #92400E; }
-  .hc-cbadge.purple { background: #EDE9FE; color: #5B21B6; }
-  .hc-cbadge.grey { background: #F3F4F6; color: #374151; }
+  .hc-cbadge.green { background: #DCFCE7; color: #166534; } .hc-cbadge.red { background: #FEE2E2; color: #991B1B; } .hc-cbadge.orange { background: #FEF3C7; color: #92400E; } .hc-cbadge.purple { background: #EDE9FE; color: #5B21B6; } .hc-cbadge.grey { background: #F3F4F6; color: #374151; }
   .hc-chevron { font-size: 12px; color: #8A8A9A; transition: transform 0.2s; flex-shrink: 0; }
   .hc-chevron.open { transform: rotate(180deg); }
   .hc-card-body { display: none; border-top: 1px solid #ECE9DE; }
   .hc-card-body.open { display: block; }
-
   .hc-batch-card { background: white; border: 1px solid #ECE9DE; border-radius: 14px; margin: 0 16px 10px; overflow: hidden; }
   .hc-batch-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px 11px; border-bottom: 1px solid #ECE9DE; }
   .hc-batch-title { font-size: 13px; font-weight: 600; color: #0F0F0E; }
   .hc-batch-sub { font-size: 11px; color: #4A4A5A; margin-top: 1px; }
-  .hc-batch-pills { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+  .hc-batch-pills { display: grid; grid-template-columns: 1fr 1fr 1fr; }
   .hc-batch-pill { background: white; padding: 11px 10px 12px; text-align: center; border-right: 1px solid #ECE9DE; }
   .hc-batch-pill:last-child { border-right: none; }
   .hc-batch-dot { width: 7px; height: 7px; border-radius: 50%; margin: 0 auto 6px; }
-  .hc-batch-dot.green { background: #38A169; }
-  .hc-batch-dot.orange { background: #DD6B20; }
+  .hc-batch-dot.green { background: #38A169; } .hc-batch-dot.orange { background: #DD6B20; }
   .hc-batch-plabel { font-size: 10px; font-weight: 500; color: #4A4A5A; line-height: 1.3; margin-bottom: 4px; }
   .hc-batch-status { font-size: 10px; font-weight: 600; display: inline-block; }
-  .hc-batch-status.green { color: #38A169; }
-  .hc-batch-status.orange { color: #DD6B20; }
+  .hc-batch-status.green { color: #38A169; } .hc-batch-status.orange { color: #DD6B20; }
   .hc-batch-info { padding: 9px 14px 10px; font-size: 11px; color: #4A4A5A; line-height: 1.5; background: #FFFAF0; border-top: 1px solid #ECE9DE; }
-
   .hc-increase-block { padding: 20px 16px; text-align: center; }
   .hc-increase-na { font-size: 36px; font-weight: 800; color: #8A8A9A; letter-spacing: 4px; margin-bottom: 6px; }
   .hc-increase-detail { font-size: 12px; color: #4A4A5A; margin-bottom: 12px; }
   .hc-increase-note { padding: 10px 12px; background: #FEFCE8; border-left: 3px solid #C8E61F; border-radius: 0 8px 8px 0; text-align: left; font-size: 11px; color: #4A4A5A; line-height: 1.5; }
-
   .hc-camp-section { padding: 12px 14px; border-bottom: 1px solid #ECE9DE; }
   .hc-camp-section:last-child { border-bottom: none; }
-  .hc-camp-section-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8A8A9A; margin-bottom: 8px; padding-left: 2px; }
+  .hc-camp-section-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8A8A9A; margin-bottom: 8px; }
   .hc-camp-bubble-row { display: flex; gap: 7px; flex-wrap: wrap; }
   .hc-camp-bubble { flex: 1; min-width: 48px; background: #FBFAF7; border: 1px solid #ECE9DE; border-radius: 12px; padding: 10px 6px; text-align: center; }
-  .hc-camp-bubble.hl-red { background: #FFF5F5; border-color: #FECACA; }
-  .hc-camp-bubble.hl-orange { background: #FFFBEB; border-color: #FDE68A; }
-  .hc-camp-bubble.hl-violet { background: #F3EEFF; border-color: #DDD6FE; }
+  .hc-camp-bubble.hl-red { background: #FFF5F5; border-color: #FECACA; } .hc-camp-bubble.hl-orange { background: #FFFBEB; border-color: #FDE68A; } .hc-camp-bubble.hl-violet { background: #F3EEFF; border-color: #DDD6FE; }
   .hc-camp-bubble-num { font-size: 20px; font-weight: 800; color: #2D1B69; line-height: 1; margin-bottom: 4px; }
-  .hc-camp-bubble-num.red { color: #E53E3E; }
-  .hc-camp-bubble-num.orange { color: #DD6B20; }
-  .hc-camp-bubble-num.violet { color: #6B46C1; }
-  .hc-camp-bubble-num.dim { color: #8A8A9A; }
+  .hc-camp-bubble-num.red { color: #E53E3E; } .hc-camp-bubble-num.orange { color: #DD6B20; } .hc-camp-bubble-num.violet { color: #6B46C1; } .hc-camp-bubble-num.dim { color: #8A8A9A; }
   .hc-camp-bubble-label { font-size: 9px; font-weight: 600; color: #8A8A9A; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.3; }
-
   .hc-flag-header { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 16px; background: #FBFAF7; border-bottom: 1px solid #ECE9DE; }
   .hc-flag-header span { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #8A8A9A; }
   .hc-flag-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 16px; border-bottom: 1px solid #ECE9DE; align-items: start; }
   .hc-flag-row:last-child { border-bottom: none; }
   .hc-flag-tg { font-size: 11px; color: #0F0F0E; font-weight: 500; line-height: 1.4; }
   .hc-flag-action { font-size: 10px; color: #4A4A5A; line-height: 1.4; word-break: break-all; }
-  .hc-chip { display: inline-block; font-size: 8px; font-weight: 800; text-transform: uppercase; padding: 1px 5px; border-radius: 4px; margin-bottom: 3px; letter-spacing: 0.3px; }
-  .hc-chip-failed { background: #FEE2E2; color: #991B1B; }
-  .hc-chip-nocust { background: #FEF9C3; color: #854D0E; }
+  .hc-chip { display: inline-block; font-size: 8px; font-weight: 800; text-transform: uppercase; padding: 1px 5px; border-radius: 4px; margin-bottom: 3px; }
+  .hc-chip-failed { background: #FEE2E2; color: #991B1B; } .hc-chip-nocust { background: #FEF9C3; color: #854D0E; }
   .hc-top5-empty { padding: 16px; font-size: 12px; color: #4A4A5A; line-height: 1.6; background: #FBFAF7; }
   .hc-process-note { margin: 0 16px 10px; padding: 13px 14px; background: #F3EEFF; border-left: 3px solid #6B46C1; border-radius: 0 10px 10px 0; }
   .hc-process-note-title { font-size: 11px; font-weight: 700; color: #6B46C1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 7px; }
@@ -368,28 +261,21 @@
   .hc-placeholder-note { margin: 16px; padding: 13px 14px; background: #F3EEFF; border-left: 3px solid #6B46C1; border-radius: 0 10px 10px 0; font-size: 12px; color: #4A4A5A; line-height: 1.55; }
 
   @media (max-width: 860px) {
-    .layout { grid-template-columns: 1fr; }
-    .qa-panel { max-height: none; border-left: none; border-top: 1px solid var(--border); }
     .modal-box { max-height: 95vh; }
     .modal-body { flex-direction: column; }
     .pg-left, .pg-right { width: 100%; min-height: 400px; }
-    .pg-right { border-top: 1px solid var(--border); }
     .header { padding: 18px 20px; }
-    .board-area, .qa-scroll { padding: 20px; }
-    .qa-header, .qa-footer { padding: 16px 20px; }
+    .board-area { padding: 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     BACKLOG HEADER
-══════════════════════════════════════ -->
 <div class="header">
   <div class="logo-row">
     <div class="logo-icon">O</div>
     <div class="logo-text">
-      <h1>Optimove AI Backlog</h1>
+      <h1>Optimove CS AI - Backlog</h1>
       <p>Sprint Planning · v0.1 Draft</p>
     </div>
   </div>
@@ -401,179 +287,59 @@
 </div>
 
 <div class="layout">
-
-  <!-- ── LEFT: BOARD ── -->
   <div class="board-area">
-
     <div class="board-section-label">Ongoing</div>
     <div class="initiatives">
-
       <div class="card ongoing active" onclick="selectCard(this); openModal('modal-status')">
         <div class="card-top">
-          <div class="card-meta">
-            <span class="card-id">OPT-001</span>
-            <span class="card-status status-ongoing">Ongoing</span>
-          </div>
+          <div class="card-meta"><span class="card-id">OPT-001</span><span class="card-status status-ongoing">Ongoing</span></div>
           <span class="card-sprint">Sprint 1</span>
         </div>
         <div class="card-title">Client Status — Prompt Generator</div>
         <div class="card-desc">Paste raw data (PDF, notes, Jira export) and get a copy-ready AI prompt that generates a structured HTML status dashboard.</div>
-        <div class="card-tags">
-          <span class="tag tag-ops">Ops Tickets</span>
-          <span class="tag tag-ai">AI</span>
-          <span class="tag tag-mcp">MCP</span>
-        </div>
-        <div class="card-launch">
-          <span class="card-launch-icon">↗</span> Open Prompt Generator
-        </div>
+        <div class="card-tags"><span class="tag tag-ops">Ops Tickets</span><span class="tag tag-ai">AI</span><span class="tag tag-mcp">MCP</span></div>
+        <div class="card-launch"><span>↗</span> Open Prompt Generator</div>
       </div>
-
       <div class="card ongoing" onclick="selectCard(this); openModal('modal-health')">
         <div class="card-top">
-          <div class="card-meta">
-            <span class="card-id">OPT-002</span>
-            <span class="card-status status-ongoing">Ongoing</span>
-          </div>
+          <div class="card-meta"><span class="card-id">OPT-002</span><span class="card-status status-ongoing">Ongoing</span></div>
           <span class="card-sprint">Sprint 1</span>
         </div>
         <div class="card-title">Client Health Check</div>
         <div class="card-desc">Mobile + web HTML tracking yesterday's batch process health & Mission Control status.</div>
-        <div class="card-tags">
-          <span class="tag tag-html">HTML</span>
-          <span class="tag tag-mobile">Mobile</span>
-          <span class="tag tag-ai">AI</span>
-        </div>
-        <div class="card-launch">
-          <span class="card-launch-icon">↗</span> Open Health Check
-        </div>
+        <div class="card-tags"><span class="tag tag-html">HTML</span><span class="tag tag-mobile">Mobile</span><span class="tag tag-ai">AI</span></div>
+        <div class="card-launch"><span>↗</span> Open Health Check</div>
       </div>
-
     </div>
-
     <div class="board-section-label">Planned</div>
     <div class="initiatives">
-
       <div class="card planned" onclick="selectCard(this)">
         <div class="card-top">
-          <div class="card-meta">
-            <span class="card-id">OPT-003</span>
-            <span class="card-status status-planned">Planned</span>
-          </div>
+          <div class="card-meta"><span class="card-id">OPT-003</span><span class="card-status status-planned">Planned</span></div>
           <span class="card-sprint">Sprint 2+</span>
         </div>
         <div class="card-title">Client Context Agent</div>
         <div class="card-desc">Smart AI agents with full client context — playbooks, schemas, consent, ongoing issues & active projects. Modeled after the data share agent.</div>
-        <div class="card-tags">
-          <span class="tag tag-agent">Agent</span>
-          <span class="tag tag-ai">AI</span>
-          <span class="tag tag-data">Data Share</span>
-          <span class="tag tag-mcp">MCP</span>
-        </div>
+        <div class="card-tags"><span class="tag tag-agent">Agent</span><span class="tag tag-ai">AI</span><span class="tag tag-data">Data Share</span><span class="tag tag-mcp">MCP</span></div>
       </div>
-
     </div>
   </div>
+</div>
 
-  <!-- ── RIGHT: Q&A ── -->
-  <div class="qa-panel">
-    <div class="qa-header">
-      <h2>Let's define Sprint 1 →</h2>
-      <p>Click answers below — no typing needed</p>
-      <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span>Questions answered</span>
-          <span id="prog-label">0 / 6</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="prog-fill" style="width:0%"></div>
-        </div>
-      </div>
+
+<!-- PREVIEW OVERLAY -->
+<div class="pg-preview-overlay" id="pg-preview-overlay">
+  <div class="pg-preview-box">
+    <div class="pg-preview-header">
+      <span class="pg-preview-title" id="pg-preview-title">Layout Preview</span>
+      <button class="pg-preview-close" onclick="closePgPreview()">✕</button>
     </div>
-    <div class="qa-scroll">
-      <div class="q-block" id="qblock-1">
-        <div class="q-chip"><div class="q-dot"></div>Sprint scope</div>
-        <div class="q-text">Where should Sprint 1 start?</div>
-        <div class="options" data-q="1" data-type="single">
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>OPT-001 Client Status first — define the data model</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>OPT-002 Health Check first — fastest visible win</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Both in parallel — different tracks</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Not decided yet</button>
-        </div>
-      </div>
-      <div class="q-divider"></div>
-      <div class="q-block" id="qblock-2">
-        <div class="q-chip"><div class="q-dot"></div>OPT-001 · Client Status</div>
-        <div class="q-text">Where does client status data live today?</div>
-        <div class="options" data-q="2" data-type="multi">
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Jira — projects & issues</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Internal CRM or ops tool</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Slack / manual updates</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Spreadsheets</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Multiple scattered places</button>
-        </div>
-      </div>
-      <div class="q-divider"></div>
-      <div class="q-block" id="qblock-3">
-        <div class="q-chip"><div class="q-dot"></div>OPT-002 · Health Check</div>
-        <div class="q-text">How should the Health Check refresh?</div>
-        <div class="options" data-q="3" data-type="single">
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Daily snapshot — generated each morning automatically</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Near-realtime — auto-refreshes throughout the day</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>On-demand — user triggers refresh manually</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Not sure yet</button>
-        </div>
-      </div>
-      <div class="q-divider"></div>
-      <div class="q-block" id="qblock-4">
-        <div class="q-chip"><div class="q-dot"></div>People</div>
-        <div class="q-text">Who are the test users for Sprint 1?</div>
-        <div class="options" data-q="4" data-type="single">
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Just me to start</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Me + small internal team (2–5 people)</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Internal team + 1–2 pilot clients</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>TBD — not defined yet</button>
-        </div>
-      </div>
-      <div class="q-divider"></div>
-      <div class="q-block" id="qblock-5">
-        <div class="q-chip"><div class="q-dot"></div>Tech stack</div>
-        <div class="q-text">Which MCPs do we have or need?</div>
-        <div class="options" data-q="5" data-type="multi">
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Jira MCP</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Slack MCP</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Google Drive MCP</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Internal Optimove API</button>
-          <button class="opt" onclick="pickMulti(this)"><div class="opt-check opt-multi">✓</div>Nothing set up yet</button>
-        </div>
-      </div>
-      <div class="q-divider"></div>
-      <div class="q-block" id="qblock-6">
-        <div class="q-chip"><div class="q-dot"></div>Process</div>
-        <div class="q-text">How long per sprint?</div>
-        <div class="options" data-q="6" data-type="single">
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>1 week — fast iterations</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>2 weeks — standard cadence</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Flexible — depends on the initiative</button>
-          <button class="opt" onclick="pick(this)"><div class="opt-check">✓</div>Not sure yet</button>
-        </div>
-      </div>
-      <div class="summary-box" id="summary-box">
-        <h4>🎯 Sprint 1 snapshot</h4>
-        <div id="summary-content"></div>
-      </div>
-      <button class="cta-btn" id="send-btn" onclick="sendSummary()">Send answers to Claude →</button>
-    </div>
-    <div class="qa-footer">
-      <div class="footer-status" id="footer-status">Answer the questions above to build your sprint plan</div>
-    </div>
+    <div class="pg-preview-frame"><iframe id="pg-preview-iframe" src="about:blank"></iframe></div>
   </div>
+</div>
 
-</div><!-- /layout -->
 
-
-<!-- ══════════════════════════════════════
-     MODAL: CLIENT STATUS PROMPT GENERATOR
-══════════════════════════════════════ -->
+<!-- MODAL: PROMPT GENERATOR -->
 <div class="modal-overlay" id="modal-status">
   <div class="modal-box">
     <div class="modal-header">
@@ -585,9 +351,7 @@
     </div>
     <div class="modal-body">
 
-      <!-- LEFT: inputs -->
       <div class="pg-left">
-
         <div>
           <div class="pg-step-row"><div class="pg-step-num">1</div><div class="pg-step-label">Client</div></div>
           <div style="height:8px"></div>
@@ -595,21 +359,39 @@
         </div>
 
         <div>
-          <div class="pg-step-row"><div class="pg-step-num">2</div><div class="pg-step-label">Load source data</div></div>
+          <div class="pg-step-row"><div class="pg-step-num">2</div><div class="pg-step-label">Output design template</div></div>
           <div style="height:10px"></div>
-          <div class="pg-field-label">Preloaded files — click to use</div>
+          <div class="pg-field-label">Choose a layout for the generated dashboard</div>
           <div class="pg-preset-files">
-            <div class="pg-preset" id="pg-preset-oeg" onclick="pgLoadPreset('oeg')">
+
+            <div class="pg-preset selected" id="pg-preset-optimove" onclick="pgSelectTemplate('optimove')">
+              <div class="pg-preset-left">
+                <div class="pg-preset-icon opt">O</div>
+                <div>
+                  <div class="pg-preset-name">Optimove Colors</div>
+                  <div class="pg-preset-meta">Default · Deep violet + lime · Brand palette</div>
+                </div>
+              </div>
+              <div class="pg-preset-actions">
+                <div class="pg-preset-check">✓</div>
+              </div>
+            </div>
+
+            <div class="pg-preset" id="pg-preset-oeg" onclick="pgSelectTemplate('oeg')">
               <div class="pg-preset-left">
                 <div class="pg-preset-icon pdf">📄</div>
                 <div>
                   <div class="pg-preset-name">OEG_Status_16_6.pdf</div>
-                  <div class="pg-preset-meta">Olympic Entertainment Group · 16 June 2026 · Data + Ops</div>
+                  <div class="pg-preset-meta">Olympic Entertainment Group · 16 Jun 2026</div>
                 </div>
               </div>
-              <div class="pg-preset-check">✓</div>
+              <div class="pg-preset-actions">
+                <button class="pg-eye-btn" onclick="pgPreview('oeg', event)" title="Preview layout">👁</button>
+                <div class="pg-preset-check">✓</div>
+              </div>
             </div>
-            <div class="pg-preset" id="pg-preset-tango" onclick="pgLoadPreset('tango')">
+
+            <div class="pg-preset" id="pg-preset-tango" onclick="pgSelectTemplate('tango')">
               <div class="pg-preset-left">
                 <div class="pg-preset-icon html">🌐</div>
                 <div>
@@ -617,11 +399,19 @@
                   <div class="pg-preset-meta">Tango · June 14, 2026 · Bugs + Roadmap + Ops</div>
                 </div>
               </div>
-              <div class="pg-preset-check">✓</div>
+              <div class="pg-preset-actions">
+                <button class="pg-eye-btn" onclick="pgPreview('tango', event)" title="Preview layout">👁</button>
+                <div class="pg-preset-check">✓</div>
+              </div>
             </div>
+
           </div>
+        </div>
+
+        <div>
+          <div class="pg-step-row"><div class="pg-step-num">3</div><div class="pg-step-label">Paste your raw content</div></div>
           <div style="height:10px"></div>
-          <div class="pg-or"><div class="pg-or-line"></div><span>or add new file</span><div class="pg-or-line"></div></div>
+          <div class="pg-or"><div class="pg-or-line"></div><span>upload file</span><div class="pg-or-line"></div></div>
           <div style="height:8px"></div>
           <div class="pg-upload" id="pg-upload-zone">
             <input type="file" id="pg-file-input" accept=".pdf,.html,.txt,.csv" onchange="pgHandleFile(this)" />
@@ -635,7 +425,7 @@
         </div>
 
         <div>
-          <div class="pg-step-row"><div class="pg-step-num">3</div><div class="pg-step-label">Sections to generate</div></div>
+          <div class="pg-step-row"><div class="pg-step-num">4</div><div class="pg-step-label">Sections to generate</div></div>
           <div style="height:10px"></div>
           <div class="pg-toggles" id="pg-sections">
             <button class="pg-tog on" data-val="bugs" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>🐛 Bugs & Technical</button>
@@ -648,10 +438,8 @@
         </div>
 
         <button class="pg-gen-btn" onclick="pgGenerate()"><span>✦</span> Generate prompt</button>
+      </div>
 
-      </div><!-- /pg-left -->
-
-      <!-- RIGHT: output -->
       <div class="pg-right">
         <div class="pg-right-inner">
           <div class="pg-output-bar">
@@ -660,7 +448,7 @@
           </div>
           <div class="pg-prompt-box">
             <div class="pg-prompt-toolbar">
-              <span class="pg-prompt-toolbar-label">Ready to paste in Claude or ChatGPT</span>
+              <span class="pg-prompt-toolbar-label">Ready to paste in Claude</span>
               <span class="pg-char-count" id="pg-char-count">—</span>
             </div>
             <div class="pg-prompt-content" id="pg-prompt-output">
@@ -670,29 +458,17 @@
                 <div class="pg-prompt-empty-sub">Load data · click Generate</div>
               </div>
             </div>
-          </div>
-          <div class="pg-dest-label">Open in</div>
-          <div class="pg-dest-row">
-            <a class="pg-dest-card" href="https://claude.ai" target="_blank">
-              <span class="pg-dest-icon">⚡</span>
-              <div><div class="pg-dest-name">Claude</div><div class="pg-dest-sub">claude.ai → New chat</div></div>
-            </a>
-            <a class="pg-dest-card" href="https://chatgpt.com" target="_blank">
-              <span class="pg-dest-icon">🤖</span>
-              <div><div class="pg-dest-name">ChatGPT</div><div class="pg-dest-sub">chatgpt.com → New chat</div></div>
-            </a>
+            <button class="pg-copy-bottom" id="pg-copy-bottom" onclick="pgCopy()">⌘ Copy to clipboard</button>
           </div>
         </div>
-      </div><!-- /pg-right -->
+      </div>
 
-    </div><!-- /modal-body -->
+    </div>
   </div>
-</div><!-- /modal-status -->
+</div>
 
 
-<!-- ══════════════════════════════════════
-     MODAL: HEALTH CHECK
-══════════════════════════════════════ -->
+<!-- MODAL: HEALTH CHECK -->
 <div class="modal-overlay" id="modal-health">
   <div class="modal-box" style="max-width:500px;">
     <div class="modal-header">
@@ -706,22 +482,19 @@
       <div class="hc-wrap" style="width:100%;">
         <div class="hc-inner">
 
-          <!-- HOME PAGE -->
           <div class="hc-page active" id="hc-page-home">
             <div class="hc-header">
               <div class="hc-header-top">
-                <div>
-                  <div class="hc-client-name">Health Check</div>
-                  <div class="hc-home-sub">22 Jun 2026 · Yesterday's data</div>
-                </div>
+                <div><div class="hc-client-name">Health Check</div><div class="hc-home-sub">22 Jun 2026 · Yesterday's data</div></div>
                 <div class="hc-badge">OPTIMOVE</div>
               </div>
             </div>
             <div class="hc-section-label">Your clients</div>
+
             <div class="hc-client-card" onclick="hcGoTo('ironfx')">
               <div class="hc-client-card-top">
                 <div><div class="hc-client-cname">IronFX</div><div class="hc-client-url">ironfx.optimove.net</div></div>
-                <div class="hc-client-increase"><div class="hc-inc-num na">N/A</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">No control group</div></div>
+                <div style="text-align:right"><div class="hc-inc-num na">N/A</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">No control group</div></div>
               </div>
               <div class="hc-client-batch">
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Data</span></div>
@@ -731,10 +504,11 @@
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Analysis</span></div>
               </div>
             </div>
+
             <div class="hc-client-card" onclick="hcGoTo('olybet')">
               <div class="hc-client-card-top">
                 <div><div class="hc-client-cname">OlyBet</div><div class="hc-client-url">olybet.optimove.net</div></div>
-                <div class="hc-client-increase"><div class="hc-inc-num">$87.1K</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig">✓ Significant</div></div>
+                <div style="text-align:right"><div class="hc-inc-num">$87.1K</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig">✓ Significant</div></div>
               </div>
               <div class="hc-client-batch">
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Data</span></div>
@@ -744,10 +518,11 @@
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Analysis</span></div>
               </div>
             </div>
+
             <div class="hc-client-card" onclick="hcGoTo('interbet')">
               <div class="hc-client-card-top">
                 <div><div class="hc-client-cname">Interbet</div><div class="hc-client-url">interbet.optimove.net</div></div>
-                <div class="hc-client-increase"><div class="hc-inc-num na">—</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">Not checked</div></div>
+                <div style="text-align:right"><div class="hc-inc-num na">—</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">Not checked</div></div>
               </div>
               <div class="hc-client-batch">
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Data</span></div>
@@ -757,10 +532,11 @@
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Analysis</span></div>
               </div>
             </div>
+
             <div class="hc-client-card" onclick="hcGoTo('sodastream')">
               <div class="hc-client-card-top">
                 <div><div class="hc-client-cname">SodaStream</div><div class="hc-client-url">sodastream.optimove.net</div></div>
-                <div class="hc-client-increase"><div class="hc-inc-num na">—</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">Not checked</div></div>
+                <div style="text-align:right"><div class="hc-inc-num na">—</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">Not checked</div></div>
               </div>
               <div class="hc-client-batch">
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot red"></div><span class="hc-mini-label">Data</span></div>
@@ -770,10 +546,11 @@
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot red"></div><span class="hc-mini-label">Analysis</span></div>
               </div>
             </div>
+
             <div class="hc-client-card" onclick="hcGoTo('pepsico')">
               <div class="hc-client-card-top">
                 <div><div class="hc-client-cname">PepsiCo</div><div class="hc-client-url">pepsico.optimove.net</div></div>
-                <div class="hc-client-increase"><div class="hc-inc-num na">—</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">Not checked</div></div>
+                <div style="text-align:right"><div class="hc-inc-num na">—</div><div class="hc-inc-label">Increase</div><div class="hc-inc-sig" style="color:#8A8A9A;">Not checked</div></div>
               </div>
               <div class="hc-client-batch">
                 <div class="hc-mini-batch-item"><div class="hc-mini-dot green"></div><span class="hc-mini-label">Data</span></div>
@@ -785,12 +562,11 @@
             </div>
           </div><!-- /hc-page-home -->
 
-          <!-- IRONFX DETAIL -->
           <div class="hc-page" id="hc-page-ironfx">
             <div class="hc-header">
               <div class="hc-header-top">
                 <div class="hc-header-left">
-                  <button class="hc-back-btn" onclick="hcGoHome()">‹</button>
+                  <button class="hc-back-btn" onclick="hcGoHome()">‹ Back</button>
                   <div><div class="hc-client-name">IronFX</div><div class="hc-header-date">22 Jun 2026 · ironfx.optimove.net</div></div>
                 </div>
                 <div class="hc-badge">HEALTH CHECK</div>
@@ -802,7 +578,7 @@
               <div class="hc-batch-pills">
                 <div class="hc-batch-pill"><div class="hc-batch-dot green"></div><div class="hc-batch-plabel">Data Updated</div><span class="hc-batch-status green">Complete</span></div>
                 <div class="hc-batch-pill"><div class="hc-batch-dot orange"></div><div class="hc-batch-plabel">Campaigns Executed</div><span class="hc-batch-status orange">Error</span></div>
-                <div class="hc-batch-pill"><div class="hc-batch-dot green"></div><div class="hc-batch-plabel">Analysis & Reporting</div><span class="hc-batch-status green">Complete</span></div>
+                <div class="hc-batch-pill"><div class="hc-batch-dot green"></div><div class="hc-batch-plabel">Analysis &amp; Reporting</div><span class="hc-batch-status green">Complete</span></div>
               </div>
               <div class="hc-batch-info">⚠️ "Campaigns Executed" error is expected — <em>run anyway / re-evaluate</em> campaigns recalculate target groups at execution. Not a real failure.</div>
             </div>
@@ -874,122 +650,107 @@
               <div class="hc-process-note-title">📋 Note</div>
               <p><strong>Zero-Increase days:</strong> When no campaigns have control groups, the correct report is "N/A" — not $0.</p>
             </div>
-          </div><!-- /hc-ironfx -->
+          </div>
 
-          <!-- PLACEHOLDER PAGES -->
           <div class="hc-page" id="hc-page-olybet">
-            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹</button><div><div class="hc-client-name">OlyBet</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
+            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹ Back</button><div><div class="hc-client-name">OlyBet</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
             <div class="hc-placeholder-note">OlyBet detail page — populate with yesterday's run data.</div>
           </div>
           <div class="hc-page" id="hc-page-interbet">
-            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹</button><div><div class="hc-client-name">Interbet</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
+            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹ Back</button><div><div class="hc-client-name">Interbet</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
             <div class="hc-placeholder-note">Interbet detail page — populate with yesterday's run data.</div>
           </div>
           <div class="hc-page" id="hc-page-sodastream">
-            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹</button><div><div class="hc-client-name">SodaStream</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
+            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹ Back</button><div><div class="hc-client-name">SodaStream</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
             <div class="hc-placeholder-note">SodaStream detail page — populate with yesterday's run data.</div>
           </div>
           <div class="hc-page" id="hc-page-pepsico">
-            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹</button><div><div class="hc-client-name">PepsiCo</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
+            <div class="hc-header"><div class="hc-header-top"><div class="hc-header-left"><button class="hc-back-btn" onclick="hcGoHome()">‹ Back</button><div><div class="hc-client-name">PepsiCo</div><div class="hc-header-date">22 Jun 2026</div></div></div><div class="hc-badge">HEALTH CHECK</div></div></div>
             <div class="hc-placeholder-note">PepsiCo detail page — populate with yesterday's run data.</div>
           </div>
 
-        </div><!-- /hc-inner -->
-      </div><!-- /hc-wrap -->
-    </div><!-- /modal-body -->
+        </div>
+      </div>
+    </div>
   </div>
-</div><!-- /modal-health -->
+</div>
 
 
 <script>
-  // ── BACKLOG Q&A ──
-  const answers = {};
-  const TOTAL = 6;
-  const qLabels = { 1:'Sprint 1 start', 2:'Data sources', 3:'Health check refresh', 4:'Test users', 5:'MCPs needed', 6:'Sprint length' };
-
-  function updateProgress() {
-    const n = Object.keys(answers).length;
-    document.getElementById('prog-label').textContent = n + ' / ' + TOTAL;
-    document.getElementById('prog-fill').style.width = (n / TOTAL * 100) + '%';
-    const st = document.getElementById('footer-status');
-    if (n === TOTAL) { st.textContent = '✅ All answered — ready to plan Sprint 1!'; st.style.color = '#86efac'; }
-    else { st.textContent = n + ' of ' + TOTAL + ' answered'; st.style.color = ''; }
-    if (n >= 2) { updateSummary(); document.getElementById('send-btn').style.display = 'block'; }
-  }
-  function updateSummary() {
-    document.getElementById('summary-box').classList.add('show');
-    let html = '';
-    for (const [q,val] of Object.entries(answers)) {
-      const d = Array.isArray(val) ? val.join(', ') : val;
-      html += `<div class="summary-item"><span class="summary-key">${qLabels[q]}:</span><span>${d}</span></div>`;
-    }
-    document.getElementById('summary-content').innerHTML = html;
-  }
-  function pick(btn) {
-    const g = btn.closest('.options');
-    g.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    const q = g.dataset.q;
-    answers[q] = btn.textContent.trim();
-    document.getElementById('qblock-' + q).classList.add('answered');
-    updateProgress();
-  }
-  function pickMulti(btn) {
-    btn.classList.toggle('selected');
-    const g = btn.closest('.options');
-    const q = g.dataset.q;
-    const sel = [...g.querySelectorAll('.opt.selected')].map(b => b.textContent.trim());
-    if (sel.length) { answers[q] = sel; document.getElementById('qblock-' + q).classList.add('answered'); }
-    else { delete answers[q]; document.getElementById('qblock-' + q).classList.remove('answered'); }
-    updateProgress();
-  }
   function selectCard(el) {
     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
     el.classList.add('active');
   }
-  function sendSummary() {
-    let msg = 'Here are my Sprint 1 answers:\n\n';
-    for (const [q,val] of Object.entries(answers)) {
-      msg += '• ' + qLabels[q] + ': ' + (Array.isArray(val) ? val.join(', ') : val) + '\n';
-    }
-    msg += '\nPlease update the backlog with these answers and suggest concrete next steps for Sprint 1.';
-    if (typeof sendPrompt === 'function') sendPrompt(msg);
-    else alert(msg);
-  }
 
-  // ── MODALS ──
-  function openModal(id) {
-    document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  // Close on overlay click
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
   document.querySelectorAll('.modal-overlay').forEach(m => {
     m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
   });
-  // Close on Escape
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+    if (e.key === 'Escape') {
+      if (document.getElementById('pg-preview-overlay').classList.contains('open')) { closePgPreview(); return; }
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+    }
   });
 
-  // ── PROMPT GENERATOR ──
-  const pgPresets = {
-    oeg: { client: 'Olympic Entertainment Group (OEG)', text: `OEG — Project Status · Olympic Entertainment Group · 16 June 2026\n\nDATA PROJECTS\n\nFR + LT — Data ingest, mapping & refresh\nCompleted — users are in the model with customer attribute; refresh has run successfully.\n#1010221 · #1005042\nStatus: Complete\n\nTimes in churn — investigation\nIn progress — ETA tomorrow.\n#1005252\nStatus: Ongoing\n\nBatch process retry automation\nSpecifications completed and sent.\n#1007052\nStatus: Complete\n\nFull historical refresh\nScoping questions sent to client; awaiting response.\n#1009985\nStatus: Scoping\n\nOPERATIONS\n\nCohorts filters\nNew filters added. UI issue identified — under dev investigation.\nADO #287541\nStatus: Investigation\n\nMobile reachability\nPartially solved — reached 10k reachable users in mobile push. Mobile customer misalignment added to the investigation.\nADO #286714\nStatus: Partially Solved` },
-    tango: { client: 'Tango', text: `Tango Account Status · June 14, 2026\n\nBUGS & TECHNICAL\n\nApp version filtering — "Last Tango Version"\nBlocked: version strings (e.g. 9.62.6) have multiple decimals — incompatible with Float. Temp fix: filter removed from affected TGs.\nStatus: Blocked\n\nAndroid SDK v7.14.0 — in-app delivery underreporting\nReleased with underreporting fix. Karin implementing. Backfill data ongoing. iOS fix still pending.\nStatus: In Progress\n\nPRODUCT ROADMAP\n\nRe-visit Steamer — email to Push migration\nWent live. Moving from email to Push.\nStatus: In Progress\n\nis_delivered field\nPopulating for new campaigns. Historical backfill scoping in progress.\nOPS #991329\nStatus: In Progress\n\nClick metrics — mobile in-app\nMetrics missing for mobile in-app channel. PM meeting with Eszter scheduled.\nStatus: Open Bug\n\nOverlay Messaging\nClosed beta; broader availability ~2 months out. Allan following up with Eszter on early beta access.\nStatus: Strategic\n\nStudio iOS app\nIn scoping. Tango's side to create domain and transactional request.\nStatus: Strategic\n\nMedia / Content Packs\nNew business model. Priority item; rollout pending.\nStatus: Strategic\n\nOffsite planning\nReplacing EBR format. Focused on product roadmap and executive metrics.\nStatus: Internal\n\nRECENTLY CLOSED\n- Web popup emoji fix\n- Dynamic image in push/popup\n- Account transition (Moriya as BI/datashare POC)` }
+  const pgTemplates = {
+    optimove: {
+      name: 'Optimove Colors',
+      spec: `DESIGN SYSTEM — follow exactly:
+- Font: Inter from Google Fonts
+- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE
+- Header: background #2D1B69 (deep violet), white text, lime (#C8E61F) accent badge
+- Tabs: underline style, active tab has #2D1B69 border-bottom
+- Accent color: #C8E61F lime for highlights and active states`
+    },
+    oeg: {
+      name: 'OEG Layout',
+      spec: `DESIGN SYSTEM — follow the OEG status PDF layout:
+- Font: Inter from Google Fonts
+- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE
+- Header: #2D1B69 deep violet background, white text, lime badge top-right
+- Items: pill on the left (flex-shrink:0), title + description + ticket number in body
+- Section dividers: uppercase label 10px with thin rule separator`
+    },
+    tango: {
+      name: 'Tango Layout',
+      spec: `DESIGN SYSTEM — follow the Tango status HTML layout:
+- Font: Inter from Google Fonts
+- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE
+- Header: white bg, client name in purple pill + "Account Status" title + date right-aligned
+- Tabs: horizontal tab bar underline style, active tab has black 2px border-bottom
+- Cards: pill left-aligned flex-shrink:0, title 14px 500, desc 12px muted`
+    }
   };
-  let pgActivePreset = null;
 
-  function pgLoadPreset(key) {
+  const pgPreviews = {
+    oeg: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif;}body{background:#FBFAF7;color:#0F0F0E;}.hdr{background:#2D1B69;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;}.ht{font-size:15px;font-weight:800;color:white;}.hs{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}.hb{background:#C8E61F;color:#2D1B69;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;}.sec{padding:14px 20px 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8A8A9A;}.item{background:white;border:1px solid #ECE9DE;border-radius:10px;margin:0 16px 8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}.pill{flex-shrink:0;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:2px;}.done{background:#EAF3DE;color:#3B6D11;}.prog{background:#E6F1FB;color:#185FA5;}.scop{background:#FFF4E0;color:#7A4D00;}.t{font-size:13px;font-weight:600;color:#0F0F0E;margin-bottom:3px;}.d{font-size:11px;color:#6B6860;line-height:1.45;}.tic{font-size:10px;color:#A8A59C;margin-top:4px;font-family:monospace;}</style></head><body><div class="hdr"><div><div class="ht">OEG — Project Status</div><div class="hs">Olympic Entertainment Group · 16 June 2026</div></div><div class="hb">STATUS</div></div><div class="sec">Data Projects</div><div class="item"><span class="pill done">Complete</span><div><div class="t">FR + LT — Data ingest, mapping &amp; refresh</div><div class="d">Users are in the model with customer attribute; refresh has run successfully.</div><div class="tic">#1010221 · #1005042</div></div></div><div class="item"><span class="pill prog">Ongoing</span><div><div class="t">Times in churn — investigation</div><div class="d">In progress — ETA tomorrow.</div><div class="tic">#1005252</div></div></div><div class="item"><span class="pill scop">Scoping</span><div><div class="t">Full historical refresh</div><div class="d">Scoping questions sent to client; awaiting response.</div><div class="tic">#1009985</div></div></div><div class="sec">Operations</div><div class="item"><span class="pill prog">Investigation</span><div><div class="t">Cohorts filters</div><div class="d">New filters added. UI issue identified — under dev investigation.</div><div class="tic">ADO #287541</div></div></div></body></html>`,
+    tango: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif;}body{background:#FBFAF7;color:#0F0F0E;}.hdr{background:white;border-bottom:1px solid #ECE9DE;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}.hl{display:flex;align-items:center;gap:10px;}.hn{font-size:12px;font-weight:700;color:#2D1B69;background:#EDE9FE;padding:3px 9px;border-radius:20px;}.htitle{font-size:15px;font-weight:700;color:#0F0F0E;}.hdate{font-size:11px;color:#8A8A9A;}.tabs{display:flex;border-bottom:1px solid #ECE9DE;background:white;padding:0 20px;}.tab{font-size:12px;font-weight:600;padding:10px 14px;cursor:pointer;color:#8A8A9A;border-bottom:2px solid transparent;}.tab.a{color:#0F0F0E;border-bottom-color:#0F0F0E;}.sec{padding:14px 20px 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8A8A9A;}.item{background:white;border:1px solid #ECE9DE;border-radius:10px;margin:0 16px 8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}.pill{flex-shrink:0;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:2px;}.blk{background:#FAEEDA;color:#854F0B;}.inp{background:#E6F1FB;color:#185FA5;}.str{background:#EEEDFE;color:#3C3489;}.t{font-size:12px;font-weight:600;color:#0F0F0E;margin-bottom:3px;}.d{font-size:11px;color:#6B6860;line-height:1.45;}</style></head><body><div class="hdr"><div class="hl"><span class="hn">Tango</span><span class="htitle">Account Status</span></div><span class="hdate">June 14, 2026</span></div><div class="tabs"><div class="tab a">All</div><div class="tab">Bugs</div><div class="tab">Roadmap</div><div class="tab">Ops</div><div class="tab">Closed</div></div><div class="sec">Bugs &amp; Technical</div><div class="item"><span class="pill blk">Blocked</span><div><div class="t">App version filtering — "Last Tango Version"</div><div class="d">Version strings incompatible with Float. Temp fix: filter removed from affected TGs.</div></div></div><div class="item"><span class="pill inp">In Progress</span><div><div class="t">Android SDK v7.14.0 — in-app delivery underreporting</div><div class="d">Released with underreporting fix. Karin implementing. Backfill data ongoing.</div></div></div><div class="sec">Product Roadmap</div><div class="item"><span class="pill str">Strategic</span><div><div class="t">Overlay Messaging</div><div class="d">Closed beta; broader availability ~2 months out. Allan following up on early beta access.</div></div></div></body></html>`
+  };
+
+  let pgActiveTemplate = 'optimove';
+
+  function pgSelectTemplate(key) {
+    pgActiveTemplate = key;
     document.querySelectorAll('.pg-preset').forEach(f => f.classList.remove('selected'));
-    if (pgActivePreset === key) { pgActivePreset = null; return; }
-    pgActivePreset = key;
     document.getElementById('pg-preset-' + key).classList.add('selected');
-    document.getElementById('pg-client').value = pgPresets[key].client;
-    document.getElementById('pg-raw-text').value = pgPresets[key].text;
   }
+
+  function pgPreview(key, event) {
+    event.stopPropagation();
+    const html = pgPreviews[key];
+    if (!html) return;
+    document.getElementById('pg-preview-title').textContent = pgTemplates[key].name + ' — Layout Preview';
+    const blob = new Blob([html], { type: 'text/html' });
+    document.getElementById('pg-preview-iframe').src = URL.createObjectURL(blob);
+    document.getElementById('pg-preview-overlay').classList.add('open');
+  }
+  function closePgPreview() { document.getElementById('pg-preview-overlay').classList.remove('open'); }
+  document.getElementById('pg-preview-overlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('pg-preview-overlay')) closePgPreview();
+  });
+
   document.getElementById('pg-upload-zone').addEventListener('dragover', e => { e.preventDefault(); e.currentTarget.style.borderColor = '#6B46C1'; });
   document.getElementById('pg-upload-zone').addEventListener('dragleave', e => { e.currentTarget.style.borderColor = ''; });
   document.getElementById('pg-upload-zone').addEventListener('drop', e => { e.preventDefault(); e.currentTarget.style.borderColor = ''; const f = e.dataTransfer.files[0]; if (f) pgProcessFile(f); });
@@ -997,8 +758,6 @@
   function pgProcessFile(file) {
     const d = document.getElementById('pg-file-display');
     d.textContent = '✓ ' + file.name; d.classList.add('show');
-    document.querySelectorAll('.pg-preset').forEach(f => f.classList.remove('selected'));
-    pgActivePreset = null;
     const r = new FileReader();
     r.onload = e => {
       let c = e.target.result;
@@ -1007,33 +766,70 @@
     };
     r.readAsText(file);
   }
+
   function pgGenerate() {
     const client = document.getElementById('pg-client').value.trim() || 'the client';
     const raw = document.getElementById('pg-raw-text').value.trim();
     const sections = [...document.querySelectorAll('#pg-sections .pg-tog.on')].map(b => b.dataset.val);
-    if (!raw) { document.getElementById('pg-prompt-output').innerHTML = '<div class="pg-prompt-empty"><div class="pg-prompt-empty-icon">⚠️</div><div class="pg-prompt-empty-text">Please load or paste content first</div></div>'; return; }
+    if (!raw) {
+      document.getElementById('pg-prompt-output').innerHTML = '<div class="pg-prompt-empty"><div class="pg-prompt-empty-icon">⚠️</div><div class="pg-prompt-empty-text">Please paste content first</div><div class="pg-prompt-empty-sub">Step 3 above</div></div>';
+      return;
+    }
+    const tmpl = pgTemplates[pgActiveTemplate] || pgTemplates.optimove;
     const sLines = [];
-    if (sections.includes('bugs')) sLines.push('• "Bugs & Technical" — bugs, blocked items. Pills: Blocked / Open / In Progress');
+    if (sections.includes('bugs'))    sLines.push('• "Bugs & Technical" — bugs, blocked items. Pills: Blocked / Open / In Progress');
     if (sections.includes('roadmap')) sLines.push('• "Product Roadmap" — features, strategic items. Pills: In Progress / Strategic / Internal');
-    if (sections.includes('data')) sLines.push('• "Data Projects" — data ingestion, mapping, batch, historical refresh, scoping. Pills: Complete / Ongoing / Scoping / In Progress');
-    if (sections.includes('ops')) sLines.push('• "Operations" — ops tickets, ADO items, infrastructure. Pills: Investigation / Partially Solved / In Progress');
-    if (sections.includes('closed')) sLines.push('• "Recently Closed" — completed items as compact grid cards with checkmark icons');
-    if (sections.includes('slack')) sLines.push('• A "Slack Summary" tab with emoji-formatted plain text and a Copy button');
-    const prompt = `You are generating a self-contained HTML status dashboard for ${client}.\n\nParse the raw content below. Extract every project, issue, ticket, and update. Produce a single complete HTML file — no external dependencies except Google Fonts (Inter).\n\n---\nRAW STATUS CONTENT:\n${raw}\n---\n\nDESIGN SYSTEM — follow exactly:\n- Font: Inter from Google Fonts\n- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE\n- Header: white bg, client name badge + "Account Status" title + date\n- Tabs: underline style, active tab has black border-bottom\n\nPILL COLORS:\n• Blocked → bg #FAEEDA text #854F0B\n• Open/Bug → bg #FCEBEB text #A32D2D\n• In Progress → bg #E6F1FB text #185FA5\n• Strategic → bg #EEEDFE text #3C3489\n• Internal → bg #F1EFE8 text #5F5E5A\n• Done/Complete → bg #EAF3DE text #3B6D11\n• Scoping → bg #FFF4E0 text #7A4D00\n• Partially Solved → bg #E6F1FB text #185FA5\n• Investigation → bg #FAEEDA text #854F0B\n\nITEM CARD: pill (left, flex-shrink:0) + body (title 14px 500, desc 12px #6b6860 1.55, ticket 11px monospace)\n\nSECTIONS:\n${sLines.join('\n')}\n\nOutput ONLY the complete raw HTML. No markdown. No explanation. No backticks.`;
+    if (sections.includes('data'))    sLines.push('• "Data Projects" — data ingestion, mapping, batch, refresh, scoping. Pills: Complete / Ongoing / Scoping / In Progress');
+    if (sections.includes('ops'))     sLines.push('• "Operations" — ops tickets, ADO items, infrastructure. Pills: Investigation / Partially Solved / In Progress');
+    if (sections.includes('closed'))  sLines.push('• "Recently Closed" — completed items as compact grid cards with checkmark icons');
+    if (sections.includes('slack'))   sLines.push('• A "Slack Summary" tab with emoji-formatted plain text and a Copy button');
+    const prompt = `You are generating a self-contained HTML status dashboard for ${client}.
+
+Parse the raw content below. Extract every project, issue, ticket, and update. Produce a single complete HTML file — no external dependencies except Google Fonts (Inter).
+
+---
+RAW STATUS CONTENT:
+${raw}
+---
+
+${tmpl.spec}
+
+PILL COLORS:
+• Blocked → bg #FAEEDA text #854F0B
+• Open/Bug → bg #FCEBEB text #A32D2D
+• In Progress → bg #E6F1FB text #185FA5
+• Strategic → bg #EEEDFE text #3C3489
+• Internal → bg #F1EFE8 text #5F5E5A
+• Done/Complete → bg #EAF3DE text #3B6D11
+• Scoping → bg #FFF4E0 text #7A4D00
+• Partially Solved → bg #E6F1FB text #185FA5
+• Investigation → bg #FAEEDA text #854F0B
+
+ITEM CARD: pill (left, flex-shrink:0) + body (title 14px 500, desc 12px #6b6860 1.55, ticket 11px monospace)
+
+SECTIONS TO INCLUDE:
+${sLines.join('\n')}
+
+Output ONLY the complete raw HTML. No markdown. No explanation. No backticks.`;
     document.getElementById('pg-prompt-output').textContent = prompt;
     document.getElementById('pg-char-count').textContent = prompt.length.toLocaleString() + ' chars';
   }
+
   function pgCopy() {
     const c = document.getElementById('pg-prompt-output').textContent;
-    if (!c || c.includes('Your prompt appears here') || c.includes('load or paste')) return;
+    if (!c || c.includes('Your prompt appears here') || c.includes('paste content first')) return;
     navigator.clipboard.writeText(c).then(() => {
       const btn = document.getElementById('pg-copy-btn');
+      const btn2 = document.getElementById('pg-copy-bottom');
       btn.textContent = '✓ Copied!'; btn.classList.add('success');
-      setTimeout(() => { btn.textContent = '📋 Copy prompt'; btn.classList.remove('success'); }, 2500);
+      btn2.textContent = '✓ Copied'; btn2.classList.add('success');
+      setTimeout(() => {
+        btn.textContent = '📋 Copy prompt'; btn.classList.remove('success');
+        btn2.textContent = '⌘ Copy to clipboard'; btn2.classList.remove('success');
+      }, 2500);
     });
   }
 
-  // ── HEALTH CHECK ──
   function hcGoTo(client) {
     document.querySelectorAll('.hc-page').forEach(p => p.classList.remove('active'));
     document.getElementById('hc-page-' + client).classList.add('active');
