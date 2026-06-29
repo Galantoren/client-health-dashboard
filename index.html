@@ -264,6 +264,50 @@
   .hc-process-note p:last-child { margin-bottom: 0; }
   .hc-placeholder-note { margin: 16px; padding: 13px 14px; background: #F3EEFF; border-left: 3px solid #6B46C1; border-radius: 0 10px 10px 0; font-size: 12px; color: #4A4A5A; line-height: 1.55; }
 
+  /* DASHBOARD MODAL */
+  .db-wrap { background: #FBFAF7; width: 100%; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; }
+  .db-topbar { display: flex; align-items: center; justify-content: space-between; padding: 11px 20px; background: white; border-bottom: 1px solid #ECE9DE; flex-shrink: 0; }
+  .db-client-sel { display: flex; align-items: center; gap: 8px; }
+  .db-client-label { font-size: 11px; color: #8A8A9A; font-weight: 600; }
+  .db-select { border: 1.5px solid #ECE9DE; border-radius: 8px; padding: 5px 10px; font-size: 13px; font-weight: 700; color: #2D1B69; background: white; cursor: pointer; font-family: 'Inter', sans-serif; outline: none; }
+  .db-date { font-size: 11px; color: #8A8A9A; }
+  .db-kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #ECE9DE; background: white; flex-shrink: 0; }
+  .db-kpi { padding: 14px 18px; border-right: 1px solid #ECE9DE; }
+  .db-kpi:last-child { border-right: none; }
+  .db-kpi-val { font-size: 22px; font-weight: 800; color: #0F0F0E; line-height: 1; margin-bottom: 3px; }
+  .db-kpi-val.green { color: #16A34A; } .db-kpi-val.red { color: #DC2626; }
+  .db-kpi-label { font-size: 11px; color: #8A8A9A; font-weight: 500; margin-bottom: 3px; }
+  .db-kpi-delta { font-size: 10px; font-weight: 600; }
+  .db-kpi-delta.green { color: #16A34A; } .db-kpi-delta.red { color: #DC2626; } .db-kpi-delta.grey { color: #8A8A9A; }
+  .db-cols { display: grid; grid-template-columns: 1fr 300px; flex: 1; overflow: hidden; }
+  .db-col-left { padding: 16px; border-right: 1px solid #ECE9DE; overflow-y: auto; }
+  .db-col-right { padding: 16px; background: white; overflow-y: auto; }
+  .db-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8A8A9A; margin-bottom: 8px; margin-top: 4px; }
+  .db-section-label + .db-section-label { margin-top: 16px; }
+  .db-item { background: white; border: 1px solid #ECE9DE; border-radius: 10px; padding: 10px 13px; margin-bottom: 6px; display: flex; gap: 10px; align-items: flex-start; }
+  .db-pill { flex-shrink: 0; font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-top: 2px; white-space: nowrap; }
+  .db-pill.ongoing { background: #E6F1FB; color: #185FA5; }
+  .db-pill.invest  { background: #FAEEDA; color: #854F0B; }
+  .db-pill.resolved{ background: #EAF3DE; color: #3B6D11; }
+  .db-pill.progress{ background: #E6F1FB; color: #185FA5; }
+  .db-pill.scoping { background: #FFF4E0; color: #7A4D00; }
+  .db-item-title { font-size: 13px; font-weight: 600; color: #0F0F0E; margin-bottom: 3px; }
+  .db-item-desc  { font-size: 11px; color: #6B6860; line-height: 1.45; }
+  .db-item-tic   { font-size: 10px; color: #A8A59C; margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+  .db-mc-kpi { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 14px; }
+  .db-mc-tile { background: #FBFAF7; border: 1px solid #ECE9DE; border-radius: 9px; padding: 10px 12px; }
+  .db-mc-tile-val { font-size: 20px; font-weight: 800; color: #2D1B69; line-height: 1; margin-bottom: 2px; }
+  .db-mc-tile-val.green { color: #16A34A; } .db-mc-tile-val.orange { color: #D97706; } .db-mc-tile-val.red { color: #DC2626; }
+  .db-mc-tile-label { font-size: 10px; color: #8A8A9A; }
+  .db-mc-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid #ECE9DE; }
+  .db-mc-row:last-child { border-bottom: none; }
+  .db-mc-key { font-size: 11px; color: #4A4A5A; }
+  .db-mc-val { font-size: 11px; font-weight: 600; }
+  .db-mc-val.green { color: #16A34A; } .db-mc-val.red { color: #DC2626; } .db-mc-val.orange { color: #D97706; }
+  .db-insight { padding: 10px 13px; background: #F3EEFF; border-left: 3px solid #6B46C1; border-radius: 0 8px 8px 0; margin-top: 14px; }
+  .db-insight-title { font-size: 10px; font-weight: 700; color: #6B46C1; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .db-insight-text { font-size: 11px; color: #4A4A5A; line-height: 1.5; }
+
   @media (max-width: 860px) {
     .modal-box { max-height: 95vh; }
     .modal-body { flex-direction: column; }
@@ -284,7 +328,7 @@
     </div>
   </div>
   <div class="header-badges">
-    <span class="badge">4 Initiatives</span>
+    <span class="badge">5 Initiatives</span>
     <span class="badge">Sprints TBD</span>
     <span class="badge">Draft</span>
   </div>
@@ -303,6 +347,16 @@
         <div class="card-desc">Paste raw data (PDF, notes, Jira export) and get a copy-ready AI prompt that generates a structured HTML status dashboard.</div>
         <div class="card-tags"><span class="tag tag-ops">Ops Tickets</span><span class="tag tag-ai">AI</span><span class="tag tag-mcp">MCP</span></div>
         <div class="card-launch"><span>↗</span> Open Prompt Generator</div>
+      </div>
+      <div class="card ongoing" onclick="selectCard(this); openModal('modal-dashboard')">
+        <div class="card-top">
+          <div class="card-meta"><span class="card-id">OPT-005</span><span class="card-status status-ongoing">Ongoing</span></div>
+          <span class="card-sprint">Sprint 1</span>
+        </div>
+        <div class="card-title">Client Status &amp; Dashboard</div>
+        <div class="card-desc">Operations, project and data monitoring with a high-level CRM dashboard — mission control glance with AI insights.</div>
+        <div class="card-tags"><span class="tag tag-html">Dashboard</span><span class="tag tag-ops">Ops</span><span class="tag tag-ai">AI</span><span class="tag tag-data">Data</span></div>
+        <div class="card-launch"><span>↗</span> Open Dashboard</div>
       </div>
       <div class="card ongoing" onclick="selectCard(this); openModal('modal-health')">
         <div class="card-top">
@@ -336,6 +390,150 @@
         <div class="card-title">Major Incident Workflow &amp; Dashboard</div>
         <div class="card-desc">Structured response workflow for deliverability and batch incidents — checklist-driven, with escalation manager assignment, mission control insights, and live deliverability metrics.</div>
         <div class="card-tags"><span class="tag tag-ops">Ops</span><span class="tag tag-ai">AI</span><span class="tag tag-html">Dashboard</span><span class="tag tag-agent">Workflow</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL: CLIENT STATUS & DASHBOARD -->
+<div class="modal-overlay" id="modal-dashboard">
+  <div class="modal-box" style="max-width:960px;">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-tag">OPT-005</span>
+        <span class="modal-title">Client Status &amp; Dashboard</span>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-dashboard')">✕</button>
+    </div>
+    <div class="modal-body" style="overflow:hidden;">
+      <div class="db-wrap" style="height:100%;overflow:hidden;">
+
+        <div class="db-topbar">
+          <div class="db-client-sel">
+            <span class="db-client-label">Client</span>
+            <select class="db-select">
+              <option>IronFX</option>
+              <option>OlyBet</option>
+              <option>Tango</option>
+              <option>SodaStream</option>
+              <option>PepsiCo</option>
+            </select>
+          </div>
+          <span class="db-date">28 Jun 2026 · Yesterday's data</span>
+        </div>
+
+        <div class="db-kpi-row">
+          <div class="db-kpi">
+            <div class="db-kpi-val">140</div>
+            <div class="db-kpi-label">Active Campaigns</div>
+            <div class="db-kpi-delta green">↑ 12 vs last week</div>
+          </div>
+          <div class="db-kpi">
+            <div class="db-kpi-val green">$87.1K</div>
+            <div class="db-kpi-label">Daily Increase</div>
+            <div class="db-kpi-delta green">✓ Significant</div>
+          </div>
+          <div class="db-kpi">
+            <div class="db-kpi-val green" style="font-size:15px;padding-top:4px;">Healthy</div>
+            <div class="db-kpi-label">Batch Status</div>
+            <div class="db-kpi-delta grey">All 3 phases OK</div>
+          </div>
+          <div class="db-kpi">
+            <div class="db-kpi-val red">3</div>
+            <div class="db-kpi-label">Open Issues</div>
+            <div class="db-kpi-delta red">2 pending action</div>
+          </div>
+        </div>
+
+        <div class="db-cols" style="max-height:420px;">
+          <div class="db-col-left">
+
+            <div class="db-section-label">Operations</div>
+
+            <div class="db-item">
+              <span class="db-pill invest">Investigation</span>
+              <div>
+                <div class="db-item-title">Cohort filter UI — display bug</div>
+                <div class="db-item-desc">New filters added last sprint; UI regression under dev investigation. ETA 2 days.</div>
+                <div class="db-item-tic">ADO #287541</div>
+              </div>
+            </div>
+
+            <div class="db-item">
+              <span class="db-pill ongoing">Ongoing</span>
+              <div>
+                <div class="db-item-title">Campaigns Executed — "run anyway" error</div>
+                <div class="db-item-desc">Expected for re-evaluate campaigns. Not a real failure — documented and monitored.</div>
+                <div class="db-item-tic">#1008812</div>
+              </div>
+            </div>
+
+            <div class="db-item">
+              <span class="db-pill resolved">Resolved</span>
+              <div>
+                <div class="db-item-title">Data ingestion delay — FR market</div>
+                <div class="db-item-desc">Upstream schema change. Mapping updated, refresh confirmed complete.</div>
+                <div class="db-item-tic">#1010221</div>
+              </div>
+            </div>
+
+            <div class="db-section-label" style="margin-top:16px;">Data Projects</div>
+
+            <div class="db-item">
+              <span class="db-pill progress">In Progress</span>
+              <div>
+                <div class="db-item-title">Times in churn — model investigation</div>
+                <div class="db-item-desc">Churn signal analysis ongoing. ETA tomorrow.</div>
+                <div class="db-item-tic">#1005252</div>
+              </div>
+            </div>
+
+            <div class="db-item">
+              <span class="db-pill scoping">Scoping</span>
+              <div>
+                <div class="db-item-title">Full historical refresh — LT market</div>
+                <div class="db-item-desc">Scoping questions sent to client. Awaiting response.</div>
+                <div class="db-item-tic">#1009985</div>
+              </div>
+            </div>
+
+            <div class="db-item">
+              <span class="db-pill resolved">Complete</span>
+              <div>
+                <div class="db-item-title">FR + LT — data ingest &amp; attribute mapping</div>
+                <div class="db-item-desc">Users in model with customer attribute. Refresh running successfully.</div>
+                <div class="db-item-tic">#1005042</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="db-col-right">
+
+            <div class="db-section-label">Mission Control</div>
+            <div class="db-mc-kpi">
+              <div class="db-mc-tile"><div class="db-mc-tile-val orange">47</div><div class="db-mc-tile-label">No Customers</div></div>
+              <div class="db-mc-tile"><div class="db-mc-tile-val red">1</div><div class="db-mc-tile-label">Failed</div></div>
+              <div class="db-mc-tile"><div class="db-mc-tile-val">56</div><div class="db-mc-tile-label">Running</div></div>
+              <div class="db-mc-tile"><div class="db-mc-tile-val green">31</div><div class="db-mc-tile-label">Triggered Active</div></div>
+            </div>
+
+            <div class="db-section-label">Batch Health</div>
+            <div class="db-mc-row"><span class="db-mc-key">Data Updated</span><span class="db-mc-val green">✓ Complete</span></div>
+            <div class="db-mc-row"><span class="db-mc-key">Campaigns Executed</span><span class="db-mc-val orange">⚠ Error (expected)</span></div>
+            <div class="db-mc-row"><span class="db-mc-key">Analysis &amp; Reporting</span><span class="db-mc-val green">✓ Complete</span></div>
+            <div class="db-mc-row"><span class="db-mc-key">Last data date</span><span class="db-mc-val">27 Jun 2026</span></div>
+            <div class="db-mc-row"><span class="db-mc-key">Control group</span><span class="db-mc-val orange">None today</span></div>
+
+            <div class="db-insight">
+              <div class="db-insight-title">💡 AI Insight</div>
+              <div class="db-insight-text">No control group customers on 27 Jun — Daily Increase is non-computable. Report as N/A. 46 campaigns had no customers; review targeting logic for next sprint.</div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
