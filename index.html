@@ -89,37 +89,6 @@
   .modal-close:hover { background: rgba(255,255,255,0.2); color: white; }
   .modal-body { flex: 1; overflow: hidden; display: flex; }
 
-  /* PROMPT GENERATOR */
-  .pg-left { width: 50%; border-right: 1px solid var(--border); overflow-y: auto; padding: 28px; display: flex; flex-direction: column; gap: 22px; background: #FBFAF7; color: #0F0F0E; }
-  .pg-right { width: 50%; background: var(--deep-violet); display: flex; flex-direction: column; position: relative; overflow: hidden; }
-  .pg-right::before { content: ''; position: absolute; right: -60px; top: -60px; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(200,230,31,0.1) 0%, transparent 65%); pointer-events: none; }
-  .pg-right-inner { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; z-index: 1; position: relative; overflow: hidden; }
-
-  .pg-step-row { display: flex; align-items: center; gap: 8px; }
-  .pg-step-num { width: 20px; height: 20px; border-radius: 50%; background: var(--deep-violet); color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .pg-step-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--deep-violet); }
-  .pg-field-label { font-size: 11px; font-weight: 500; color: #6B6860; margin-bottom: 6px; }
-  .pg-input { width: 100%; padding: 10px 12px; background: white; border: 1.5px solid #ECE9DE; border-radius: 9px; font-size: 13px; font-weight: 500; color: #0F0F0E; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.15s; }
-  .pg-input:focus { border-color: var(--opt-purple); }
-  .pg-input::placeholder { color: #A8A59C; font-weight: 400; }
-
-  .pg-preset-files { display: flex; flex-direction: column; gap: 6px; }
-  .pg-preset { display: flex; align-items: center; justify-content: space-between; padding: 10px 13px; background: white; border: 1.5px solid #ECE9DE; border-radius: 9px; cursor: pointer; transition: all 0.15s; }
-  .pg-preset:hover { border-color: var(--opt-purple); background: rgba(107,70,193,0.04); }
-  .pg-preset.selected { border-color: var(--opt-purple); background: rgba(107,70,193,0.07); }
-  .pg-preset-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-  .pg-preset-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-  .pg-preset-icon.pdf { background: #FCEBEB; }
-  .pg-preset-icon.html { background: #E6F1FB; }
-  .pg-preset-icon.opt { background: linear-gradient(135deg, #2D1B69, #6B46C1); color: white; font-size: 12px; font-weight: 800; }
-  .pg-preset-name { font-size: 12px; font-weight: 600; color: #0F0F0E; }
-  .pg-preset-meta { font-size: 10px; color: #A8A59C; margin-top: 1px; }
-  .pg-preset-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
-  .pg-preset-check { width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid #ECE9DE; display: flex; align-items: center; justify-content: center; font-size: 9px; color: transparent; transition: all 0.15s; flex-shrink: 0; }
-  .pg-preset.selected .pg-preset-check { background: var(--opt-purple); border-color: var(--opt-purple); color: white; }
-  .pg-eye-btn { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid #DDD9CC; background: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; transition: all 0.15s; color: #A8A59C; flex-shrink: 0; line-height: 1; }
-  .pg-eye-btn:hover { border-color: var(--opt-purple); color: var(--opt-purple); background: rgba(107,70,193,0.06); }
-
   /* Eye button for dark-background cards */
   .card-eye-btn { position: absolute; top: 16px; right: 16px; width: 28px; height: 28px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: all 0.15s; color: rgba(255,255,255,0.4); z-index: 2; line-height: 1; }
   .card-eye-btn:hover { border-color: var(--opt-purple); color: var(--lime); background: rgba(107,70,193,0.2); }
@@ -133,49 +102,6 @@
   .pg-preview-close { background: rgba(255,255,255,0.15); border: none; color: white; width: 28px; height: 28px; border-radius: 7px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
   .pg-preview-close:hover { background: rgba(255,255,255,0.25); }
   .pg-preview-frame iframe { width: 100%; height: 520px; border: none; display: block; }
-
-  .pg-or { display: flex; align-items: center; gap: 8px; }
-  .pg-or span { font-size: 10px; color: #A8A59C; font-weight: 500; white-space: nowrap; }
-  .pg-or-line { flex: 1; height: 1px; background: #ECE9DE; }
-
-  .pg-upload { border: 1.5px dashed #DDD9CC; border-radius: 9px; padding: 14px; text-align: center; cursor: pointer; transition: all 0.15s; background: #FBFAF7; position: relative; }
-  .pg-upload:hover { border-color: var(--opt-purple); background: rgba(107,70,193,0.04); }
-  .pg-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .pg-upload-text { font-size: 11px; color: #A8A59C; }
-  .pg-upload-text span { color: var(--opt-purple); font-weight: 600; }
-  .pg-uploaded { font-size: 11px; color: var(--opt-purple); font-weight: 600; margin-top: 5px; display: none; }
-  .pg-uploaded.show { display: block; }
-  .pg-textarea { width: 100%; min-height: 110px; padding: 10px 12px; background: white; border: 1.5px solid #ECE9DE; border-radius: 9px; font-size: 12px; line-height: 1.6; color: #0F0F0E; font-family: 'Inter', sans-serif; resize: vertical; outline: none; transition: border-color 0.15s; }
-  .pg-textarea:focus { border-color: var(--opt-purple); }
-  .pg-textarea::placeholder { color: #A8A59C; }
-
-  .pg-toggles { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-  .pg-tog { display: flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1.5px solid #ECE9DE; border-radius: 8px; background: white; cursor: pointer; font-size: 11px; font-weight: 500; color: #6B6860; transition: all 0.15s; font-family: 'Inter', sans-serif; text-align: left; }
-  .pg-tog:hover { border-color: var(--opt-purple); color: #0F0F0E; }
-  .pg-tog.on { border-color: var(--opt-purple); background: rgba(107,70,193,0.07); color: var(--deep-violet); font-weight: 600; }
-  .pg-tog-dot { width: 6px; height: 6px; border-radius: 50%; background: #DDD9CC; flex-shrink: 0; transition: background 0.15s; }
-  .pg-tog.on .pg-tog-dot { background: var(--lime); }
-  .pg-gen-btn { width: 100%; padding: 12px; background: var(--deep-violet); border: none; border-radius: 10px; color: white; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .pg-gen-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-
-  .pg-output-bar { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-  .pg-output-title { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
-  .pg-copy-btn { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 8px; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; border: none; background: var(--lime); color: var(--deep-violet); box-shadow: 0 0 16px rgba(200,230,31,0.25); }
-  .pg-copy-btn:hover { opacity: 0.85; }
-  .pg-copy-btn.success { background: rgba(200,230,31,0.15); color: var(--lime); border: 1px solid rgba(200,230,31,0.3); }
-
-  .pg-prompt-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; flex: 1; display: flex; flex-direction: column; min-height: 0; }
-  .pg-prompt-toolbar { padding: 9px 14px; background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-  .pg-prompt-toolbar-label { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; }
-  .pg-char-count { font-size: 9px; color: rgba(255,255,255,0.2); font-family: 'JetBrains Mono', monospace; }
-  .pg-prompt-content { flex: 1; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.7; color: rgba(255,255,255,0.72); white-space: pre-wrap; overflow-y: auto; }
-  .pg-prompt-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 10px; text-align: center; padding: 40px; }
-  .pg-prompt-empty-icon { font-size: 28px; opacity: 0.35; }
-  .pg-prompt-empty-text { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); }
-  .pg-prompt-empty-sub { font-size: 10px; color: rgba(255,255,255,0.18); }
-  .pg-copy-bottom { width: 100%; padding: 9px 14px; background: none; border: none; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.22); cursor: pointer; transition: color 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; }
-  .pg-copy-bottom:hover { color: rgba(255,255,255,0.5); }
-  .pg-copy-bottom.success { color: rgba(200,230,31,0.65); }
 
   /* HEALTH CHECK */
   .hc-wrap { width: 100%; overflow-y: auto; background: #FBFAF7; }
@@ -342,7 +268,7 @@
   <div class="board-area">
     <div class="board-section-label">Ongoing</div>
     <div class="initiatives">
-      <div class="card ongoing active" onclick="selectCard(this); openModal('modal-status')">
+      <div class="card ongoing active" onclick="selectCard(this); openPromptGenerator()">
         <div class="card-top">
           <div class="card-meta"><span class="card-id">OPT-001</span><span class="card-status status-ongoing">Ongoing</span></div>
           <span class="card-sprint">Sprint 1</span>
@@ -564,135 +490,6 @@
       <button class="pg-preview-close" onclick="closePgPreview()">✕</button>
     </div>
     <div class="pg-preview-frame"><iframe id="pg-preview-iframe" src="about:blank"></iframe></div>
-  </div>
-</div>
-
-
-<!-- MODAL: PROMPT GENERATOR -->
-<div class="modal-overlay" id="modal-status">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div class="modal-header-left">
-        <span class="modal-tag">OPT-001</span>
-        <span class="modal-title">Client Status — Prompt Generator</span>
-      </div>
-      <button class="modal-close" onclick="closeModal('modal-status')">✕</button>
-    </div>
-    <div class="modal-body">
-
-      <div class="pg-left">
-        <div>
-          <div class="pg-step-row"><div class="pg-step-num">1</div><div class="pg-step-label">Client</div></div>
-          <div style="height:8px"></div>
-          <input class="pg-input" id="pg-client" type="text" placeholder="e.g. Tango, OEG, Betsson…" />
-        </div>
-
-        <div>
-          <div class="pg-step-row"><div class="pg-step-num">2</div><div class="pg-step-label">Output design template</div></div>
-          <div style="height:10px"></div>
-          <div class="pg-field-label">Choose a layout for the generated dashboard</div>
-          <div class="pg-preset-files">
-
-            <div class="pg-preset selected" id="pg-preset-optimove" onclick="pgSelectTemplate('optimove')">
-              <div class="pg-preset-left">
-                <div class="pg-preset-icon opt">O</div>
-                <div>
-                  <div class="pg-preset-name">Optimove Colors</div>
-                  <div class="pg-preset-meta">Default · Deep violet + lime · Brand palette</div>
-                </div>
-              </div>
-              <div class="pg-preset-actions">
-                <div class="pg-preset-check">✓</div>
-              </div>
-            </div>
-
-            <div class="pg-preset" id="pg-preset-oeg" onclick="pgSelectTemplate('oeg')">
-              <div class="pg-preset-left">
-                <div class="pg-preset-icon pdf">📄</div>
-                <div>
-                  <div class="pg-preset-name">OEG_Status_16_6.pdf</div>
-                  <div class="pg-preset-meta">Olympic Entertainment Group · 16 Jun 2026</div>
-                </div>
-              </div>
-              <div class="pg-preset-actions">
-                <button class="pg-eye-btn" onclick="pgPreview('oeg', event)" title="Preview layout">👁</button>
-                <div class="pg-preset-check">✓</div>
-              </div>
-            </div>
-
-            <div class="pg-preset" id="pg-preset-tango" onclick="pgSelectTemplate('tango')">
-              <div class="pg-preset-left">
-                <div class="pg-preset-icon html">🌐</div>
-                <div>
-                  <div class="pg-preset-name">tango_status_dashboard.html</div>
-                  <div class="pg-preset-meta">Tango · June 14, 2026 · Bugs + Roadmap + Ops</div>
-                </div>
-              </div>
-              <div class="pg-preset-actions">
-                <button class="pg-eye-btn" onclick="pgPreview('tango', event)" title="Preview layout">👁</button>
-                <div class="pg-preset-check">✓</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div>
-          <div class="pg-step-row"><div class="pg-step-num">3</div><div class="pg-step-label">Paste your raw content</div></div>
-          <div style="height:10px"></div>
-          <div class="pg-or"><div class="pg-or-line"></div><span>upload file</span><div class="pg-or-line"></div></div>
-          <div style="height:8px"></div>
-          <div class="pg-upload" id="pg-upload-zone">
-            <input type="file" id="pg-file-input" accept=".pdf,.html,.txt,.csv" onchange="pgHandleFile(this)" />
-            <div class="pg-upload-text">Drop file here or <span>browse</span> · PDF, HTML, TXT, CSV</div>
-            <div class="pg-uploaded" id="pg-file-display"></div>
-          </div>
-          <div style="height:10px"></div>
-          <div class="pg-or"><div class="pg-or-line"></div><span>or paste text</span><div class="pg-or-line"></div></div>
-          <div style="height:8px"></div>
-          <textarea class="pg-textarea" id="pg-raw-text" placeholder="Paste status notes, Jira exports, ops tickets, meeting notes… anything raw."></textarea>
-        </div>
-
-        <div>
-          <div class="pg-step-row"><div class="pg-step-num">4</div><div class="pg-step-label">Sections to generate</div></div>
-          <div style="height:10px"></div>
-          <div class="pg-toggles" id="pg-sections">
-            <button class="pg-tog on" data-val="bugs" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>🐛 Bugs & Technical</button>
-            <button class="pg-tog on" data-val="roadmap" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>🗺 Product Roadmap</button>
-            <button class="pg-tog on" data-val="ops" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>⚙️ Operations</button>
-            <button class="pg-tog on" data-val="data" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>🗄 Data Projects</button>
-            <button class="pg-tog on" data-val="closed" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>✅ Recently Closed</button>
-            <button class="pg-tog on" data-val="slack" onclick="this.classList.toggle('on')"><div class="pg-tog-dot"></div>💬 Slack Summary tab</button>
-          </div>
-        </div>
-
-        <button class="pg-gen-btn" onclick="pgGenerate()"><span>✦</span> Generate prompt</button>
-      </div>
-
-      <div class="pg-right">
-        <div class="pg-right-inner">
-          <div class="pg-output-bar">
-            <div class="pg-output-title">Generated Prompt</div>
-            <button class="pg-copy-btn" id="pg-copy-btn" onclick="pgCopy()">📋 Copy prompt</button>
-          </div>
-          <div class="pg-prompt-box">
-            <div class="pg-prompt-toolbar">
-              <span class="pg-prompt-toolbar-label">Ready to paste in Claude</span>
-              <span class="pg-char-count" id="pg-char-count">—</span>
-            </div>
-            <div class="pg-prompt-content" id="pg-prompt-output">
-              <div class="pg-prompt-empty">
-                <div class="pg-prompt-empty-icon">✦</div>
-                <div class="pg-prompt-empty-text">Your prompt appears here</div>
-                <div class="pg-prompt-empty-sub">Load data · click Generate</div>
-              </div>
-            </div>
-            <button class="pg-copy-bottom" id="pg-copy-bottom" onclick="pgCopy()">⌘ Copy to clipboard</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </div>
 
@@ -924,61 +721,12 @@
   });
 
   const pgTemplates = {
-    incident: { name: 'Major Incident Workflow — Concept Dashboard' },
-    optimove: {
-      name: 'Optimove Colors',
-      spec: `DESIGN SYSTEM — follow exactly:
-- Font: Inter from Google Fonts
-- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE
-- Header: background #2D1B69 (deep violet), white text, lime (#C8E61F) accent badge
-- Tabs: underline style, active tab has #2D1B69 border-bottom
-- Accent color: #C8E61F lime for highlights and active states`
-    },
-    oeg: {
-      name: 'OEG Layout',
-      spec: `DESIGN SYSTEM — follow the OEG status PDF layout:
-- Font: Inter from Google Fonts
-- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE
-- Header: #2D1B69 deep violet background, white text, lime badge top-right
-- Items: pill on the left (flex-shrink:0), title + description + ticket number in body
-- Section dividers: uppercase label 10px with thin rule separator`
-    },
-    tango: {
-      name: 'Tango Layout',
-      spec: `DESIGN SYSTEM — follow the Tango status HTML layout:
-- Font: Inter from Google Fonts
-- Background: #FBFAF7 · Card: #FFFFFF · Border: 1px solid #ECE9DE
-- Header: white bg, client name in purple pill + "Account Status" title + date right-aligned
-- Tabs: horizontal tab bar underline style, active tab has black 2px border-bottom
-- Cards: pill left-aligned flex-shrink:0, title 14px 500, desc 12px muted`
-    }
+    incident: { name: 'Major Incident Workflow — Concept Dashboard' }
   };
 
   const incidentPreviewHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif;}body{background:#F9FAFB;color:#0F0F0E;font-size:13px;}.hdr{background:#991B1B;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;}.hdr-left{display:flex;align-items:center;gap:10px;}.hdr-badge{background:white;color:#991B1B;font-size:9px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.5px;}.hdr-title{font-size:15px;font-weight:800;color:white;}.hdr-sub{font-size:10px;color:rgba(255,255,255,.65);margin-top:2px;}.hdr-time{font-size:11px;color:rgba(255,255,255,.55);text-align:right;}.inc-bar{background:#FEF2F2;border-bottom:2px solid #FECACA;padding:9px 18px;display:flex;align-items:center;gap:8px;}.inc-dot{width:8px;height:8px;border-radius:50%;background:#EF4444;}.inc-text{font-size:12px;font-weight:600;color:#991B1B;}.inc-since{font-size:11px;color:#6B7280;margin-left:auto;}.sec{padding:11px 18px 5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6B7280;}.checklist{padding:0 16px;display:flex;flex-direction:column;gap:4px;margin-bottom:8px;}.chk{display:flex;align-items:center;gap:10px;background:white;border:1px solid #E5E7EB;border-radius:8px;padding:9px 12px;}.chk-box{width:16px;height:16px;border-radius:4px;border:2px solid #D1D5DB;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;}.done-box{background:#16A34A;border-color:#16A34A;color:white;}.prog-box{border-color:#F59E0B;}.chk-text{font-size:12px;color:#0F0F0E;flex:1;}.done-text{text-decoration:line-through;color:#9CA3AF;}.chk-owner{font-size:10px;color:#6B7280;white-space:nowrap;}.done-row{background:#F0FDF4;border-color:#BBF7D0;}.escalation{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:0 16px;margin-bottom:8px;}.esc-card{background:white;border:1px solid #E5E7EB;border-radius:9px;padding:10px 12px;}.esc-role{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#6B7280;margin-bottom:3px;}.esc-name{font-size:13px;font-weight:700;color:#0F0F0E;}.esc-badge{display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:4px;margin-top:3px;}.notified{background:#FEF3C7;color:#92400E;}.engaged{background:#DCFCE7;color:#166534;}.metrics-grid{display:grid;grid-template-columns:1fr 1fr 1fr;padding:0 16px;margin-bottom:6px;gap:0;}.metric-card{background:white;border:1px solid #E5E7EB;padding:11px 8px;text-align:center;}.metric-card:first-child{border-radius:9px 0 0 9px;}.metric-card:last-child{border-radius:0 9px 9px 0;}.metric-card+.metric-card{border-left:none;}.metric-val{font-size:19px;font-weight:800;line-height:1;}.good{color:#16A34A;}.warn{color:#D97706;}.bad{color:#DC2626;}.metric-label{font-size:9px;color:#6B7280;margin-top:3px;text-transform:uppercase;letter-spacing:.5px;}.mc-wrap{margin:0 16px;border:1px solid #E5E7EB;border-radius:9px;overflow:hidden;margin-bottom:8px;}.mc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid #E5E7EB;background:white;}.mc-row:last-child{border-bottom:none;}.mc-key{font-size:11px;color:#374151;}.mc-val{font-size:11px;font-weight:600;}.insight-bar{margin:0 16px 10px;padding:11px 14px;background:#FFF7ED;border-left:3px solid #F59E0B;border-radius:0 8px 8px 0;}.insight-title{font-size:10px;font-weight:700;color:#D97706;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}.insight-text{font-size:11px;color:#4B5563;line-height:1.5;}</style></head><body><div class="hdr"><div class="hdr-left"><div class="hdr-badge">MAJOR INCIDENT</div><div><div class="hdr-title">Tango — Deliverability Incident</div><div class="hdr-sub">Volume Report · 28 Jun 2026</div></div></div><div class="hdr-time">13:42 UTC<br>Active 2h 14m</div></div><div class="inc-bar"><div class="inc-dot"></div><span class="inc-text">Email throughput degraded — 34% below baseline</span><span class="inc-since">Since 11:28 UTC</span></div><div class="sec">Response Checklist</div><div class="checklist"><div class="chk done-row"><div class="chk-box done-box">✓</div><span class="chk-text done-text">Alert triggered — on-call notified</span><span class="chk-owner">Auto</span></div><div class="chk done-row"><div class="chk-box done-box">✓</div><span class="chk-text done-text">Escalation manager contacted</span><span class="chk-owner">Allan</span></div><div class="chk done-row"><div class="chk-box done-box">✓</div><span class="chk-text done-text">Client (Tango) notified via Slack</span><span class="chk-owner">CS</span></div><div class="chk"><div class="chk-box prog-box"></div><span class="chk-text">Root cause — ISP throttle vs. IP reputation</span><span class="chk-owner">Ops</span></div><div class="chk"><div class="chk-box"></div><span class="chk-text">Volume cap or warm-up adjustment applied</span><span class="chk-owner">TBD</span></div><div class="chk"><div class="chk-box"></div><span class="chk-text">Post-incident report drafted</span><span class="chk-owner">TBD</span></div></div><div class="sec">Escalation Team</div><div class="escalation"><div class="esc-card"><div class="esc-role">Escalation Manager</div><div class="esc-name">Sarah Levy</div><span class="esc-badge engaged">Engaged</span></div><div class="esc-card"><div class="esc-role">Deliverability Lead</div><div class="esc-name">Ran Cohen</div><span class="esc-badge engaged">Engaged</span></div><div class="esc-card"><div class="esc-role">CS Manager</div><div class="esc-name">Allan Partush</div><span class="esc-badge engaged">Active</span></div><div class="esc-card"><div class="esc-role">Client Contact</div><div class="esc-name">Tango — Karin</div><span class="esc-badge notified">Notified</span></div></div><div class="sec">Deliverability Metrics (last 2h)</div><div class="metrics-grid"><div class="metric-card"><div class="metric-val bad">34%↓</div><div class="metric-label">Send Rate</div></div><div class="metric-card"><div class="metric-val warn">6.2%</div><div class="metric-label">Bounce Rate</div></div><div class="metric-card"><div class="metric-val good">18.4%</div><div class="metric-label">Open Rate</div></div></div><div class="metrics-grid" style="margin-bottom:8px"><div class="metric-card"><div class="metric-val bad">1.4%</div><div class="metric-label">Spam Rate</div></div><div class="metric-card"><div class="metric-val warn">112K</div><div class="metric-label">Queued</div></div><div class="metric-card"><div class="metric-val good">98.1%</div><div class="metric-label">Delivery OK</div></div></div><div class="sec">Mission Control Insights</div><div class="mc-wrap"><div class="mc-row"><span class="mc-key">Campaigns impacted</span><span class="mc-val bad">14 active</span></div><div class="mc-row"><span class="mc-key">Scheduled sends delayed</span><span class="mc-val warn">47,200 msgs</span></div><div class="mc-row"><span class="mc-key">Batch process</span><span class="mc-val good">Completed</span></div><div class="mc-row"><span class="mc-key">Data ingestion</span><span class="mc-val good">On time</span></div><div class="mc-row"><span class="mc-key">Next scheduled run</span><span class="mc-val">15:00 UTC</span></div></div><div class="insight-bar"><div class="insight-title">⚡ Ops Note</div><div class="insight-text">ISP throttle signal detected from 3 major providers. Recommend reducing volume 30% for next 2 send windows, monitor bounce/spam deltas every 15 min.</div></div>
 </body></html>`;
 
-  const pgPreviews = {
-    oeg: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif;}body{background:#FBFAF7;color:#0F0F0E;}.hdr{background:#2D1B69;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;}.ht{font-size:15px;font-weight:800;color:white;}.hs{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}.hb{background:#C8E61F;color:#2D1B69;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;}.sec{padding:14px 20px 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8A8A9A;}.item{background:white;border:1px solid #ECE9DE;border-radius:10px;margin:0 16px 8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}.pill{flex-shrink:0;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:2px;}.done{background:#EAF3DE;color:#3B6D11;}.prog{background:#E6F1FB;color:#185FA5;}.scop{background:#FFF4E0;color:#7A4D00;}.t{font-size:13px;font-weight:600;color:#0F0F0E;margin-bottom:3px;}.d{font-size:11px;color:#6B6860;line-height:1.45;}.tic{font-size:10px;color:#A8A59C;margin-top:4px;font-family:monospace;}</style></head><body><div class="hdr"><div><div class="ht">OEG — Project Status</div><div class="hs">Olympic Entertainment Group · 16 June 2026</div></div><div class="hb">STATUS</div></div><div class="sec">Data Projects</div><div class="item"><span class="pill done">Complete</span><div><div class="t">FR + LT — Data ingest, mapping &amp; refresh</div><div class="d">Users are in the model with customer attribute; refresh has run successfully.</div><div class="tic">#1010221 · #1005042</div></div></div><div class="item"><span class="pill prog">Ongoing</span><div><div class="t">Times in churn — investigation</div><div class="d">In progress — ETA tomorrow.</div><div class="tic">#1005252</div></div></div><div class="item"><span class="pill scop">Scoping</span><div><div class="t">Full historical refresh</div><div class="d">Scoping questions sent to client; awaiting response.</div><div class="tic">#1009985</div></div></div><div class="sec">Operations</div><div class="item"><span class="pill prog">Investigation</span><div><div class="t">Cohorts filters</div><div class="d">New filters added. UI issue identified — under dev investigation.</div><div class="tic">ADO #287541</div></div></div></body></html>`,
-    tango: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif;}body{background:#FBFAF7;color:#0F0F0E;}.hdr{background:white;border-bottom:1px solid #ECE9DE;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}.hl{display:flex;align-items:center;gap:10px;}.hn{font-size:12px;font-weight:700;color:#2D1B69;background:#EDE9FE;padding:3px 9px;border-radius:20px;}.htitle{font-size:15px;font-weight:700;color:#0F0F0E;}.hdate{font-size:11px;color:#8A8A9A;}.tabs{display:flex;border-bottom:1px solid #ECE9DE;background:white;padding:0 20px;}.tab{font-size:12px;font-weight:600;padding:10px 14px;cursor:pointer;color:#8A8A9A;border-bottom:2px solid transparent;}.tab.a{color:#0F0F0E;border-bottom-color:#0F0F0E;}.sec{padding:14px 20px 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8A8A9A;}.item{background:white;border:1px solid #ECE9DE;border-radius:10px;margin:0 16px 8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}.pill{flex-shrink:0;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:2px;}.blk{background:#FAEEDA;color:#854F0B;}.inp{background:#E6F1FB;color:#185FA5;}.str{background:#EEEDFE;color:#3C3489;}.t{font-size:12px;font-weight:600;color:#0F0F0E;margin-bottom:3px;}.d{font-size:11px;color:#6B6860;line-height:1.45;}</style></head><body><div class="hdr"><div class="hl"><span class="hn">Tango</span><span class="htitle">Account Status</span></div><span class="hdate">June 14, 2026</span></div><div class="tabs"><div class="tab a">All</div><div class="tab">Bugs</div><div class="tab">Roadmap</div><div class="tab">Ops</div><div class="tab">Closed</div></div><div class="sec">Bugs &amp; Technical</div><div class="item"><span class="pill blk">Blocked</span><div><div class="t">App version filtering — "Last Tango Version"</div><div class="d">Version strings incompatible with Float. Temp fix: filter removed from affected TGs.</div></div></div><div class="item"><span class="pill inp">In Progress</span><div><div class="t">Android SDK v7.14.0 — in-app delivery underreporting</div><div class="d">Released with underreporting fix. Karin implementing. Backfill data ongoing.</div></div></div><div class="sec">Product Roadmap</div><div class="item"><span class="pill str">Strategic</span><div><div class="t">Overlay Messaging</div><div class="d">Closed beta; broader availability ~2 months out. Allan following up on early beta access.</div></div></div></body></html>`
-  };
-
-  let pgActiveTemplate = 'optimove';
-
-  function pgSelectTemplate(key) {
-    pgActiveTemplate = key;
-    document.querySelectorAll('.pg-preset').forEach(f => f.classList.remove('selected'));
-    document.getElementById('pg-preset-' + key).classList.add('selected');
-  }
-
-  function pgPreview(key, event) {
-    event.stopPropagation();
-    const html = pgPreviews[key];
-    if (!html) return;
-    document.getElementById('pg-preview-title').textContent = pgTemplates[key].name + ' — Layout Preview';
-    const blob = new Blob([html], { type: 'text/html' });
-    document.getElementById('pg-preview-iframe').src = URL.createObjectURL(blob);
-    document.getElementById('pg-preview-overlay').classList.add('open');
-  }
   function closePgPreview() { document.getElementById('pg-preview-overlay').classList.remove('open'); }
 
   function showIncidentPreview(event) {
@@ -991,85 +739,6 @@
   document.getElementById('pg-preview-overlay').addEventListener('click', e => {
     if (e.target === document.getElementById('pg-preview-overlay')) closePgPreview();
   });
-
-  document.getElementById('pg-upload-zone').addEventListener('dragover', e => { e.preventDefault(); e.currentTarget.style.borderColor = '#6B46C1'; });
-  document.getElementById('pg-upload-zone').addEventListener('dragleave', e => { e.currentTarget.style.borderColor = ''; });
-  document.getElementById('pg-upload-zone').addEventListener('drop', e => { e.preventDefault(); e.currentTarget.style.borderColor = ''; const f = e.dataTransfer.files[0]; if (f) pgProcessFile(f); });
-  function pgHandleFile(input) { if (input.files[0]) pgProcessFile(input.files[0]); }
-  function pgProcessFile(file) {
-    const d = document.getElementById('pg-file-display');
-    d.textContent = '✓ ' + file.name; d.classList.add('show');
-    const r = new FileReader();
-    r.onload = e => {
-      let c = e.target.result;
-      if (file.name.endsWith('.html')) { const t = document.createElement('div'); t.innerHTML = c; c = t.innerText; }
-      document.getElementById('pg-raw-text').value = c.slice(0, 8000);
-    };
-    r.readAsText(file);
-  }
-
-  function pgGenerate() {
-    const client = document.getElementById('pg-client').value.trim() || 'the client';
-    const raw = document.getElementById('pg-raw-text').value.trim();
-    const sections = [...document.querySelectorAll('#pg-sections .pg-tog.on')].map(b => b.dataset.val);
-    if (!raw) {
-      document.getElementById('pg-prompt-output').innerHTML = '<div class="pg-prompt-empty"><div class="pg-prompt-empty-icon">⚠️</div><div class="pg-prompt-empty-text">Please paste content first</div><div class="pg-prompt-empty-sub">Step 3 above</div></div>';
-      return;
-    }
-    const tmpl = pgTemplates[pgActiveTemplate] || pgTemplates.optimove;
-    const sLines = [];
-    if (sections.includes('bugs'))    sLines.push('• "Bugs & Technical" — bugs, blocked items. Pills: Blocked / Open / In Progress');
-    if (sections.includes('roadmap')) sLines.push('• "Product Roadmap" — features, strategic items. Pills: In Progress / Strategic / Internal');
-    if (sections.includes('data'))    sLines.push('• "Data Projects" — data ingestion, mapping, batch, refresh, scoping. Pills: Complete / Ongoing / Scoping / In Progress');
-    if (sections.includes('ops'))     sLines.push('• "Operations" — ops tickets, ADO items, infrastructure. Pills: Investigation / Partially Solved / In Progress');
-    if (sections.includes('closed'))  sLines.push('• "Recently Closed" — completed items as compact grid cards with checkmark icons');
-    if (sections.includes('slack'))   sLines.push('• A "Slack Summary" tab with emoji-formatted plain text and a Copy button');
-    const prompt = `You are generating a self-contained HTML status dashboard for ${client}.
-
-Parse the raw content below. Extract every project, issue, ticket, and update. Produce a single complete HTML file — no external dependencies except Google Fonts (Inter).
-
----
-RAW STATUS CONTENT:
-${raw}
----
-
-${tmpl.spec}
-
-PILL COLORS:
-• Blocked → bg #FAEEDA text #854F0B
-• Open/Bug → bg #FCEBEB text #A32D2D
-• In Progress → bg #E6F1FB text #185FA5
-• Strategic → bg #EEEDFE text #3C3489
-• Internal → bg #F1EFE8 text #5F5E5A
-• Done/Complete → bg #EAF3DE text #3B6D11
-• Scoping → bg #FFF4E0 text #7A4D00
-• Partially Solved → bg #E6F1FB text #185FA5
-• Investigation → bg #FAEEDA text #854F0B
-
-ITEM CARD: pill (left, flex-shrink:0) + body (title 14px 500, desc 12px #6b6860 1.55, ticket 11px monospace)
-
-SECTIONS TO INCLUDE:
-${sLines.join('\n')}
-
-Output ONLY the complete raw HTML. No markdown. No explanation. No backticks.`;
-    document.getElementById('pg-prompt-output').textContent = prompt;
-    document.getElementById('pg-char-count').textContent = prompt.length.toLocaleString() + ' chars';
-  }
-
-  function pgCopy() {
-    const c = document.getElementById('pg-prompt-output').textContent;
-    if (!c || c.includes('Your prompt appears here') || c.includes('paste content first')) return;
-    navigator.clipboard.writeText(c).then(() => {
-      const btn = document.getElementById('pg-copy-btn');
-      const btn2 = document.getElementById('pg-copy-bottom');
-      btn.textContent = '✓ Copied!'; btn.classList.add('success');
-      btn2.textContent = '✓ Copied'; btn2.classList.add('success');
-      setTimeout(() => {
-        btn.textContent = '📋 Copy prompt'; btn.classList.remove('success');
-        btn2.textContent = '⌘ Copy to clipboard'; btn2.classList.remove('success');
-      }, 2500);
-    });
-  }
 
   function hcGoTo(client) {
     document.querySelectorAll('.hc-page').forEach(p => p.classList.remove('active'));
@@ -1095,6 +764,15 @@ Output ONLY the complete raw HTML. No markdown. No explanation. No backticks.`;
       window.location.href = href.replace('index.html', 'novibet.html');
     } else {
       window.location.href = 'novibet.html';
+    }
+  }
+
+  function openPromptGenerator() {
+    const href = window.location.href;
+    if (href.includes('htmlpreview.github.io')) {
+      window.location.href = href.replace('index.html', 'prompt-generator.html');
+    } else {
+      window.location.href = 'prompt-generator.html';
     }
   }
 
