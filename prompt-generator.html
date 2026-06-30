@@ -14,7 +14,7 @@
   body { background: var(--page-bg); font-family: system-ui,-apple-system,sans-serif; color: var(--text-main); font-size: 13px; }
 
   .top-nav { background: var(--opt-deep); padding: 10px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 200; }
-  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 20px; cursor: pointer; text-decoration: none; transition: all 0.15s; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.15s; }
   .back-btn:hover { background: rgba(255,255,255,0.22); color: white; }
   .nav-title { font-size: 14px; font-weight: 700; color: white; }
   .nav-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-left: auto; }
@@ -25,57 +25,81 @@
 
   /* Cards */
   .card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: 12px; overflow: hidden; }
-  .card-hd { padding: 13px 18px; border-bottom: 0.5px solid var(--border-c); display: flex; align-items: center; gap: 10px; background: white; }
+  .card-hd { padding: 13px 18px; border-bottom: 0.5px solid var(--border-c); display: flex; align-items: center; gap: 10px; }
   .card-hd-num { width: 22px; height: 22px; border-radius: 50%; background: var(--opt-deep); color: var(--opt-lime); font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .card-hd-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--opt-purple); }
-  .card-hd-sub { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+  .card-hd-right { margin-left: auto; }
   .card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
 
-  /* Form elements */
+  /* Form fields */
   .field { display: flex; flex-direction: column; gap: 5px; }
-  .field-row { display: grid; gap: 12px; }
-  .field-row.cols2 { grid-template-columns: 1fr 1fr; }
-  .field-row.cols3 { grid-template-columns: 1fr 1fr 1fr; }
   label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); }
-  input[type=text], input[type=date], select, textarea {
-    width: 100%; padding: 8px 11px; border: 0.5px solid var(--border-c); border-radius: 8px;
-    font-size: 13px; font-family: inherit; color: var(--text-main); background: var(--page-bg);
-    outline: none; transition: border-color 0.15s;
-  }
-  input:focus, select:focus, textarea:focus { border-color: var(--opt-purple); background: white; }
-  input::placeholder, textarea::placeholder { color: var(--text-muted); }
-  textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
-
+  input[type=text] { width: 100%; padding: 8px 11px; border: 0.5px solid var(--border-c); border-radius: 8px; font-size: 13px; font-family: inherit; color: var(--text-main); background: var(--page-bg); outline: none; transition: border-color 0.15s; }
+  input[type=text]:focus { border-color: var(--opt-purple); background: white; }
+  input[type=text]::placeholder { color: var(--text-muted); }
+  select { width: 100%; padding: 8px 11px; border: 0.5px solid var(--border-c); border-radius: 8px; font-size: 13px; font-family: inherit; color: var(--text-main); background: var(--page-bg); outline: none; transition: border-color 0.15s; }
+  select:focus { border-color: var(--opt-purple); background: white; }
+  .field-row { display: grid; gap: 10px; }
+  .cols2 { grid-template-columns: 1fr 1fr; }
+  .cols3 { grid-template-columns: 1fr 1fr 1fr; }
   .hint { font-size: 10px; color: var(--text-muted); line-height: 1.5; }
 
-  /* Checkboxes */
-  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .check-item { display: flex; align-items: center; gap: 8px; padding: 8px 11px; background: var(--page-bg); border: 0.5px solid var(--border-c); border-radius: 8px; cursor: pointer; transition: all 0.15s; }
-  .check-item:hover { border-color: var(--opt-purple); }
-  .check-item input[type=checkbox] { width: 14px; height: 14px; accent-color: var(--opt-purple); cursor: pointer; flex-shrink: 0; }
-  .check-item label { font-size: 12px; font-weight: 500; color: var(--text-sub); text-transform: none; letter-spacing: 0; cursor: pointer; }
-  .check-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 4px; margin-top: 4px; }
+  /* Currency bubble */
+  .currency-pill { position: relative; display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; background: rgba(107,70,193,0.08); border: 1px solid rgba(107,70,193,0.22); border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--opt-purple); cursor: default; }
+  .currency-pill-sym { font-size: 15px; line-height: 1; }
+  .currency-tip { display: none; position: absolute; right: 0; top: calc(100% + 7px); background: #1a1a2e; color: rgba(255,255,255,0.85); font-size: 10px; font-weight: 400; padding: 7px 11px; border-radius: 8px; white-space: nowrap; z-index: 50; pointer-events: none; }
+  .currency-pill:hover .currency-tip { display: block; }
 
-  /* Radio */
-  .radio-row { display: flex; gap: 10px; flex-wrap: wrap; }
-  .radio-item { display: flex; align-items: center; gap: 7px; padding: 8px 13px; background: var(--page-bg); border: 0.5px solid var(--border-c); border-radius: 8px; cursor: pointer; transition: all 0.15s; }
-  .radio-item:has(input:checked) { border-color: var(--opt-purple); background: rgba(107,70,193,0.06); }
-  .radio-item input[type=radio] { accent-color: var(--opt-purple); cursor: pointer; }
-  .radio-item label { font-size: 12px; font-weight: 500; color: var(--text-sub); cursor: pointer; }
+  /* Period chip */
+  .period-chip { display: flex; align-items: center; gap: 7px; padding: 7px 12px; background: rgba(22,163,74,0.06); border: 0.5px solid rgba(22,163,74,0.25); border-radius: 8px; }
+  .period-chip-text { font-size: 12px; font-weight: 600; color: #15803d; }
+  .period-chip-sub { font-size: 10px; color: var(--text-muted); }
+
+  /* Section tiles */
+  .sec-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .sec-tile { padding: 18px 10px 14px; background: var(--page-bg); border: 1.5px solid var(--border-c); border-radius: 12px; cursor: pointer; transition: all 0.18s ease; display: flex; flex-direction: column; align-items: center; gap: 5px; font-family: inherit; text-align: center; }
+  .sec-tile:hover { border-color: rgba(107,70,193,0.4); transform: translateY(-1px); }
+  .sec-tile-icon { font-size: 26px; line-height: 1; margin-bottom: 2px; }
+  .sec-tile-label { font-size: 12px; font-weight: 700; color: var(--text-sub); line-height: 1.2; }
+  .sec-tile-sub { font-size: 10px; color: var(--text-muted); }
+  .sec-tile-check { width: 18px; height: 18px; border-radius: 50%; background: var(--opt-purple); color: white; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 5px; opacity: 0; transition: opacity 0.15s; flex-shrink: 0; }
+  .sec-tile.active { border-color: var(--opt-purple); background: rgba(107,70,193,0.06); }
+  .sec-tile.active .sec-tile-label { color: var(--opt-deep); }
+  .sec-tile.active .sec-tile-check { opacity: 1; }
+
+  /* Upload zone */
+  .upload-zone { border: 1.5px dashed var(--border-c); border-radius: 10px; padding: 22px 16px; text-align: center; cursor: pointer; transition: all 0.15s; background: var(--page-bg); }
+  .upload-zone:hover, .upload-zone.drag-over { border-color: var(--opt-purple); background: rgba(107,70,193,0.04); }
+  .upload-zone.has-files { border-color: #16a34a; border-style: solid; background: rgba(22,163,74,0.04); }
+  .upload-zone.error { border-color: #ef4444; border-style: solid; background: rgba(239,68,68,0.04); }
+  .upload-icon { font-size: 28px; margin-bottom: 7px; }
+  .upload-text { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+  .upload-text strong { color: var(--opt-purple); font-weight: 700; }
+  .upload-files-list { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+  .upload-file-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: rgba(22,163,74,0.08); border-radius: 7px; font-size: 11px; font-weight: 600; color: #15803d; }
+  .upload-file-size { margin-left: auto; font-size: 10px; color: var(--text-muted); font-weight: 400; }
+  .upload-change { margin-top: 8px; font-size: 11px; color: var(--opt-purple); font-weight: 600; cursor: pointer; }
+  .upload-change:hover { text-decoration: underline; }
+  .upload-err { font-size: 11px; color: #ef4444; font-weight: 600; margin-top: 5px; }
+  .req-badge { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; background: rgba(239,68,68,0.1); color: #ef4444; padding: 2px 7px; border-radius: 10px; }
 
   /* Dynamic items */
   .dyn-item { background: var(--page-bg); border: 0.5px solid var(--border-c); border-radius: 10px; padding: 13px 14px; display: flex; flex-direction: column; gap: 9px; position: relative; }
-  .dyn-item-num { font-size: 10px; font-weight: 700; color: var(--opt-purple); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; }
+  .dyn-item-num { font-size: 10px; font-weight: 700; color: var(--opt-purple); text-transform: uppercase; letter-spacing: 0.07em; }
   .dyn-remove { position: absolute; top: 10px; right: 11px; background: none; border: none; font-size: 16px; color: var(--text-muted); cursor: pointer; line-height: 1; padding: 0; transition: color 0.15s; }
   .dyn-remove:hover { color: #ef4444; }
   .add-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border: 0.5px dashed var(--border-c); border-radius: 8px; background: none; font-size: 12px; font-weight: 600; color: var(--opt-purple); cursor: pointer; transition: all 0.15s; font-family: inherit; }
   .add-btn:hover { border-color: var(--opt-purple); background: rgba(107,70,193,0.05); }
+  .dyn-textarea { width: 100%; padding: 8px 11px; border: 0.5px solid var(--border-c); border-radius: 8px; font-size: 13px; font-family: inherit; color: var(--text-main); background: var(--page-bg); outline: none; resize: vertical; line-height: 1.5; transition: border-color 0.15s; }
+  .dyn-textarea:focus { border-color: var(--opt-purple); background: white; }
 
-  /* Divider between sub-sections */
-  .subsec-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-sub); padding: 4px 0 8px; border-bottom: 0.5px solid var(--border-c); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+  /* Big context textarea */
+  .big-textarea { width: 100%; min-height: 200px; padding: 14px 16px; border: 0.5px solid var(--border-c); border-radius: 10px; font-size: 13px; font-family: inherit; color: var(--text-main); background: white; outline: none; resize: vertical; line-height: 1.65; transition: border-color 0.15s; }
+  .big-textarea:focus { border-color: var(--opt-purple); }
+  .big-textarea::placeholder { color: var(--text-muted); font-style: italic; }
 
   /* Generate button */
-  .gen-btn { width: 100%; padding: 14px; background: var(--opt-deep); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s; }
+  .gen-btn { width: 100%; padding: 15px; background: var(--opt-deep); border: none; border-radius: 12px; color: white; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.15s; letter-spacing: 0.02em; }
   .gen-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
   /* Output panel */
@@ -96,151 +120,145 @@
   .copy-bottom:hover { color: rgba(255,255,255,0.5); }
   .copy-bottom.ok { color: rgba(200,230,31,0.65); }
 
-  .hidden { display: none; }
+  .hidden { display: none !important; }
 
   @media (max-width: 900px) {
     .main { grid-template-columns: 1fr; }
     .out-col { position: static; height: auto; min-height: 400px; }
-    .field-row.cols2, .field-row.cols3 { grid-template-columns: 1fr; }
+    .cols2, .cols3 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .sec-tiles { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<input type="file" id="csv-file-input" accept=".csv" multiple style="display:none" onchange="handleFileSelect(this.files)">
+
 <div class="top-nav">
-  <a class="back-btn" onclick="goBack()">‹ Back</a>
+  <button class="back-btn" onclick="goBack()">‹ Back</button>
   <span class="nav-title">Dashboard Prompt Generator</span>
-  <span class="nav-sub">v1.1 · Paste output into Claude or GPT</span>
+  <span class="nav-sub">v2.0 · Paste output into Claude or GPT</span>
 </div>
 
 <div class="main">
-  <!-- ── FORM COLUMN ── -->
   <div class="form-col">
 
-    <!-- Step 1: Client Info -->
+    <!-- 1: Client -->
     <div class="card">
-      <div class="card-hd"><div class="card-hd-num">1</div><div class="card-hd-title">Client Info</div></div>
-      <div class="card-body">
-        <div class="field-row cols2">
-          <div class="field"><label>Client name *</label><input type="text" id="f-client" placeholder="e.g. Novibet"></div>
-          <div class="field"><label>Report period *</label><input type="text" id="f-period" placeholder="e.g. June 2026"></div>
-        </div>
-        <div class="field-row cols3">
-          <div class="field"><label>Date</label><input type="text" id="f-date" placeholder="e.g. 29 Jun 2026"></div>
-          <div class="field"><label>Currency</label><input type="text" id="f-currency" placeholder="$ (default USD)"></div>
-          <div class="field"><label>Accent color (hex)</label><input type="text" id="f-accent" placeholder="e.g. #E8A020"></div>
-        </div>
-        <div class="field">
-          <label>Instance type</label>
-          <div class="radio-row">
-            <div class="radio-item"><input type="radio" name="instance" id="inst-single" value="Single instance" checked><label for="inst-single">Single instance</label></div>
-            <div class="radio-item"><input type="radio" name="instance" id="inst-multi" value="Multi-instance"><label for="inst-multi">Multi-instance</label></div>
+      <div class="card-hd">
+        <div class="card-hd-num">1</div>
+        <div class="card-hd-title">Client</div>
+        <div class="card-hd-right">
+          <div class="currency-pill">
+            <span class="currency-pill-sym">€</span>
+            <span>EUR</span>
+            <div class="currency-tip">Fixed to EUR · Optimove CS workspace default</div>
           </div>
         </div>
-        <div class="field"><label>Tenant name(s)</label><input type="text" id="f-tenants" placeholder="e.g. Novibet Main · NovibetBR"></div>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label>Client name *</label>
+          <input type="text" id="f-client" placeholder="e.g. Novibet">
+        </div>
+        <div class="period-chip hidden" id="period-chip">
+          <span>📅</span>
+          <span class="period-chip-text" id="period-text">—</span>
+          <span class="period-chip-sub">· auto-detected from CSV</span>
+        </div>
       </div>
     </div>
 
-    <!-- Step 2: Sections -->
+    <!-- 2: Sections -->
     <div class="card">
-      <div class="card-hd"><div class="card-hd-num">2</div><div class="card-hd-title">Sections to include</div></div>
+      <div class="card-hd">
+        <div class="card-hd-num">2</div>
+        <div class="card-hd-title">What to include</div>
+      </div>
       <div class="card-body">
-        <div class="check-section-label">Open Items tab</div>
-        <div class="check-grid">
-          <div class="check-item"><input type="checkbox" id="sec-ops" checked onchange="toggleSection('ops-section', this)"><label for="sec-ops">Operations (tickets)</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-proj" checked onchange="toggleSection('proj-section', this)"><label for="sec-proj">Projects</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-prod" checked onchange="toggleSection('prod-section', this)"><label for="sec-prod">Product</label></div>
-        </div>
-        <div class="check-section-label" style="margin-top:8px">Dashboard tab</div>
-        <div class="check-grid">
-          <div class="check-item"><input type="checkbox" id="sec-kpi" checked><label for="sec-kpi">KPI row</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-daily" checked><label for="sec-daily">Daily volume chart</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-market" checked><label for="sec-market">Market breakdown</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-channel" checked><label for="sec-channel">Channel performance</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-dow" checked><label for="sec-dow">Day of week chart</label></div>
-          <div class="check-item"><input type="checkbox" id="sec-top" checked><label for="sec-top">Top campaigns</label></div>
+        <div class="sec-tiles">
+          <button class="sec-tile active" id="tile-ops" onclick="toggleTile('ops')">
+            <div class="sec-tile-icon">🎫</div>
+            <div class="sec-tile-label">Operations</div>
+            <div class="sec-tile-sub">Tickets</div>
+            <div class="sec-tile-check">✓</div>
+          </button>
+          <button class="sec-tile active" id="tile-prod" onclick="toggleTile('prod')">
+            <div class="sec-tile-icon">📦</div>
+            <div class="sec-tile-label">Product</div>
+            <div class="sec-tile-sub">Roadmap items</div>
+            <div class="sec-tile-check">✓</div>
+          </button>
+          <button class="sec-tile active" id="tile-dash" onclick="toggleTile('dash')">
+            <div class="sec-tile-icon">📊</div>
+            <div class="sec-tile-label">Dashboard</div>
+            <div class="sec-tile-sub">Mission Control</div>
+            <div class="sec-tile-check">✓</div>
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Step 3a: Operations -->
-    <div class="card" id="ops-section">
-      <div class="card-hd"><div class="card-hd-num">3a</div><div class="card-hd-title">Operations — Tickets</div><div class="card-hd-sub">Academy · Zendesk</div></div>
+    <!-- 3: CSV upload (Dashboard required) -->
+    <div class="card" id="csv-section">
+      <div class="card-hd">
+        <div class="card-hd-num">3</div>
+        <div class="card-hd-title">Campaign List CSV</div>
+        <div class="card-hd-right"><span class="req-badge">Required for Dashboard</span></div>
+      </div>
       <div class="card-body">
-        <div id="tickets-list" class="flex-col" style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div class="upload-zone" id="upload-zone" onclick="document.getElementById('csv-file-input').click()">
+          <div id="upload-empty-state">
+            <div class="upload-icon">📂</div>
+            <div class="upload-text">Click to browse or drop CSV file(s) here<br><strong>Campaign List</strong> · also attach <strong>Campaign Results</strong> for uplift + RR data</div>
+          </div>
+          <div id="upload-filled-state" class="hidden">
+            <div class="upload-files-list" id="upload-files-list"></div>
+            <div class="upload-change" onclick="event.stopPropagation(); document.getElementById('csv-file-input').click()">Change files</div>
+          </div>
+          <div class="upload-err hidden" id="upload-err">Please attach at least one CSV before generating.</div>
+        </div>
+        <div class="hint">Export from Optimove → Reports → Campaign List · Full month range · Enable Include Occurrences · Export CSV. Report period is auto-detected from the Occurrence Date column.</div>
+      </div>
+    </div>
+
+    <!-- 4: Tickets -->
+    <div class="card" id="ops-section">
+      <div class="card-hd">
+        <div class="card-hd-num">4</div>
+        <div class="card-hd-title">Operations — Tickets</div>
+        <div class="card-hd-right" style="font-size:10px;color:var(--text-muted);">Academy · Zendesk</div>
+      </div>
+      <div class="card-body">
+        <div id="tickets-list" style="display:flex;flex-direction:column;gap:10px;"></div>
         <button class="add-btn" onclick="addTicket()">+ Add ticket</button>
       </div>
     </div>
 
-    <!-- Step 3b: Projects -->
-    <div class="card" id="proj-section">
-      <div class="card-hd"><div class="card-hd-num">3b</div><div class="card-hd-title">Projects</div><div class="card-hd-sub">Max 4 per row</div></div>
-      <div class="card-body">
-        <div id="projects-list" style="display:flex;flex-direction:column;gap:10px;"></div>
-        <button class="add-btn" onclick="addProject()">+ Add project</button>
-      </div>
-    </div>
-
-    <!-- Step 3c: Product -->
+    <!-- 5: Product -->
     <div class="card" id="prod-section">
-      <div class="card-hd"><div class="card-hd-num">3c</div><div class="card-hd-title">Product</div></div>
+      <div class="card-hd">
+        <div class="card-hd-num">5</div>
+        <div class="card-hd-title">Product</div>
+      </div>
       <div class="card-body">
         <div id="product-list" style="display:flex;flex-direction:column;gap:10px;"></div>
         <button class="add-btn" onclick="addProduct()">+ Add product item</button>
       </div>
     </div>
 
-    <!-- Step 4: Dashboard Data -->
+    <!-- 6: Notes & Context -->
     <div class="card">
-      <div class="card-hd"><div class="card-hd-num">4</div><div class="card-hd-title">Dashboard Data</div></div>
-      <div class="card-body">
-        <div class="field">
-          <label>CSV file(s) attached?</label>
-          <div class="radio-row">
-            <div class="radio-item"><input type="radio" name="csv" id="csv-yes" value="yes"><label for="csv-yes">Yes — attached to conversation</label></div>
-            <div class="radio-item"><input type="radio" name="csv" id="csv-no" value="no" checked><label for="csv-no">No</label></div>
-          </div>
-        </div>
-        <div class="field">
-          <label>Results export attached?</label>
-          <div class="radio-row">
-            <div class="radio-item"><input type="radio" name="results" id="res-yes" value="yes"><label for="res-yes">Yes</label></div>
-            <div class="radio-item"><input type="radio" name="results" id="res-no" value="no" checked><label for="res-no">No</label></div>
-          </div>
-        </div>
-        <div class="subsec-label">Known metrics (override CSV values)</div>
-        <div class="field-row cols3">
-          <div class="field"><label>Total uplift</label><input type="text" id="f-uplift" placeholder="e.g. 28.42M"></div>
-          <div class="field"><label>RR — test group</label><input type="text" id="f-rr-test" placeholder="e.g. 4.51%"></div>
-          <div class="field"><label>RR — control group</label><input type="text" id="f-rr-ctrl" placeholder="e.g. 5.94%"></div>
-        </div>
-        <div class="hint">How to export from Optimove: Reports → Campaign List · set full month range · enable Include Occurrences · export CSV. For Results: Reports → Campaign Results, same range.</div>
+      <div class="card-hd">
+        <div class="card-hd-num">6</div>
+        <div class="card-hd-title">Notes &amp; Context</div>
+        <div class="card-hd-right" style="font-size:10px;color:var(--text-muted);">Optional · high value</div>
       </div>
-    </div>
-
-    <!-- Step 5: Context Notes -->
-    <div class="card">
-      <div class="card-hd"><div class="card-hd-num">5</div><div class="card-hd-title">Insights &amp; Context</div><div class="card-hd-sub">Optional — high value</div></div>
       <div class="card-body">
-        <div class="field">
-          <label>Context notes (one per line)</label>
-          <textarea id="f-context" rows="4" placeholder="e.g. RT is only 0.4% of total — was previously prioritized, usage dropped&#10;Thursday is historically peak day for GR&#10;MX dominates volume but Direct Mail has no control group"></textarea>
-        </div>
-        <div class="hint">Factual observations only. Claude turns these into subtle inline insights — one insight per data point, never a paragraph.</div>
-      </div>
-    </div>
-
-    <!-- Step 6: Client-facing -->
-    <div class="card">
-      <div class="card-hd"><div class="card-hd-num">6</div><div class="card-hd-title">Internal or Client-facing?</div></div>
-      <div class="card-body">
-        <div class="field">
-          <div class="radio-row">
-            <div class="radio-item"><input type="radio" name="facing" id="fac-int" value="Internal only" checked><label for="fac-int">Internal only (Optimove team)</label></div>
-            <div class="radio-item"><input type="radio" name="facing" id="fac-ext" value="Client-facing"><label for="fac-ext">Client-facing</label></div>
-          </div>
-        </div>
-        <div class="hint">If client-facing: Optimove staff names → "Optimove team" · "Investigate" → "In review" · "Blocked" → "On hold — pending input" · internal commentary removed.</div>
+        <textarea class="big-textarea" id="f-context"
+          placeholder="Describe how you want the dashboard to look, what matters most, tone, structure, or any observations about the data — e.g. &quot;RT is only 0.4% of total, Thursday is our peak day for GR, MX dominates volume but Direct Mail has no control group&quot;"></textarea>
       </div>
     </div>
 
@@ -249,7 +267,7 @@
 
   </div>
 
-  <!-- ── OUTPUT COLUMN ── -->
+  <!-- Output column -->
   <div class="out-col">
     <div class="out-hd">
       <span class="out-hd-title">Generated Prompt</span>
@@ -262,7 +280,7 @@
       <div class="out-empty">
         <div class="out-empty-icon">✦</div>
         <div class="out-empty-text">Prompt appears here</div>
-        <div class="out-empty-sub">Fill in the form · click Generate</div>
+        <div class="out-empty-sub">Fill the form · click Generate</div>
       </div>
     </div>
     <button class="copy-bottom" id="copy-bottom" onclick="copyPrompt()">⌘ Copy to clipboard</button>
@@ -270,7 +288,6 @@
 </div>
 
 <script>
-/* ── Navigation ── */
 function goBack() {
   const href = window.location.href;
   if (href.includes('htmlpreview.github.io')) {
@@ -280,31 +297,113 @@ function goBack() {
   }
 }
 
-function toggleSection(id, cb) {
-  document.getElementById(id).classList.toggle('hidden', !cb.checked);
+/* ── Tile toggles ── */
+const tileState = { ops: true, prod: true, dash: true };
+
+function toggleTile(key) {
+  tileState[key] = !tileState[key];
+  document.getElementById('tile-' + key).classList.toggle('active', tileState[key]);
+  document.getElementById('csv-section').classList.toggle('hidden', !tileState.dash);
+  document.getElementById('ops-section').classList.toggle('hidden', !tileState.ops);
+  document.getElementById('prod-section').classList.toggle('hidden', !tileState.prod);
 }
+
+/* ── File upload ── */
+let uploadedFiles = [];
+let derivedPeriod = '';
+
+function handleFileSelect(files) {
+  if (!files || files.length === 0) return;
+  uploadedFiles = Array.from(files);
+  derivedPeriod = '';
+  document.getElementById('period-chip').classList.add('hidden');
+  renderFileList();
+  uploadedFiles.forEach(parseCSVDates);
+}
+
+function renderFileList() {
+  const zone = document.getElementById('upload-zone');
+  const emptyState = document.getElementById('upload-empty-state');
+  const filledState = document.getElementById('upload-filled-state');
+  const list = document.getElementById('upload-files-list');
+  const err = document.getElementById('upload-err');
+
+  err.classList.add('hidden');
+  zone.classList.remove('error');
+
+  if (uploadedFiles.length === 0) {
+    zone.classList.remove('has-files');
+    emptyState.classList.remove('hidden');
+    filledState.classList.add('hidden');
+  } else {
+    zone.classList.add('has-files');
+    emptyState.classList.add('hidden');
+    filledState.classList.remove('hidden');
+    list.innerHTML = uploadedFiles.map(f =>
+      `<div class="upload-file-item">✓ <span>${f.name}</span><span class="upload-file-size">${(f.size/1024).toFixed(0)} KB</span></div>`
+    ).join('');
+  }
+}
+
+function parseCSVLine(line) {
+  const result = []; let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    if (line[i] === '"') { inQ = !inQ; }
+    else if (line[i] === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+    else { cur += line[i]; }
+  }
+  result.push(cur.trim());
+  return result;
+}
+
+function parseCSVDates(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const lines = e.target.result.split('\n').filter(l => l.trim());
+    if (lines.length < 2) return;
+    const headers = parseCSVLine(lines[0]).map(h => h.replace(/"/g,'').trim().toLowerCase());
+    const dateIdx = headers.findIndex(h => h.includes('occurrence') || (h.includes('date') && !h.includes('update')));
+    if (dateIdx === -1) return;
+    const dates = [];
+    lines.slice(1).forEach(line => {
+      const cols = parseCSVLine(line);
+      if (!cols[dateIdx]) return;
+      const d = new Date(cols[dateIdx].replace(/"/g,'').trim());
+      if (!isNaN(d.getTime())) dates.push(d.getTime());
+    });
+    if (dates.length === 0) return;
+    const max = new Date(Math.max(...dates));
+    derivedPeriod = max.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    document.getElementById('period-text').textContent = derivedPeriod;
+    document.getElementById('period-chip').classList.remove('hidden');
+  };
+  reader.readAsText(file);
+}
+
+/* Drag & drop */
+const zone = document.getElementById('upload-zone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleFileSelect(e.dataTransfer.files);
+});
 
 /* ── Dynamic items ── */
-let ticketCount = 0, projectCount = 0, productCount = 0;
-
+let ticketCount = 0, productCount = 0;
 const TICKET_STATUSES = ['Ongoing','Pending','Solved','Waiting for client','Waiting for engineering'];
-const PROJECT_STATUSES = ['Investigating','Blocked','Scheduled','Scoping','In progress','To schedule','Pending','Completed','Investigate'];
 const PRODUCT_STATUSES = ['To schedule','In progress','Scoping','Completed','Blocked','Pending'];
-const BORDER_OPTIONS = ['none','yellow — warning/investigate','purple — AI'];
-
-function statusOptions(list) {
-  return list.map(s => `<option>${s}</option>`).join('');
-}
+function statusOpts(list) { return list.map(s => `<option>${s}</option>`).join(''); }
 
 function addTicket() {
   ticketCount++;
   const id = 't' + ticketCount;
   const div = document.createElement('div');
-  div.className = 'dyn-item';
-  div.id = id;
+  div.className = 'dyn-item'; div.id = id;
   div.innerHTML = `
     <div class="dyn-item-num">Ticket ${ticketCount}</div>
-    <button class="dyn-remove" onclick="removeItem('${id}')" title="Remove">✕</button>
+    <button class="dyn-remove" onclick="removeItem('${id}')">✕</button>
     <div class="field-row cols2">
       <div class="field"><label>Ticket number</label><input type="text" data-key="num" placeholder="e.g. 1017270"></div>
       <div class="field"><label>Platform</label>
@@ -312,57 +411,32 @@ function addTicket() {
       </div>
     </div>
     <div class="field-row cols2">
-      <div class="field"><label>Status</label>
-        <select data-key="status">${statusOptions(TICKET_STATUSES)}</select>
-      </div>
+      <div class="field"><label>Status</label><select data-key="status">${statusOpts(TICKET_STATUSES)}</select></div>
       <div class="field"><label>Description</label><input type="text" data-key="desc" placeholder="One-line description"></div>
     </div>`;
   document.getElementById('tickets-list').appendChild(div);
-}
-
-function addProject() {
-  projectCount++;
-  const id = 'p' + projectCount;
-  const div = document.createElement('div');
-  div.className = 'dyn-item';
-  div.id = id;
-  div.innerHTML = `
-    <div class="dyn-item-num">Project ${projectCount}</div>
-    <button class="dyn-remove" onclick="removeItem('${id}')" title="Remove">✕</button>
-    <div class="field"><label>Title</label><input type="text" data-key="title" placeholder="Project title"></div>
-    <div class="field"><label>Description (1–2 sentences)</label><textarea data-key="desc" rows="2" placeholder="What this project covers and its current state."></textarea></div>
-    <div class="field-row cols3">
-      <div class="field"><label>Status</label><select data-key="status">${statusOptions(PROJECT_STATUSES)}</select></div>
-      <div class="field"><label>Priority</label><select data-key="priority"><option>Medium</option><option>High</option></select></div>
-      <div class="field"><label>Left border</label><select data-key="border">${BORDER_OPTIONS.map(o=>`<option>${o}</option>`).join('')}</select></div>
-    </div>
-    <div class="field-row cols2">
-      <div class="field"><label>Optimove owners</label><input type="text" data-key="opt-owners" placeholder="e.g. PS, CSM"></div>
-      <div class="field"><label>Client owners</label><input type="text" data-key="cli-owners" placeholder="e.g. Stavros"></div>
-    </div>
-    <div class="field"><label>Tags (comma-separated)</label><input type="text" data-key="tags" placeholder="e.g. AI, RT, IE"></div>`;
-  document.getElementById('projects-list').appendChild(div);
 }
 
 function addProduct() {
   productCount++;
   const id = 'pr' + productCount;
   const div = document.createElement('div');
-  div.className = 'dyn-item';
-  div.id = id;
+  div.className = 'dyn-item'; div.id = id;
   div.innerHTML = `
     <div class="dyn-item-num">Product Item ${productCount}</div>
-    <button class="dyn-remove" onclick="removeItem('${id}')" title="Remove">✕</button>
+    <button class="dyn-remove" onclick="removeItem('${id}')">✕</button>
     <div class="field"><label>Title</label><input type="text" data-key="title" placeholder="Feature or initiative name"></div>
-    <div class="field"><label>Description</label><textarea data-key="desc" rows="2" placeholder="Brief description of the item."></textarea></div>
-    <div class="field"><label>Notes (one bullet per line — these appear as → lines)</label><textarea data-key="notes" rows="3" placeholder="Live ODS via API — real-time data feeds into templates&#10;MCP → Liquid migration from legacy templates"></textarea></div>
+    <div class="field"><label>Description</label><input type="text" data-key="desc" placeholder="Brief description"></div>
+    <div class="field"><label>Notes (one per line — appear as → lines in card)</label>
+      <textarea class="dyn-textarea" data-key="notes" rows="2" placeholder="Live ODS via API&#10;MCP → Liquid migration"></textarea>
+    </div>
     <div class="field-row cols3">
-      <div class="field"><label>Status</label><select data-key="status">${statusOptions(PRODUCT_STATUSES)}</select></div>
+      <div class="field"><label>Status</label><select data-key="status">${statusOpts(PRODUCT_STATUSES)}</select></div>
       <div class="field"><label>Optimove owners</label><input type="text" data-key="opt-owners" placeholder="PS, CSM"></div>
-      <div class="field"><label>Client owners</label><input type="text" data-key="cli-owners" placeholder="Stavros"></div>
+      <div class="field"><label>Client owners</label><input type="text" data-key="cli-owners" placeholder="Name"></div>
     </div>
     <div class="field-row cols2">
-      <div class="field"><label>Tags (comma-separated)</label><input type="text" data-key="tags" placeholder="AI, Demo, API"></div>
+      <div class="field"><label>Tags</label><input type="text" data-key="tags" placeholder="AI, Demo, API"></div>
       <div class="field"><label>AI left border</label><select data-key="ai-border"><option value="no">No</option><option value="yes">Yes — AI feature</option></select></div>
     </div>`;
   document.getElementById('product-list').appendChild(div);
@@ -377,105 +451,67 @@ function getVal(parent, key) {
 
 /* ── Generate ── */
 function generatePrompt() {
+  if (tileState.dash && uploadedFiles.length === 0) {
+    const z = document.getElementById('upload-zone');
+    z.classList.add('error');
+    document.getElementById('upload-err').classList.remove('hidden');
+    document.getElementById('csv-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   const client = document.getElementById('f-client').value.trim() || '[CLIENT NAME]';
-  const period = document.getElementById('f-period').value.trim() || '[PERIOD]';
-  const date = document.getElementById('f-date').value.trim() || new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
-  const currency = document.getElementById('f-currency').value.trim() || '$';
-  const instance = document.querySelector('input[name="instance"]:checked').value;
-  const tenants = document.getElementById('f-tenants').value.trim() || client;
-  const accent = document.getElementById('f-accent').value.trim();
-  const facing = document.querySelector('input[name="facing"]:checked').value;
-
-  const secOps = document.getElementById('sec-ops').checked;
-  const secProj = document.getElementById('sec-proj').checked;
-  const secProd = document.getElementById('sec-prod').checked;
-  const secKpi = document.getElementById('sec-kpi').checked;
-  const secDaily = document.getElementById('sec-daily').checked;
-  const secMarket = document.getElementById('sec-market').checked;
-  const secChannel = document.getElementById('sec-channel').checked;
-  const secDow = document.getElementById('sec-dow').checked;
-  const secTop = document.getElementById('sec-top').checked;
-
-  const csvAttached = document.querySelector('input[name="csv"]:checked').value;
-  const resultsAttached = document.querySelector('input[name="results"]:checked').value;
-  const uplift = document.getElementById('f-uplift').value.trim();
-  const rrTest = document.getElementById('f-rr-test').value.trim();
-  const rrCtrl = document.getElementById('f-rr-ctrl').value.trim();
+  const period = derivedPeriod || (tileState.dash ? '[Period auto-detected from CSV]' : '[Period]');
+  const currency = '€';
+  const instance = uploadedFiles.length > 1 ? 'Multi-instance' : 'Single instance';
+  const csvAttached = uploadedFiles.length > 0 ? 'yes' : 'no';
   const context = document.getElementById('f-context').value.trim();
-
-  // Sections lists
-  const openSecs = [secOps && 'Operations', secProj && 'Projects', secProd && 'Product'].filter(Boolean);
-  const dashSecs = [secKpi && 'KPI row', secDaily && 'Daily volume chart', secMarket && 'Market breakdown', secChannel && 'Channel performance', secDow && 'Day of week chart', secTop && 'Top campaigns'].filter(Boolean);
+  const openSecs = [tileState.ops && 'Operations', tileState.prod && 'Product'].filter(Boolean);
 
   // Tickets
   let ticketsText = '';
-  if (secOps) {
-    const items = document.querySelectorAll('#tickets-list .dyn-item');
-    if (items.length === 0) {
+  if (tileState.ops) {
+    const items = [...document.querySelectorAll('#tickets-list .dyn-item')];
+    if (!items.length) {
       ticketsText = 'OPERATIONS: No tickets provided — omit this section.\n';
     } else {
       items.forEach((el, i) => {
-        const num = getVal(el, 'num');
-        const platform = getVal(el, 'platform');
-        const status = getVal(el, 'status');
-        const desc = getVal(el, 'desc');
+        const num = getVal(el,'num'), platform = getVal(el,'platform');
+        const status = getVal(el,'status'), desc = getVal(el,'desc');
         const url = platform === 'zendesk'
           ? `https://optimoveww.zendesk.com/agent/tickets/${num}`
           : `https://academy.optimove.com/hc/en-us/requests/${num}`;
-        ticketsText += `TICKET ${i+1}:\n  Number: ${num || '—'}\n  Platform: ${platform}\n  URL: ${url}\n  Status: ${status}\n  Description: ${desc || '—'}\n\n`;
-      });
-    }
-  }
-
-  // Projects
-  let projectsText = '';
-  if (secProj) {
-    const items = document.querySelectorAll('#projects-list .dyn-item');
-    if (items.length === 0) {
-      projectsText = 'PROJECTS: No projects provided — omit this section.\n';
-    } else {
-      items.forEach((el, i) => {
-        const t = getVal(el,'title'), d = getVal(el,'desc'), s = getVal(el,'status');
-        const p = getVal(el,'priority'), b = getVal(el,'border');
-        const oo = getVal(el,'opt-owners'), co = getVal(el,'cli-owners'), tags = getVal(el,'tags');
-        projectsText += `PROJECT ${i+1}:\n  Title: ${t||'—'}\n  Description: ${d||'—'}\n  Status: ${s}\n  Priority: ${p}\n  Left border: ${b}\n  Optimove owners: ${oo||'—'}\n  Client owners: ${co||'—'}\n  Tags: ${tags||'none'}\n\n`;
+        ticketsText += `TICKET ${i+1}:\n  Number: ${num||'—'}\n  Platform: ${platform}\n  URL: ${url}\n  Status: ${status}\n  Description: ${desc||'—'}\n\n`;
       });
     }
   }
 
   // Product
   let productText = '';
-  if (secProd) {
-    const items = document.querySelectorAll('#product-list .dyn-item');
-    if (items.length === 0) {
+  if (tileState.prod) {
+    const items = [...document.querySelectorAll('#product-list .dyn-item')];
+    if (!items.length) {
       productText = 'PRODUCT: No product items provided — omit this section.\n';
     } else {
       items.forEach((el, i) => {
         const t = getVal(el,'title'), d = getVal(el,'desc'), notes = getVal(el,'notes');
         const s = getVal(el,'status'), oo = getVal(el,'opt-owners'), co = getVal(el,'cli-owners');
         const tags = getVal(el,'tags'), aib = getVal(el,'ai-border');
-        const noteLines = notes ? notes.split('\n').filter(l=>l.trim()).map(l=>`    - ${l.trim()}`).join('\n') : '    - (none)';
+        const noteLines = notes
+          ? notes.split('\n').filter(l=>l.trim()).map(l=>`    - ${l.trim()}`).join('\n')
+          : '    - (none)';
         productText += `PRODUCT ITEM ${i+1}:\n  Title: ${t||'—'}\n  Description: ${d||'—'}\n  Notes:\n${noteLines}\n  Status: ${s}\n  Optimove owners: ${oo||'—'}\n  Client owners: ${co||'—'}\n  Tags: ${tags||'none'}\n  AI left border: ${aib}\n\n`;
       });
     }
   }
 
-  // Known metrics
-  let metricsText = '';
-  if (uplift || rrTest || rrCtrl) {
-    metricsText = `KNOWN METRICS (override CSV-derived values):\n`;
-    if (uplift) metricsText += `  Total uplift: ${uplift} ${currency}\n`;
-    if (rrTest) metricsText += `  Response rate test: ${rrTest}\n`;
-    if (rrCtrl) metricsText += `  Response rate control: ${rrCtrl}\n`;
-  }
+  const contextText = context
+    ? context.split('\n').filter(l=>l.trim()).map(l=>`- ${l.trim()}`).join('\n')
+    : '(none provided)';
 
-  // Context notes
-  let contextText = '';
-  if (context) {
-    contextText = context.split('\n').filter(l=>l.trim()).map(l=>`- ${l.trim()}`).join('\n');
-  }
-
-  const accentLine = accent ? `Client accent color: ${accent}` : `Client accent color: none — use Optimove purple only`;
+  const filesList = uploadedFiles.length ? uploadedFiles.map(f=>f.name).join(', ') : 'none';
+  const tenantLine = uploadedFiles.length > 1
+    ? 'Tenants: ' + uploadedFiles.map((f,i)=>`Tenant ${i+1} (${f.name})`).join(', ')
+    : '';
 
   const prompt =
 `You are building a single self-contained HTML dashboard file for an Optimove client account.
@@ -486,61 +522,56 @@ Follow every instruction exactly. Do not add sections not listed. Do not invent 
 ## CLIENT INFO
 
 Client: ${client}
-Date: ${date}
 Report period: ${period}
-Currency: ${currency}
+Currency: ${currency} (EUR)
 Instance: ${instance}
-Tenant(s): ${tenants}
-${accentLine}
+${tenantLine}
 
 ---
 
 ## SECTIONS TO BUILD
 
 Open Items tab: ${openSecs.length ? openSecs.join(', ') : 'none'}
-Dashboard tab: ${dashSecs.length ? dashSecs.join(', ') : 'none'}
+Dashboard tab: ${tileState.dash ? 'KPI row, Daily volume chart, Market breakdown, Channel performance, Day of week chart, Top campaigns' : 'none'}
 
 ---
 
 ## OPEN ITEMS CONTENT
 
-${secOps ? '### OPERATIONS\n' + ticketsText : ''}${secProj ? '### PROJECTS\n' + projectsText : ''}${secProd ? '### PRODUCT\n' + productText : ''}
----
+${tileState.ops ? '### OPERATIONS\n' + ticketsText : ''}${tileState.prod ? '### PRODUCT\n' + productText : ''}---
 
 ## DASHBOARD DATA
 
 CSV attached: ${csvAttached}
-Results export attached: ${resultsAttached}
-${metricsText}
+Files: ${filesList}
+Results export: detect automatically from CSV columns — if uplift/response-rate columns are present use them; otherwise show "—" with sub-line "Results export needed".
+
 ---
 
 ## CONTEXT NOTES
 
-${contextText || '(none provided)'}
-
----
-
-## CLIENT-FACING: ${facing}
+${contextText}
 
 ---
 
 ## DESIGN SYSTEM — LOCKED. DO NOT MODIFY.
 
 ### Colors
---opt-deep:    #2D1B69   /* Deep Violet — headings, tab bar, AI tag background */
---opt-purple:  #6B46C1   /* Optimove Purple — section headers, borders, chart primary */
---opt-soft:    #9F7AEA   /* Soft Purple — icons, secondary bars */
---opt-lime:    #C8E61F   /* Electric Lime — tab active indicator, RT bars, accent */
---page-bg:     #F7F6F2   /* Warm off-white — page background */
---card-bg:     #FFFFFF   /* Pure white — all cards */
+--opt-deep:    #2D1B69
+--opt-purple:  #6B46C1
+--opt-soft:    #9F7AEA
+--opt-lime:    #C8E61F
+--page-bg:     #F7F6F2
+--card-bg:     #FFFFFF
 --border-c:    rgba(107,70,193,0.15)
 --text-main:   #1a1a1a
 --text-sub:    #52514e
 --text-muted:  #898781
-${accent ? `Client accent: ${accent}` : ''}
+
+Client accent color: none — use Optimove purple only.
 
 ### Currency
-Use ${currency} for all monetary values. Apply consistently across KPI row, channel cards, and campaign table.
+Use ${currency} (EUR) for all monetary values. Apply consistently: KPI row, channel cards, campaign table.
 
 ### Ticket status badge colors (exact)
 Ongoing:                  background #dbeafe, color #1e3a5f
@@ -549,7 +580,7 @@ Solved:                   background #dcfce7, color #14532d
 Waiting for client:       background #fef3c7, color #92400e
 Waiting for engineering:  background #f3e8ff, color #4c1d95
 
-### Project/Product status badge colors (exact)
+### Product status badge colors (exact)
 Investigating:  background #dbeafe, color #1e3a5f
 Blocked:        background #fde8e8, color #9b1c1c
 Scheduled:      background #fef3c7, color #92400e
@@ -594,17 +625,16 @@ font-family: system-ui, -apple-system, sans-serif
 Section heading: 11px, uppercase, letter-spacing 0.09em, color #6B46C1
 Card title: 14px, font-weight 500
 Description: 12px, color #52514e, line-height 1.55
-KPI value: 20–22px, font-weight 500
+KPI value: 20-22px, font-weight 500
 Muted label: 10px, uppercase, letter-spacing 0.07em, color #898781
 
 ### Charts — Chart.js 4.4.1 CDN only
 Primary bar:    rgba(107,70,193,0.75)
 RT/accent bar:  #C8E61F
 Secondary bar:  #9F7AEA
-${accent ? `Client accent: ${accent}` : ''}
 Grid lines:     #e5e4dc
 Axis ticks:     #898781, font-size 10px
-Bar border-radius: 3–4px
+Bar border-radius: 3-4px
 Legends: render as .leg div above canvas, NOT Chart.js built-in legend
 
 ---
@@ -626,26 +656,17 @@ Charts: lazy init — initialize only when Dashboard tab is first clicked. Use a
 
 ## TAB 1 — OPEN ITEMS
 
-Build only sections marked above. Exact order: Operations → Projects → Product.
+Build only sections listed above. Exact order: Operations then Product.
 
 ### Operations — Tickets only
-One clickable card per ticket.
-Link format:
+One clickable card per ticket. Link format:
 - Academy: https://academy.optimove.com/hc/en-us/requests/{number}
 - Zendesk: https://optimoveww.zendesk.com/agent/tickets/{number}
 Card layout (horizontal):
 - Left: icon in rounded square (background rgba(107,70,193,0.08))
 - Center: ticket number (14px bold purple) · description (12px, #52514e)
 - Right: status badge · ti-external-link icon
-Status badge uses Ticket status badge colors above. Opens in new tab. Hover: purple border + subtle shadow.
-
-### Projects — 4-column grid
-Each card:
-- Top row: icon (colored rounded square 32px) · status badge right-aligned
-- Title + optional tags (below icon, wrapping)
-- Description (2 sentences max, 12px)
-- Footer: owner chips left · priority tag right
-Left border only on warning/investigate or AI items as specified. Max 4 per row.
+Opens in new tab. Hover: purple border + subtle shadow.
 
 ### Product — 2-column grid
 Each card:
@@ -667,17 +688,17 @@ If CSV attached = yes, build in this exact order:
 ### 1. KPI row — 6 cards, single row
 1. Total Targeted — border-top #6B46C1
 2. Scheduled — no top border
-3. RT (Triggered) — border-top #C8E61F. If RT < 1% of total → sub-line "growth opportunity" in #ef4444
+3. RT (Triggered) — border-top #C8E61F. If RT < 1% of total: sub-line "growth opportunity" in #ef4444
 4. Total Uplift ${currency} — border-top #16a34a, value color #16a34a. Sub-line "Statistically credible". If no results: value = "—", sub-line = "Results export needed"
 5. Response Rate — Test — value color #6B46C1, sub-line "Targeted group"
 6. Response Rate — Control — value color #52514e, sub-line "Control group"
 
 ### 2. Daily volume chart
-Stacked bar. Scheduled (purple) + RT (lime). One bar per day. No average line. Tooltip: both values on hover.
+Stacked bar. Scheduled (purple) + RT (lime). One bar per day. No average line. Tooltip both values on hover.
 
 ### 3. Market volume
 Bar chart only — no cards. Country flag emoji as label prefix. Sort descending by volume.
-Color order: client accent → #6B46C1 → #9F7AEA → #C8E61F → #9F7AEA → #c3c2b7
+Color order: #6B46C1 → #9F7AEA → #C8E61F → #9F7AEA → #c3c2b7
 
 ### 4. Channel performance cards
 One card per active channel (max 5 in a row). Each card:
@@ -685,39 +706,28 @@ One card per active channel (max 5 in a row). Each card:
 - Series count + brief type note
 - Uplift ${currency} in #16a34a — or "No uplift data" if no control group
 - RR: X% test / Y% ctrl (10px, muted)
-Floating badges top-right (18–20px circles): 👥 = highest volume (bg #2D1B69, icon #C8E61F) · 💰 = highest uplift (bg #dcfce7, icon #15803d)
+Floating badges top-right (18-20px circles): 👥 = highest volume (bg #2D1B69, icon #C8E61F) · 💰 = highest uplift (bg #dcfce7, icon #15803d)
 Direct Mail: always show "No control group" in muted text.
 
 ### 5. Day of week chart
-7 bars Mon–Sun. Highest value bar: #6B46C1. Second highest: #C8E61F. All others: #9F7AEA.
+7 bars Mon-Sun. Highest value bar: #6B46C1. Second highest: #C8E61F. All others: #9F7AEA.
 
 ### 6. Top campaigns
-Two columns: Left = RT campaigns · Right = Scheduled campaigns (exclude Facebook Custom Audience).
-With results export → columns: Campaign name | Uplift ${currency} | RR %
-Without results export → columns: Campaign name | Volume
+Two columns: Left = RT campaigns · Right = Scheduled (exclude Facebook Custom Audience).
+With results export: Campaign name | Uplift ${currency} | RR %
+Without results export: Campaign name | Volume
 Green (#16a34a) = top performers. Orange (#92400e) = below average / no control. Muted (#898781) = no data.
 
 ---
 
 ## INSIGHT RULES
 
-Maximum one insight per section. Inline only — sub-line on KPI card, label note on channel card. Never a paragraph. Never a standalone insight section.
+Maximum one insight per section. Inline only. Never a paragraph or standalone section.
 Triggers:
-- RT < 1% of total → "growth opportunity" sub-line on RT KPI card
-- Direct Mail / no control → "No uplift data" on channel card
-- Highest uplift ≠ highest volume → place 💰 on correct channel card
-- Context notes provided → weave as sub-lines under 6 words, factual only
-
----
-
-## CLIENT-FACING MODE
-
-${facing === 'Client-facing' ? `Client-facing = YES:
-- All Optimove staff owner chips → "Optimove team"
-- "Investigate" → "In review"
-- "Blocked" → "On hold — pending input"
-- Remove internal commentary on client behavior or strategy
-- All data, charts, campaign names unchanged` : 'Client-facing = NO: show all internal details, Optimove owner names, and internal notes as-is.'}
+- RT < 1% of total: "growth opportunity" sub-line on RT KPI card
+- Direct Mail / no control: "No uplift data" on channel card
+- Highest uplift != highest volume: place 💰 on correct channel card
+- Context notes provided: weave as sub-lines under 6 words, factual only
 
 ---
 
@@ -728,32 +738,26 @@ Single self-contained .html file. Works without internet except Chart.js + Table
 No inline code comments. Production-ready.
 `;
 
-  const body = document.getElementById('out-body');
-  body.innerHTML = `<pre class="out-pre" id="prompt-text"></pre>`;
+  document.getElementById('out-body').innerHTML = `<pre class="out-pre" id="prompt-text"></pre>`;
   document.getElementById('prompt-text').textContent = prompt.trim();
-  document.getElementById('char-count').textContent = prompt.length.toLocaleString() + ' chars';
+  document.getElementById('char-count').textContent = prompt.trim().length.toLocaleString() + ' chars';
 }
 
-let _promptText = '';
 function copyPrompt() {
   const el = document.getElementById('prompt-text');
   if (!el) return;
-  const text = el.textContent;
-  if (!text) return;
-  navigator.clipboard.writeText(text).then(() => {
-    ['copy-top','copy-bottom'].forEach(id => {
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    [['copy-top','📋 Copy'],['copy-bottom','⌘ Copy to clipboard']].forEach(([id, orig]) => {
       const btn = document.getElementById(id);
-      const orig = btn.textContent;
-      btn.textContent = id === 'copy-top' ? '✓ Copied!' : '✓ Copied';
+      btn.textContent = '✓ Copied!';
       btn.classList.add('ok');
       setTimeout(() => { btn.textContent = id === 'copy-top' ? '📋 Copy' : '⌘ Copy to clipboard'; btn.classList.remove('ok'); }, 2200);
     });
   });
 }
 
-/* Init with one empty ticket/project */
+/* Init */
 addTicket();
-addProject();
 addProduct();
 </script>
 </body>
