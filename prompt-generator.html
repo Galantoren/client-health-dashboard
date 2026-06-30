@@ -295,13 +295,23 @@ function toggleTile(k) {
 }
 
 /* File upload */
-let files = [], derivedPeriod = '';
+let files = [], csvContents = {}, derivedPeriod = '';
 
 function onFileSelect(fl) {
   if (!fl || !fl.length) return;
   files = Array.from(fl);
+  csvContents = {};
   renderFiles();
-  files.forEach(parseDates);
+  files.forEach(f => readFileContent(f));
+}
+
+function readFileContent(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    csvContents[file.name] = e.target.result;
+    parseDatesFromText(file.name, e.target.result);
+  };
+  reader.readAsText(file);
 }
 
 function renderFiles() {
@@ -337,28 +347,24 @@ function parseCSVRow(line) {
   return r;
 }
 
-function parseDates(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    const lines = e.target.result.split('\n').filter(l => l.trim());
-    if (lines.length < 2) return;
-    const headers = parseCSVRow(lines[0]).map(h => h.replace(/"/g,'').trim().toLowerCase());
-    const di = headers.findIndex(h => h.includes('occurrence') || (h.includes('date') && !h.includes('update')));
-    if (di < 0) return;
-    const ts = [];
-    lines.slice(1).forEach(l => {
-      const c = parseCSVRow(l);
-      if (!c[di]) return;
-      const d = new Date(c[di].replace(/"/g,'').trim());
-      if (!isNaN(d.getTime())) ts.push(d.getTime());
-    });
-    if (!ts.length) return;
-    const max = new Date(Math.max(...ts));
-    derivedPeriod = max.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    document.getElementById('period-text').textContent = derivedPeriod;
-    document.getElementById('period-chip').classList.add('show');
-  };
-  reader.readAsText(file);
+function parseDatesFromText(name, text) {
+  const lines = text.split('\n').filter(l => l.trim());
+  if (lines.length < 2) return;
+  const headers = parseCSVRow(lines[0]).map(h => h.replace(/"/g,'').trim().toLowerCase());
+  const di = headers.findIndex(h => h.includes('occurrence') || (h.includes('date') && !h.includes('update')));
+  if (di < 0) return;
+  const ts = [];
+  lines.slice(1).forEach(l => {
+    const c = parseCSVRow(l);
+    if (!c[di]) return;
+    const d = new Date(c[di].replace(/"/g,'').trim());
+    if (!isNaN(d.getTime())) ts.push(d.getTime());
+  });
+  if (!ts.length) return;
+  const max = new Date(Math.max(...ts));
+  derivedPeriod = max.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  document.getElementById('period-text').textContent = derivedPeriod;
+  document.getElementById('period-chip').classList.add('show');
 }
 
 /* Drag & drop */
@@ -366,6 +372,23 @@ const uz = document.getElementById('upload-zone');
 uz.addEventListener('dragover', e => { e.preventDefault(); uz.classList.add('dragover'); });
 uz.addEventListener('dragleave', () => uz.classList.remove('dragover'));
 uz.addEventListener('drop', e => { e.preventDefault(); uz.classList.remove('dragover'); if (e.dataTransfer.files.length) onFileSelect(e.dataTransfer.files); });
+
+/* Build inline CSV block for the prompt */
+const MAX_CSV_ROWS = 2000;
+function buildCsvBlock() {
+  const blocks = files.map(f => {
+    const text = csvContents[f.name];
+    if (!text) return `### ${f.name}\n(loading…)`;
+    const lines = text.split('\n').filter(l => l.trim());
+    const truncated = lines.length - 1 > MAX_CSV_ROWS;
+    const included = truncated ? [lines[0], ...lines.slice(1, MAX_CSV_ROWS + 1)] : lines;
+    const note = truncated ? `\n[…truncated — showing first ${MAX_CSV_ROWS} of ${lines.length - 1} data rows]` : '';
+    return `### ${f.name} (${lines.length - 1} rows)\n\`\`\`csv\n${included.join('\n')}\n\`\`\`${note}`;
+  });
+  return blocks.join('\n\n') +
+    '\n\nResults export: detect automatically — if uplift / response-rate columns are present use them; otherwise show "—" with sub-line "Results export needed".' +
+    '\nParse Occurrence Date column for date range. Count rows per channel, market, day-of-week, campaign.';
+}
 
 /* Generate */
 function generate() {
@@ -417,9 +440,7 @@ ${rawNotes || '(no notes provided — build with placeholder copy where needed)'
 
 ## CSV DATA
 
-Attached: ${csvYes ? 'yes — ' + files.map(f => f.name).join(', ') : 'no'}
-Results export: detect automatically — if uplift / response-rate columns are present use them; otherwise show "—" with sub-line "Results export needed".
-${csvYes ? 'Parse Occurrence Date column for date range. Count rows per channel, market, day-of-week, campaign.' : ''}
+${csvYes ? buildCsvBlock() : 'No CSV attached.'}
 
 ---
 
