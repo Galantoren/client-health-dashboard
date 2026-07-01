@@ -268,27 +268,7 @@
   <div class="board-area">
     <div class="board-section-label">Ongoing</div>
     <div class="initiatives">
-      <div class="card ongoing active" onclick="selectCard(this); openPromptGenerator()">
-        <div class="card-top">
-          <div class="card-meta"><span class="card-id">OPT-001</span><span class="card-status status-ongoing">Ongoing</span></div>
-          <span class="card-sprint">Sprint 1</span>
-        </div>
-        <div class="card-title">Client Status — Prompt Generator</div>
-        <div class="card-desc">Paste raw data (PDF, notes, Jira export) and get a copy-ready AI prompt that generates a structured HTML status dashboard.</div>
-        <div class="card-tags"><span class="tag tag-ops">Ops Tickets</span><span class="tag tag-ai">AI</span><span class="tag tag-mcp">MCP</span></div>
-        <div class="card-launch"><span>↗</span> Open Prompt Generator</div>
-      </div>
-      <div class="card ongoing" onclick="selectCard(this); openModal('modal-dashboard')">
-        <div class="card-top">
-          <div class="card-meta"><span class="card-id">OPT-005</span><span class="card-status status-ongoing">Ongoing</span></div>
-          <span class="card-sprint">Sprint 1</span>
-        </div>
-        <div class="card-title">Client Status &amp; Dashboard</div>
-        <div class="card-desc">Operations, project and data monitoring with a high-level CRM dashboard — mission control glance with AI insights.</div>
-        <div class="card-tags"><span class="tag tag-html">Dashboard</span><span class="tag tag-ops">Ops</span><span class="tag tag-ai">AI</span><span class="tag tag-data">Data</span></div>
-        <div class="card-launch"><span>↗</span> Open Dashboard</div>
-      </div>
-      <div class="card ongoing" onclick="selectCard(this); openModal('modal-health')">
+      <div class="card ongoing active" onclick="selectCard(this); openModal('modal-health')">
         <div class="card-top">
           <div class="card-meta"><span class="card-id">OPT-002</span><span class="card-status status-ongoing">Ongoing</span></div>
           <span class="card-sprint">Sprint 1</span>
@@ -298,7 +278,43 @@
         <div class="card-tags"><span class="tag tag-html">HTML</span><span class="tag tag-mobile">Mobile</span><span class="tag tag-ai">AI</span></div>
         <div class="card-launch"><span>↗</span> Open Health Check</div>
       </div>
+      <div class="card ongoing" onclick="selectCard(this); openPromptGenerator()">
+        <div class="card-top">
+          <div class="card-meta"><span class="card-id">OPT-001</span><span class="card-status status-ongoing">Ongoing</span></div>
+          <span class="card-sprint">Sprint 1</span>
+        </div>
+        <div class="card-title">Client Status — Prompt Generator</div>
+        <div class="card-desc">Paste raw data (PDF, notes, Jira export) and get a copy-ready AI prompt that generates a structured HTML status dashboard.</div>
+        <div class="card-tags"><span class="tag tag-ops">Ops Tickets</span><span class="tag tag-ai">AI</span><span class="tag tag-mcp">MCP</span></div>
+        <div class="card-launch"><span>↗</span> Open Prompt Generator</div>
+      </div>
+      <!-- Hidden for now — may bring back later -->
+      <div class="card ongoing" style="display:none" onclick="selectCard(this); openModal('modal-dashboard')">
+        <div class="card-top">
+          <div class="card-meta"><span class="card-id">OPT-005</span><span class="card-status status-ongoing">Ongoing</span></div>
+          <span class="card-sprint">Sprint 1</span>
+        </div>
+        <div class="card-title">Client Status &amp; Dashboard</div>
+        <div class="card-desc">Operations, project and data monitoring with a high-level CRM dashboard — mission control glance with AI insights.</div>
+        <div class="card-tags"><span class="tag tag-html">Dashboard</span><span class="tag tag-ops">Ops</span><span class="tag tag-ai">AI</span><span class="tag tag-data">Data</span></div>
+        <div class="card-launch"><span>↗</span> Open Dashboard</div>
+      </div>
     </div>
+
+    <div class="board-section-label">Client Dashboards</div>
+    <div class="initiatives">
+      <div class="card client" onclick="selectCard(this); openNovibet()">
+        <div class="card-top">
+          <div class="card-meta"><span class="card-id">NBT</span><span class="card-status status-live">Live</span></div>
+          <span class="card-sprint">Jun 2026</span>
+        </div>
+        <div class="card-title">Novibet · Account Status</div>
+        <div class="card-desc">Open items (Operations, Projects, Product) + Jun 2026 metrics dashboard — channel performance, daily volume, market breakdown and top campaigns.</div>
+        <div class="card-tags"><span class="tag tag-html">Dashboard</span><span class="tag tag-ai">AI</span><span class="tag tag-ops">Ops</span></div>
+        <div class="card-launch"><span>↗</span> Open Client Dashboard</div>
+      </div>
+    </div>
+
     <div class="board-section-label">Planned</div>
     <div class="initiatives">
       <div class="card planned" onclick="selectCard(this)">
@@ -320,19 +336,6 @@
         <div class="card-title">Major Incident Workflow &amp; Dashboard</div>
         <div class="card-desc">Structured response workflow for deliverability and batch incidents — checklist-driven, with escalation manager assignment, mission control insights, and live deliverability metrics.</div>
         <div class="card-tags"><span class="tag tag-ops">Ops</span><span class="tag tag-ai">AI</span><span class="tag tag-html">Dashboard</span><span class="tag tag-agent">Workflow</span></div>
-      </div>
-
-    <div class="board-section-label">Client Dashboards</div>
-    <div class="initiatives">
-      <div class="card client" onclick="selectCard(this); openNovibet()">
-        <div class="card-top">
-          <div class="card-meta"><span class="card-id">NBT</span><span class="card-status status-live">Live</span></div>
-          <span class="card-sprint">Jun 2026</span>
-        </div>
-        <div class="card-title">Novibet · Account Status</div>
-        <div class="card-desc">Open items (Operations, Projects, Product) + Jun 2026 metrics dashboard — channel performance, daily volume, market breakdown and top campaigns.</div>
-        <div class="card-tags"><span class="tag tag-html">Dashboard</span><span class="tag tag-ai">AI</span><span class="tag tag-ops">Ops</span></div>
-        <div class="card-launch"><span>↗</span> Open Client Dashboard</div>
       </div>
     </div>
   </div>

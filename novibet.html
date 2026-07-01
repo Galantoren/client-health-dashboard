@@ -62,9 +62,9 @@
   .tp1 { background:#fde8e8;color:#9b1c1c; } .tp2 { background:#fef3c7;color:#92400e; }
   .trt { background:rgba(107,70,193,0.1);color:var(--opt-purple); } .tir { background:#eff6ff;color:#1e3a5f; } .tai { background:var(--opt-deep);color:var(--opt-lime); }
   .sb { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px; }
-  .sinv { background:#fff7ed;color:#9a3412; } .ss { background:#f0fdf4;color:#166534; } .sc2 { background:#fef3c7;color:#92400e; } .so { background:#f3e8ff;color:#4c1d95; }
+  .sinv { background:#fff7ed;color:#9a3412; } .ss { background:#f0fdf4;color:#166534; } .sc2 { background:#fef3c7;color:#92400e; } .so { background:#f3e8ff;color:#4c1d95; } .son { background:#e0f2fe;color:#075985; }
   .dot { width:5px;height:5px;border-radius:50%;display:inline-block; }
-  .dv{background:#f97316;} .ds{background:#16a34a;} .dc{background:#f59e0b;} .do{background:#8b5cf6;}
+  .dv{background:#f97316;} .ds{background:#16a34a;} .dc{background:#f59e0b;} .do{background:#8b5cf6;} .dob{background:#0284c7;}
   .owner-row { display:flex;flex-wrap:wrap;gap:4px; }
   .oc { font-size:10px;padding:1px 6px;border-radius:20px;border:0.5px solid var(--border-c);color:var(--text-sub);background:var(--page-bg); }
   .oc.opt { border-color:rgba(107,70,193,0.35);color:var(--opt-purple);background:rgba(107,70,193,0.06); }
@@ -84,9 +84,9 @@
   .prod-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 0.5px solid var(--border-c); }
   .tag-demo { background:#f3e8ff;color:#4c1d95; } .tag-api { background:#fff7ed;color:#9a3412; }
   .sb2 { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px; }
-  .sco { background:#dcfce7;color:#14532d; } .sdm { background:#f3e8ff;color:#4c1d95; } .sp { background:#fef9c3;color:#713f12; }
+  .sco { background:#dcfce7;color:#14532d; } .sdm { background:#f3e8ff;color:#4c1d95; } .sp { background:#fef9c3;color:#713f12; } .son2 { background:#e0f2fe;color:#075985; } .ssc2 { background:#f0fdf4;color:#166534; }
   .dot2 { width:5px;height:5px;border-radius:50%;display:inline-block; }
-  .dco2{background:#22c55e;} .dd2{background:#8b5cf6;} .dp2{background:#eab308;}
+  .dco2{background:#22c55e;} .dd2{background:#8b5cf6;} .dp2{background:#eab308;} .dob2{background:#0284c7;} .dsc2{background:#16a34a;}
 
   .sec-card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; }
   .sec-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(107,70,193,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -155,21 +155,13 @@
 
   <div id="p1" class="page active">
     <div class="sec">
-      <div class="sh"><h2>Operations</h2><div class="sdiv"></div><div class="cpill">2</div></div>
+      <div class="sh"><h2>Operations</h2><div class="sdiv"></div><div class="cpill">1</div></div>
       <div class="tickets-row">
         <a class="ticket-card" href="https://academy.optimove.com/hc/en-us/requests/1017270" target="_blank">
           <div class="ticket-icon"><i class="ti ti-search" aria-hidden="true"></i></div>
           <div>
             <div class="ticket-num">#1017270</div>
             <div class="ticket-desc">Opti-X synonyms — Greek search returning no results despite Dataset entries</div>
-          </div>
-          <i class="ti ti-external-link ticket-arr" aria-hidden="true"></i>
-        </a>
-        <a class="ticket-card" href="https://academy.optimove.com/hc/en-us/requests/1009622" target="_blank">
-          <div class="ticket-icon"><i class="ti ti-layout-board" aria-hidden="true"></i></div>
-          <div>
-            <div class="ticket-num">#1009622</div>
-            <div class="ticket-desc">Sales pop-ups revenue &amp; deliverability drop — campaigns 486, 407/408/422, 510</div>
           </div>
           <i class="ti ti-external-link ticket-arr" aria-hidden="true"></i>
         </a>
@@ -182,10 +174,10 @@
         <div class="proj-card">
           <div class="proj-top">
             <div class="proj-icon" style="background:rgba(200,230,31,0.12)"><i class="ti ti-gift" style="font-size:17px;color:#8fa500" aria-hidden="true"></i></div>
-            <span class="sb sc2"><span class="dot dc"></span>Scheduled</span>
+            <span class="sb son"><span class="dot dob"></span>Ongoing</span>
           </div>
           <div class="proj-title">Bonus System Integration</div>
-          <div class="proj-desc">Full bonus system scoped and on roadmap. Awaiting kickoff — execution not yet started.</div>
+          <div class="proj-desc">Live with low volumes in LATAM. Plan to ramp up volumes and expand to the main markets.</div>
           <div class="proj-footer">
             <div class="owner-row"><span class="oc opt">PS</span><span class="oc opt">CS</span></div>
             <span class="tag tp2">Medium</span>
@@ -234,7 +226,7 @@
     </div>
 
     <div class="sec" style="padding-top:1.5rem">
-      <div class="sh"><h2>Product</h2><div class="sdiv"></div><div class="cpill">3</div></div>
+      <div class="sh"><h2>Product</h2><div class="sdiv"></div><div class="cpill">5</div></div>
       <div class="product-grid">
         <div class="prod-card ai-card">
           <div class="prod-top">
@@ -265,10 +257,10 @@
             <div class="prod-icon" style="background:#fde8e8"><i class="ti ti-database-import" style="color:#9b1c1c" aria-hidden="true"></i></div>
             <div style="flex:1"><div class="prod-title">CE2.0 Migration</div></div>
           </div>
-          <div class="prod-desc">CSV lists blocking migration progress. Coordination with Stavros needed to unblock and move forward.</div>
+          <div class="prod-desc">CSV lists coordination in progress with Stavros. Not blocked — migration pending next steps.</div>
           <div class="prod-footer">
             <div class="owner-row"><span class="oc cli">Stavros</span></div>
-            <span class="sb2" style="background:#fde8e8;color:#9b1c1c"><span class="dot2" style="background:#ef4444"></span>Blocked</span>
+            <span class="sb2 sp"><span class="dot2 dp2"></span>Pending</span>
           </div>
         </div>
 
@@ -283,6 +275,28 @@
           <div class="prod-footer">
             <div class="owner-row"><span class="oc opt">PS</span><span class="oc cli">Lambros</span></div>
             <span class="sb2 sco"><span class="dot2 dco2"></span>Completed</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-top">
+            <div class="prod-icon" style="background:#e0f2fe"><i class="ti ti-server-2" style="color:#075985" aria-hidden="true"></i></div>
+            <div style="flex:1"><div class="prod-title">Staging Instance / Sandbox Access</div></div>
+          </div>
+          <div class="prod-desc">Staging site for testing new features, channels, integration and for the product team to play around the UI.</div>
+          <div class="prod-footer" style="justify-content:flex-end">
+            <span class="sb2 son2"><span class="dot2 dob2"></span>Ongoing</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-top">
+            <div class="prod-icon" style="background:#f0fdf4"><i class="ti ti-layers-intersect" style="color:#166534" aria-hidden="true"></i></div>
+            <div style="flex:1"><div class="prod-title">OptiPromo</div></div>
+          </div>
+          <div class="prod-desc">Additional layer on top of the bonus engine, AM scoping.</div>
+          <div class="prod-footer" style="justify-content:flex-end">
+            <span class="sb2 ssc2"><span class="dot2 dsc2"></span>Scoping</span>
           </div>
         </div>
       </div>
