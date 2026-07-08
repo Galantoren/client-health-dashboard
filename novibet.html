@@ -42,6 +42,7 @@
   .sdiv { flex: 1; height: 0.5px; background: var(--border-c); }
   .cpill { background: var(--opt-deep); color: #fff; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
 
+  /* TICKETS */
   .tickets-row { display: flex; flex-wrap: wrap; gap: 10px; }
   .ticket-card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 14px 18px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color .15s, box-shadow .15s; text-decoration: none; min-width: 280px; flex: 1; }
   .ticket-card:hover { border-color: var(--opt-purple); box-shadow: 0 2px 8px rgba(107,70,193,0.12); }
@@ -49,45 +50,80 @@
   .ticket-icon i { font-size: 17px; color: var(--opt-purple); }
   .ticket-num { font-size: 13px; font-weight: 500; color: var(--opt-purple); }
   .ticket-desc { font-size: 12px; color: var(--text-sub); margin-top: 2px; line-height: 1.4; }
-  .ticket-arr { margin-left: auto; font-size: 14px; color: var(--text-muted); flex-shrink: 0; }
+  .ticket-right { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .ticket-arr { font-size: 14px; color: var(--text-muted); }
 
-  .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .proj-card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 16px 18px; }
-  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
-  .proj-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .proj-title { font-size: 14px; font-weight: 500; color: var(--text-main); margin-top: 10px; }
-  .proj-desc { font-size: 12px; color: var(--text-sub); line-height: 1.5; margin-top: 4px; }
-  .proj-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 0.5px solid var(--border-c); }
-  .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
-  .tp1 { background:#fde8e8;color:#9b1c1c; } .tp2 { background:#fef3c7;color:#92400e; }
-  .trt { background:rgba(107,70,193,0.1);color:var(--opt-purple); } .tir { background:#eff6ff;color:#1e3a5f; } .tai { background:var(--opt-deep);color:var(--opt-lime); }
+  /* STATUS BADGES */
   .sb { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px; }
-  .sinv { background:#fff7ed;color:#9a3412; } .ss { background:#f0fdf4;color:#166534; } .sc2 { background:#fef3c7;color:#92400e; } .so { background:#f3e8ff;color:#4c1d95; } .son { background:#e0f2fe;color:#075985; }
+  .s-ongoing   { background:#dbeafe;color:#1e3a5f; }
+  .s-pending   { background:#fef9c3;color:#713f12; }
+  .s-solved    { background:#dcfce7;color:#14532d; }
+  .s-waitcli   { background:#fef3c7;color:#92400e; }
+  .s-waiteng   { background:#f3e8ff;color:#4c1d95; }
+  .s-invest    { background:#fff7ed;color:#9a3412; }
+  .s-scoping   { background:#f0fdf4;color:#166534; }
+  .s-sched     { background:#fef3c7;color:#92400e; }
+  .s-open      { background:#f3e8ff;color:#4c1d95; }
+  .s-tosched   { background:#f3e8ff;color:#4c1d95; }
+  .s-blocked   { background:#fde8e8;color:#9b1c1c; }
+  .s-completed { background:#dcfce7;color:#14532d; }
+  .s-inprog    { background:#dbeafe;color:#1e3a5f; }
   .dot { width:5px;height:5px;border-radius:50%;display:inline-block; }
-  .dv{background:#f97316;} .ds{background:#16a34a;} .dc{background:#f59e0b;} .do{background:#8b5cf6;} .dob{background:#0284c7;}
-  .owner-row { display:flex;flex-wrap:wrap;gap:4px; }
+  .d-blue{background:#3b82f6;} .d-yellow{background:#eab308;} .d-green{background:#22c55e;}
+  .d-orange{background:#f97316;} .d-purple{background:#8b5cf6;} .d-lime{background:#84cc16;}
+  .d-red{background:#ef4444;} .d-teal{background:#14b8a6;}
+
+  /* TAGS */
+  .tag { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap; }
+  .t-ai   { background:var(--opt-deep);color:var(--opt-lime); }
+  .t-ir   { background:#eff6ff;color:#1e3a5f; }
+  .t-rt   { background:rgba(107,70,193,0.1);color:var(--opt-purple); }
+  .t-demo { background:#f3e8ff;color:#4c1d95; }
+  .t-api  { background:#fff7ed;color:#9a3412; }
+  .t-p1   { background:#fde8e8;color:#9b1c1c; }
+  .t-p2   { background:#fef3c7;color:#92400e; }
+  .t-imp  { background:#fde8e8;color:#9b1c1c; }
+
+  /* OWNER CHIPS */
+  .or { display:flex;flex-wrap:wrap;gap:4px; }
   .oc { font-size:10px;padding:1px 6px;border-radius:20px;border:0.5px solid var(--border-c);color:var(--text-sub);background:var(--page-bg); }
   .oc.opt { border-color:rgba(107,70,193,0.35);color:var(--opt-purple);background:rgba(107,70,193,0.06); }
   .oc.cli { border-color:rgba(232,160,32,0.4);color:#92400e;background:rgba(232,160,32,0.08); }
 
+  /* PROJECT CARDS */
+  .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .proj-card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .proj-card.warn { border-left: 3px solid #f59e0b; }
+  .proj-card.ai   { border-left: 3px solid var(--opt-deep); }
+  .proj-card.imp  { border-left: 3px solid #ef4444; }
+  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .proj-ico { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .proj-title { font-size: 14px; font-weight: 500; color: var(--text-main); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .proj-desc { font-size: 12px; color: var(--text-sub); line-height: 1.5; flex: 1; }
+  .proj-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 0.5px solid var(--border-c); margin-top: auto; }
+
+  /* PRODUCT CARDS */
   .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .prod-card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-  .prod-card.ai-card { border-left: 3px solid var(--opt-deep); }
+  .prod-card.ai { border-left: 3px solid var(--opt-deep); }
   .prod-top { display: flex; align-items: flex-start; gap: 12px; }
-  .prod-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .prod-icon i { font-size: 17px; }
+  .prod-ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .prod-ico i { font-size: 17px; }
   .prod-title { font-size: 14px; font-weight: 500; color: var(--text-main); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .prod-desc { font-size: 12px; color: var(--text-sub); line-height: 1.55; }
-  .prod-notes { background: var(--page-bg); border-radius: 8px; padding: 10px 12px; font-size: 12px; color: var(--text-sub); line-height: 1.6; display: flex; flex-direction: column; gap: 4px; }
-  .prod-notes .note-line { display: flex; align-items: flex-start; gap: 6px; }
-  .prod-notes .note-line i { color: var(--opt-purple); font-size: 13px; margin-top: 1px; flex-shrink: 0; }
+  .prod-notes { background: var(--page-bg); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 5px; }
+  .prod-notes .nl { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: var(--text-sub); line-height: 1.4; }
+  .prod-notes .nl i { color: var(--opt-purple); font-size: 12px; margin-top: 1px; flex-shrink: 0; }
   .prod-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 0.5px solid var(--border-c); }
-  .tag-demo { background:#f3e8ff;color:#4c1d95; } .tag-api { background:#fff7ed;color:#9a3412; }
-  .sb2 { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px; }
-  .sco { background:#dcfce7;color:#14532d; } .sdm { background:#f3e8ff;color:#4c1d95; } .sp { background:#fef9c3;color:#713f12; } .son2 { background:#e0f2fe;color:#075985; } .ssc2 { background:#f0fdf4;color:#166534; }
-  .dot2 { width:5px;height:5px;border-radius:50%;display:inline-block; }
-  .dco2{background:#22c55e;} .dd2{background:#8b5cf6;} .dp2{background:#eab308;} .dob2{background:#0284c7;} .dsc2{background:#16a34a;}
 
+  /* RECENTLY COMPLETED */
+  .completed-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .comp-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: 20px; padding: 6px 12px; font-size: 12px; color: var(--text-sub); }
+  .comp-chip i.icon { color: var(--opt-soft); font-size: 13px; }
+  .comp-chip .comp-name { font-weight: 500; color: var(--text-main); }
+  .comp-chip .comp-done { font-size: 11px; color: #16a34a; display: flex; align-items: center; gap: 3px; }
+
+  /* SECURITY & ACCESS */
   .sec-card { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px; }
   .sec-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(107,70,193,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .sec-body { flex: 1; }
@@ -95,14 +131,18 @@
   .sec-desc { font-size: 12px; color: var(--text-sub); line-height: 1.5; }
   .sec-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
 
+  /* DASHBOARD */
   .kpi-row { display: grid; grid-template-columns: repeat(6,1fr); gap: 10px; margin-bottom: 1.5rem; }
   .kpi { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 14px 16px; }
-  .kpi.hi { border-top: 3px solid var(--opt-purple); } .kpi.lm { border-top: 3px solid var(--opt-lime); } .kpi.grn { border-top: 3px solid #16a34a; }
+  .kpi.hi  { border-top: 3px solid var(--opt-purple); }
+  .kpi.lm  { border-top: 3px solid var(--opt-lime); }
+  .kpi.grn { border-top: 3px solid #16a34a; }
   .kl { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: var(--text-muted); margin-bottom: 6px; }
   .kv { font-size: 20px; font-weight: 500; line-height: 1; }
   .ks { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
   .up{color:#16a34a;} .dn{color:#ef4444;} .neu{color:var(--text-muted);}
   .cc { background: var(--card-bg); border: 0.5px solid var(--border-c); border-radius: var(--r); padding: 20px; margin-bottom: 1.5rem; }
+  .cc h3 { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
   .ccs { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
   .leg { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 12px; }
   .li { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-sub); }
@@ -124,7 +164,8 @@
   .camp-header span:not(:first-child){text-align:right;}
   .cr{display:grid;grid-template-columns:1fr 52px 52px;gap:6px;align-items:center;margin-bottom:7px;}
   .cn{font-size:11px;color:var(--text-sub);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .cup{font-size:11px;font-weight:500;text-align:right;} .cup.g{color:#16a34a;} .cup.m{color:#92400e;}
+  .cup{font-size:11px;font-weight:500;text-align:right;}
+  .cup.g{color:#16a34a;} .cup.m{color:#92400e;}
 
   @media (max-width: 900px) {
     .projects-grid, .product-grid, .kpi-row, .chg, .two { grid-template-columns: 1fr; }
@@ -141,8 +182,8 @@
   </div>
 
   <div class="tab-bar">
-    <div class="tab active" onclick="sw('p1',this)"><i class="ti ti-list-check" aria-hidden="true"></i> Open items</div>
-    <div class="tab" onclick="sw('p2',this)"><i class="ti ti-chart-bar" aria-hidden="true"></i> Dashboard · Jun 2026</div>
+    <div class="tab active" onclick="sw('p1',this)"><i class="ti ti-list-check"></i> Open items</div>
+    <div class="tab" onclick="sw('p2',this)"><i class="ti ti-chart-bar"></i> Dashboard · Jun 2026</div>
   </div>
 
   <div class="dash-header">
@@ -153,174 +194,241 @@
     <div class="hbadge">Jun 2026</div>
   </div>
 
+  <!-- ══ PAGE 1 ══ -->
   <div id="p1" class="page active">
+
+    <!-- TICKETS -->
     <div class="sec">
       <div class="sh"><h2>Operations</h2><div class="sdiv"></div><div class="cpill">1</div></div>
       <div class="tickets-row">
         <a class="ticket-card" href="https://academy.optimove.com/hc/en-us/requests/1017270" target="_blank">
-          <div class="ticket-icon"><i class="ti ti-search" aria-hidden="true"></i></div>
-          <div>
+          <div class="ticket-icon"><i class="ti ti-search"></i></div>
+          <div style="flex:1">
             <div class="ticket-num">#1017270</div>
             <div class="ticket-desc">Opti-X synonyms — Greek search returning no results despite Dataset entries</div>
           </div>
-          <i class="ti ti-external-link ticket-arr" aria-hidden="true"></i>
+          <div class="ticket-right">
+            <span class="sb s-ongoing"><span class="dot d-blue"></span>Ongoing</span>
+            <i class="ti ti-external-link ticket-arr"></i>
+          </div>
         </a>
       </div>
     </div>
 
+    <!-- PROJECTS -->
     <div class="sec" style="padding-top:1.5rem">
-      <div class="sh"><h2>Projects</h2><div class="sdiv"></div><div class="cpill">4</div></div>
+      <div class="sh"><h2>Projects</h2><div class="sdiv"></div><div class="cpill">5</div></div>
       <div class="projects-grid">
+
+        <!-- Bonus -->
         <div class="proj-card">
           <div class="proj-top">
-            <div class="proj-icon" style="background:rgba(200,230,31,0.12)"><i class="ti ti-gift" style="font-size:17px;color:#8fa500" aria-hidden="true"></i></div>
-            <span class="sb son"><span class="dot dob"></span>Ongoing</span>
+            <div class="proj-ico" style="background:rgba(200,230,31,0.12)"><i class="ti ti-gift" style="font-size:17px;color:#8fa500"></i></div>
+            <span class="sb s-ongoing"><span class="dot d-blue"></span>Ongoing</span>
           </div>
           <div class="proj-title">Bonus System Integration</div>
           <div class="proj-desc">Live with low volumes in LATAM. Plan to ramp up volumes and expand to the main markets.</div>
           <div class="proj-footer">
-            <div class="owner-row"><span class="oc opt">PS</span><span class="oc opt">CS</span></div>
-            <span class="tag tp2">Medium</span>
+            <div class="or"><span class="oc opt">PS</span><span class="oc opt">CS</span></div>
+            <span class="tag t-p2">Medium</span>
           </div>
         </div>
 
-        <div class="proj-card" style="border-left:3px solid #f59e0b">
+        <!-- RT -->
+        <div class="proj-card warn">
           <div class="proj-top">
-            <div class="proj-icon" style="background:rgba(245,158,11,0.1)"><i class="ti ti-bolt" style="font-size:17px;color:#f59e0b" aria-hidden="true"></i></div>
-            <span class="sb sinv"><span class="dot dv"></span>Investigate</span>
+            <div class="proj-ico" style="background:rgba(245,158,11,0.1)"><i class="ti ti-bolt" style="font-size:17px;color:#f59e0b"></i></div>
+            <span class="sb s-invest"><span class="dot d-orange"></span>Investigate</span>
           </div>
-          <div class="proj-title">RT Focus <span class="tag trt" style="font-size:10px;padding:1px 7px"><i class="ti ti-bolt" aria-hidden="true"></i> RT</span></div>
+          <div class="proj-title">RT Focus <span class="tag t-rt" style="font-size:10px;padding:1px 7px"><i class="ti ti-bolt"></i> RT</span></div>
           <div class="proj-desc">Triggered use cases were prioritized — usage has since stopped. Need to understand blockers and rebuild a focused RT roadmap.</div>
           <div class="proj-footer">
-            <div class="owner-row"><span class="oc opt">CSM</span><span class="oc cli">Stavros</span></div>
-            <span class="tag tp1">High</span>
+            <div class="or"><span class="oc opt">CSM</span><span class="oc cli">Stavros</span></div>
+            <span class="tag t-p1">High</span>
           </div>
         </div>
 
+        <!-- Data Share — important, red border -->
+        <div class="proj-card imp">
+          <div class="proj-top">
+            <div class="proj-ico" style="background:#fde8e8"><i class="ti ti-share" style="font-size:17px;color:#9b1c1c"></i></div>
+            <span class="sb s-pending"><span class="dot d-yellow"></span>Pending</span>
+          </div>
+          <div class="proj-title">Data Share <span class="tag t-imp" style="font-size:10px;padding:1px 7px"><i class="ti ti-alert-circle"></i> Important</span></div>
+          <div class="proj-desc">Data Share setup required. Need to collect IPs to whitelist and account details before configuration can proceed.</div>
+          <div class="proj-footer">
+            <div class="or"><span class="oc opt">CSM</span><span class="oc cli">Novibet</span></div>
+            <span class="tag t-p1">High</span>
+          </div>
+        </div>
+
+        <!-- Ireland -->
         <div class="proj-card">
           <div class="proj-top">
-            <div class="proj-icon" style="background:#eff6ff"><i class="ti ti-building-bank" style="font-size:17px;color:#1e3a5f" aria-hidden="true"></i></div>
-            <span class="sb ss"><span class="dot ds"></span>Scoping</span>
+            <div class="proj-ico" style="background:#eff6ff"><i class="ti ti-building-bank" style="font-size:17px;color:#1e3a5f"></i></div>
+            <span class="sb s-scoping"><span class="dot d-teal"></span>Scoping</span>
           </div>
-          <div class="proj-title">Ireland Regulation <span class="tag tir" style="font-size:10px;padding:1px 7px"><i class="ti ti-map-pin" aria-hidden="true"></i> IE</span></div>
+          <div class="proj-title">Ireland Regulation <span class="tag t-ir" style="font-size:10px;padding:1px 7px"><i class="ti ti-map-pin"></i> IE</span></div>
           <div class="proj-desc">Scoping with PS. Ireland team flagged for deeper analysis and Optimove engagement.</div>
           <div class="proj-footer">
-            <div class="owner-row"><span class="oc opt">PS</span></div>
-            <span class="tag tp2">Medium</span>
+            <div class="or"><span class="oc opt">PS</span></div>
+            <span class="tag t-p2">Medium</span>
           </div>
         </div>
 
-        <div class="proj-card" style="border-left:3px solid var(--opt-deep)">
+        <!-- AI Enablement -->
+        <div class="proj-card ai">
           <div class="proj-top">
-            <div class="proj-icon" style="background:rgba(45,27,105,0.08)"><i class="ti ti-sparkles" style="font-size:17px;color:var(--opt-purple)" aria-hidden="true"></i></div>
-            <span class="sb so"><span class="dot do"></span>Open</span>
+            <div class="proj-ico" style="background:rgba(45,27,105,0.08)"><i class="ti ti-sparkles" style="font-size:17px;color:var(--opt-purple)"></i></div>
+            <span class="sb s-open"><span class="dot d-purple"></span>Open</span>
           </div>
-          <div class="proj-title">AI Enablement Project <span class="tag tai" style="font-size:10px;padding:1px 7px"><i class="ti ti-sparkles" aria-hidden="true"></i> AI</span></div>
+          <div class="proj-title">AI Enablement <span class="tag t-ai" style="font-size:10px;padding:1px 7px"><i class="ti ti-sparkles"></i> AI</span></div>
           <div class="proj-desc">Dedicated project to drive AI adoption and enablement across the Novibet account. Scoping in progress.</div>
           <div class="proj-footer">
-            <div class="owner-row"><span class="oc opt">PS</span><span class="oc opt">CS</span></div>
-            <span class="tag tp2">Medium</span>
+            <div class="or"><span class="oc opt">PS</span><span class="oc opt">CS</span></div>
+            <span class="tag t-p2">Medium</span>
           </div>
         </div>
+
       </div>
     </div>
 
+    <!-- PRODUCT -->
     <div class="sec" style="padding-top:1.5rem">
       <div class="sh"><h2>Product</h2><div class="sdiv"></div><div class="cpill">5</div></div>
       <div class="product-grid">
-        <div class="prod-card ai-card">
+
+        <!-- MCP Workshop -->
+        <div class="prod-card ai">
           <div class="prod-top">
-            <div class="prod-icon" style="background:rgba(45,27,105,0.08)"><i class="ti ti-presentation" style="color:var(--opt-purple)" aria-hidden="true"></i></div>
+            <div class="prod-ico" style="background:rgba(45,27,105,0.08)"><i class="ti ti-tools" style="color:var(--opt-purple)"></i></div>
             <div style="flex:1">
               <div class="prod-title">
-                Liquid + Data Connection Session
-                <span class="tag tai" style="font-size:10px;padding:1px 7px"><i class="ti ti-sparkles" aria-hidden="true"></i> AI</span>
-                <span class="tag tag-demo" style="font-size:10px;padding:1px 7px"><i class="ti ti-player-play" aria-hidden="true"></i> Demo</span>
-                <span class="tag tag-api" style="font-size:10px;padding:1px 7px"><i class="ti ti-api" aria-hidden="true"></i> Live ODS · API</span>
+                MCP Workshop — Hands-on with Client
+                <span class="tag t-ai"><i class="ti ti-sparkles"></i> AI</span>
+                <span class="tag t-demo"><i class="ti ti-player-play"></i> Workshop</span>
               </div>
             </div>
           </div>
+          <div class="prod-desc">Hands-on workshop to identify current needs, pain points, and use cases to tackle with MCP. Starting point for scoping what the client wants to achieve with the AI connection.</div>
           <div class="prod-notes">
-            <div class="note-line"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>Live ODS via API — real-time data feeds into campaign templates</span></div>
-            <div class="note-line"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>MCP → Liquid migration from legacy templates</span></div>
-            <div class="note-line"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>Dynamic content driven by API response</span></div>
-            <div class="note-line"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>Live odds in personalizations</span></div>
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>Identify client needs and current friction points</span></div>
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>Map use cases to tackle with MCP</span></div>
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>Define scope and prioritization with PS</span></div>
           </div>
           <div class="prod-footer">
-            <div class="owner-row"><span class="oc opt">PS</span><span class="oc opt">CSM</span></div>
-            <span class="sb2 sdm"><span class="dot2 dd2"></span>To schedule</span>
+            <div class="or"><span class="oc opt">PS</span><span class="oc opt">CSM</span><span class="oc cli">Lambros</span></div>
+            <span class="sb s-tosched"><span class="dot d-purple"></span>To schedule</span>
           </div>
         </div>
 
+        <!-- Liquid + Data Connection -->
+        <div class="prod-card ai">
+          <div class="prod-top">
+            <div class="prod-ico" style="background:rgba(45,27,105,0.08)"><i class="ti ti-presentation" style="color:var(--opt-purple)"></i></div>
+            <div style="flex:1">
+              <div class="prod-title">
+                Liquid + Data Connection Session
+                <span class="tag t-ai"><i class="ti ti-sparkles"></i> AI</span>
+                <span class="tag t-demo"><i class="ti ti-player-play"></i> Demo</span>
+                <span class="tag t-api"><i class="ti ti-api"></i> Live ODS · API</span>
+              </div>
+            </div>
+          </div>
+          <div class="prod-desc">Demo on Liquid templating + Data Connection focused on live ODS via API — pulling real-time data into campaign templates.</div>
+          <div class="prod-notes">
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>Live ODS via API — real-time data feeds into templates</span></div>
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>MCP → Liquid migration from legacy templates</span></div>
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>Dynamic content driven by API response</span></div>
+            <div class="nl"><i class="ti ti-arrow-right"></i><span>Live odds in personalizations</span></div>
+          </div>
+          <div class="prod-footer">
+            <div class="or"><span class="oc opt">PS</span><span class="oc opt">CSM</span></div>
+            <span class="sb s-tosched"><span class="dot d-purple"></span>To schedule</span>
+          </div>
+        </div>
+
+        <!-- CE2.0 -->
         <div class="prod-card">
           <div class="prod-top">
-            <div class="prod-icon" style="background:#fde8e8"><i class="ti ti-database-import" style="color:#9b1c1c" aria-hidden="true"></i></div>
-            <div style="flex:1"><div class="prod-title">CE2.0 Migration</div></div>
+            <div class="prod-ico" style="background:#fde8e8"><i class="ti ti-database-import" style="color:#9b1c1c"></i></div>
+            <div style="flex:1">
+              <div class="prod-title">CE2.0 Migration</div>
+            </div>
           </div>
           <div class="prod-desc">CSV lists coordination in progress with Stavros. Not blocked — migration pending next steps.</div>
           <div class="prod-footer">
-            <div class="owner-row"><span class="oc cli">Stavros</span></div>
-            <span class="sb2 sp"><span class="dot2 dp2"></span>Pending</span>
+            <div class="or"><span class="oc cli">Stavros</span></div>
+            <span class="sb s-pending"><span class="dot d-yellow"></span>Pending</span>
           </div>
         </div>
 
+        <!-- Staging Instance -->
         <div class="prod-card">
           <div class="prod-top">
-            <div class="prod-icon" style="background:rgba(45,27,105,0.08)"><i class="ti ti-brain" style="color:var(--opt-purple)" aria-hidden="true"></i></div>
+            <div class="prod-ico" style="background:#dbeafe"><i class="ti ti-server-2" style="color:#1e3a5f"></i></div>
             <div style="flex:1">
-              <div class="prod-title">MCP Connection (Claude / ChatGPT) <span class="tag tai" style="font-size:10px;padding:1px 7px"><i class="ti ti-sparkles" aria-hidden="true"></i> AI</span></div>
+              <div class="prod-title">Staging Instance / Sandbox Access</div>
             </div>
-          </div>
-          <div class="prod-desc">MCP connection live. Opens up direct AI-to-platform integrations via Claude and ChatGPT. Next step: scale and cover use cases with PS.</div>
-          <div class="prod-footer">
-            <div class="owner-row"><span class="oc opt">PS</span><span class="oc cli">Lambros</span></div>
-            <span class="sb2 sco"><span class="dot2 dco2"></span>Completed</span>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-top">
-            <div class="prod-icon" style="background:#e0f2fe"><i class="ti ti-server-2" style="color:#075985" aria-hidden="true"></i></div>
-            <div style="flex:1"><div class="prod-title">Staging Instance / Sandbox Access</div></div>
           </div>
           <div class="prod-desc">Staging site for testing new features, channels, integration and for the product team to play around the UI.</div>
           <div class="prod-footer" style="justify-content:flex-end">
-            <span class="sb2 son2"><span class="dot2 dob2"></span>Ongoing</span>
+            <span class="sb s-ongoing"><span class="dot d-blue"></span>Ongoing</span>
           </div>
         </div>
 
+        <!-- OptiPromo -->
         <div class="prod-card">
           <div class="prod-top">
-            <div class="prod-icon" style="background:#f0fdf4"><i class="ti ti-layers-intersect" style="color:#166534" aria-hidden="true"></i></div>
-            <div style="flex:1"><div class="prod-title">OptiPromo</div></div>
+            <div class="prod-ico" style="background:#f0fdf4"><i class="ti ti-layers-intersect" style="color:#166534"></i></div>
+            <div style="flex:1">
+              <div class="prod-title">OptiPromo</div>
+            </div>
           </div>
           <div class="prod-desc">Additional layer on top of the bonus engine, AM scoping.</div>
           <div class="prod-footer" style="justify-content:flex-end">
-            <span class="sb2 ssc2"><span class="dot2 dsc2"></span>Scoping</span>
+            <span class="sb s-scoping"><span class="dot d-teal"></span>Scoping</span>
           </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RECENTLY COMPLETED -->
+    <div class="sec" style="padding-top:1.5rem">
+      <div class="sh"><h2>Recently completed</h2><div class="sdiv"></div></div>
+      <div class="completed-row">
+        <div class="comp-chip">
+          <i class="ti ti-brain icon"></i>
+          <span class="comp-name">MCP Connection (Claude / ChatGPT)</span>
+          <span class="comp-done"><i class="ti ti-circle-check"></i>Completed · Lambros</span>
         </div>
       </div>
     </div>
 
+    <!-- SECURITY & ACCESS -->
     <div class="sec" style="padding-top:1.5rem;padding-bottom:2rem">
       <div class="sh"><h2>Security &amp; access</h2><div class="sdiv"></div></div>
       <div class="sec-card">
-        <div class="sec-icon"><i class="ti ti-lock" style="font-size:17px;color:var(--opt-purple)" aria-hidden="true"></i></div>
+        <div class="sec-icon"><i class="ti ti-lock" style="font-size:17px;color:var(--opt-purple)"></i></div>
         <div class="sec-body">
           <div class="sec-title">Security &amp; logs — log export bucket</div>
           <div class="sec-desc">Log export solution approved by Fotis (Cyber Security Director). Pending bucket setup + log type/cadence selection. Allan owns thread.</div>
-          <div class="owner-row" style="margin-top:8px"><span class="oc opt">Allan</span><span class="oc opt">Mika</span><span class="oc cli">Fotis</span></div>
+          <div class="or" style="margin-top:8px"><span class="oc opt">Allan</span><span class="oc opt">Mika</span><span class="oc cli">Fotis</span></div>
         </div>
         <div class="sec-right">
-          <span class="sb2 sp"><span class="dot2 dp2"></span>Pending</span>
+          <span class="sb s-pending"><span class="dot d-yellow"></span>Pending</span>
           <div style="font-size:11px;color:var(--text-muted);text-align:right">Pending Fotis reply<br>Involve Mika once decided</div>
         </div>
       </div>
     </div>
+
   </div>
 
+  <!-- ══ PAGE 2: DASHBOARD ══ -->
   <div id="p2" class="page">
     <div class="sec" style="padding-top:1.5rem">
+
       <div class="sh"><h2>Jun 2026 — key metrics</h2><div class="sdiv"></div></div>
       <div class="kpi-row">
         <div class="kpi hi"><div class="kl">Total targeted</div><div class="kv">184.9M</div><div class="ks">All channels · Jun 1–29</div></div>
@@ -338,20 +446,21 @@
           <div class="li"><div class="lsq" style="background:#6B46C1"></div>Scheduled</div>
           <div class="li"><div class="lsq" style="background:#C8E61F"></div>RT (Triggered)</div>
         </div>
-        <div style="position:relative;height:240px">
-          <canvas id="dailyChart" role="img" aria-label="Daily volume Jun 2026"></canvas>
-        </div>
+        <div style="position:relative;height:240px"><canvas id="dailyChart"></canvas></div>
       </div>
 
       <div class="sh"><h2>Market volume</h2><div class="sdiv"></div></div>
       <div class="cc">
         <div class="ccs">Total targeted customers by market · Jun 2026</div>
-        <div style="position:relative;height:190px">
-          <canvas id="mktChart" role="img" aria-label="Market volume chart"></canvas>
-        </div>
+        <div style="position:relative;height:190px"><canvas id="mktChart"></canvas></div>
       </div>
 
-      <div class="sh"><h2>Channel performance</h2><div class="sdiv"></div></div>
+      <div class="sh"><h2>Channel performance</h2><div class="sdiv"></div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:10px;color:var(--text-muted)">
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:16px;height:16px;border-radius:50%;background:var(--opt-deep);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--opt-lime)"><i class="ti ti-users"></i></span>Highest volume</span>
+          <span style="display:flex;align-items:center;gap:3px"><span style="width:16px;height:16px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;font-size:9px;color:#15803d"><i class="ti ti-coin"></i></span>Highest uplift</span>
+        </div>
+      </div>
       <div class="chg">
         <div class="chc"><div class="cbr"><div class="cb cb-vol"><i class="ti ti-users"></i></div></div><div class="chi"><i class="ti ti-brand-facebook"></i></div><div class="chn">Facebook</div><div class="chv">152.0M</div><div class="chl">40 series · Scheduled</div><div class="ch-stat up">€12.1M uplift</div><div class="ch-rr">RR: 4.8% / 6.1%</div></div>
         <div class="chc nb"><div class="chi"><i class="ti ti-bell"></i></div><div class="chn">Mobile Push</div><div class="chv">12.2M</div><div class="chl">2,599 series</div><div class="ch-stat up">€6.4M uplift</div><div class="ch-rr">RR: 4.9% / 6.2%</div></div>
@@ -363,32 +472,36 @@
       <div class="sh"><h2>Avg volume by day of week</h2><div class="sdiv"></div></div>
       <div class="cc">
         <div class="ccs">Mean targeted customers per occurrence · Jun 2026</div>
-        <div style="position:relative;height:190px">
-          <canvas id="dowChart" role="img" aria-label="Day of week chart"></canvas>
-        </div>
+        <div style="position:relative;height:190px"><canvas id="dowChart"></canvas></div>
       </div>
 
       <div class="sh"><h2>Top campaigns — uplift &amp; response rate</h2><div class="sdiv"></div></div>
       <div class="two" style="margin-bottom:2rem">
         <div class="cmpd">
-          <h4 class="rt"><i class="ti ti-bolt" aria-hidden="true"></i> RT — top campaigns</h4>
+          <h4 class="rt"><i class="ti ti-bolt"></i> RT — top campaigns</h4>
           <div class="camp-header"><span>Campaign</span><span>Uplift €</span><span>RR %</span></div>
           <div class="cr"><div class="cn">Casino GR Promotion</div><div class="cup g">€48.2k</div><div class="cup g">5.1%</div></div>
           <div class="cr"><div class="cn">GR Bet Builder Promo_SB</div><div class="cup g">€31.4k</div><div class="cup g">4.9%</div></div>
           <div class="cr"><div class="cn">GR Acca Promo_SB</div><div class="cup g">€22.6k</div><div class="cup g">4.7%</div></div>
           <div class="cr"><div class="cn">CL Casino Promos</div><div class="cup g">€9.8k</div><div class="cup g">4.6%</div></div>
           <div class="cr"><div class="cn">GR Risk Free Promo_SB</div><div class="cup g">€8.7k</div><div class="cup g">4.5%</div></div>
+          <div class="cr"><div class="cn">MX Casino Promos</div><div class="cup g">€7.1k</div><div class="cup g">4.4%</div></div>
+          <div class="cr"><div class="cn">GR Super Derby_SB</div><div class="cup g">€6.3k</div><div class="cup g">4.3%</div></div>
         </div>
         <div class="cmpd">
-          <h4 class="sch"><i class="ti ti-calendar" aria-hidden="true"></i> Scheduled — top campaigns</h4>
+          <h4 class="sch"><i class="ti ti-calendar"></i> Scheduled — top campaigns (excl. Facebook)</h4>
           <div class="camp-header"><span>Campaign</span><span>Uplift €</span><span>RR %</span></div>
           <div class="cr"><div class="cn">Casino GR Promo (Email)</div><div class="cup g">€1.84M</div><div class="cup g">5.3%</div></div>
           <div class="cr"><div class="cn">Casino GR Promo (Push)</div><div class="cup g">€1.62M</div><div class="cup g">5.1%</div></div>
           <div class="cr"><div class="cn">MX Dormant WC (Email)</div><div class="cup g">€1.21M</div><div class="cup g">4.9%</div></div>
           <div class="cr"><div class="cn">GR Bet Builder Promo (Push)</div><div class="cup g">€892k</div><div class="cup g">4.8%</div></div>
           <div class="cr"><div class="cn">GR Acca Promo (Push)</div><div class="cup g">€744k</div><div class="cup g">4.7%</div></div>
+          <div class="cr"><div class="cn">MX Churn WC (Email)</div><div class="cup g">€621k</div><div class="cup g">4.6%</div></div>
+          <div class="cr"><div class="cn">CL SB Live Actions (Push)</div><div class="cup m">€418k</div><div class="cup m">4.1%</div></div>
+          <div class="cr"><div class="cn">MX Dormant WC (DM)</div><div class="cup" style="color:var(--text-muted);text-align:right">—</div><div class="cup" style="color:var(--text-muted);text-align:right">No ctrl</div></div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -404,24 +517,22 @@ function goBack() {
   }
 }
 
-function sw(id, tab) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+function sw(id,tab){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   tab.classList.add('active');
-  if (id === 'p2') initCharts();
+  if(id==='p2') initCharts();
 }
-
-let inited = false;
-function initCharts() {
-  if (inited) return;
-  inited = true;
-  const days = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
-  const sched = [6580,6013,6400,7890,6025,5877,5966,6489,5895,6169,8977,6334,5926,6257,6423,6072,6626,7940,5989,5687,6791,6881,5263,6943,6651,5701,6202,5031,5140];
-  const rt = [18,15,30,12,18,19,21,24,18,23,37,36,30,28,32,32,22,26,35,38,32,27,21,29,17,37,19,19,1];
-  new Chart(document.getElementById('dailyChart'), { type: 'bar', data: { labels: days, datasets: [{ label: 'Scheduled', data: sched, backgroundColor: 'rgba(107,70,193,0.75)', borderRadius: 2, stack: 'a' }, { label: 'RT', data: rt, backgroundColor: '#C8E61F', borderRadius: 2, stack: 'a' }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { stacked: true, grid: { display: false }, ticks: { color: '#898781', font: { size: 10 }, maxTicksLimit: 15 } }, y: { stacked: true, grid: { color: '#e5e4dc' }, ticks: { color: '#898781', font: { size: 10 }, callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'k' : v } } } } });
-  new Chart(document.getElementById('mktChart'), { type: 'bar', data: { labels: ['Mexico', 'Greece', 'Chile', 'Ireland', 'Ecuador', 'Other'], datasets: [{ data: [81.2,76.1,14.0,5.6,3.0,5.0], backgroundColor: ['#E8A020','#6B46C1','#9F7AEA','#C8E61F','#9F7AEA','#c3c2b7'], borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: '#52514e', font: { size: 11 } } }, y: { grid: { color: '#e5e4dc' }, ticks: { color: '#898781', font: { size: 10 }, callback: v => v + 'M' } } } } });
-  new Chart(document.getElementById('dowChart'), { type: 'bar', data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ data: [6737,6822,7498,9288,6462,6890,8303], backgroundColor: ['#9F7AEA','#9F7AEA','#9F7AEA','#6B46C1','#9F7AEA','#9F7AEA','#C8E61F'], borderRadius: 4 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: '#52514e', font: { size: 11 } } }, y: { grid: { color: '#e5e4dc' }, ticks: { color: '#898781', font: { size: 10 }, callback: v => v.toLocaleString() } } } } });
+let inited=false;
+function initCharts(){
+  if(inited)return; inited=true;
+  const days=['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
+  const sched=[6580,6013,6400,7890,6025,5877,5966,6489,5895,6169,8977,6334,5926,6257,6423,6072,6626,7940,5989,5687,6791,6881,5263,6943,6651,5701,6202,5031,5140];
+  const rt=[18,15,30,12,18,19,21,24,18,23,37,36,30,28,32,32,22,26,35,38,32,27,21,29,17,37,19,19,1];
+  new Chart(document.getElementById('dailyChart'),{type:'bar',data:{labels:days,datasets:[{label:'Scheduled',data:sched,backgroundColor:'rgba(107,70,193,0.75)',borderRadius:2,stack:'a'},{label:'RT',data:rt,backgroundColor:'#C8E61F',borderRadius:2,stack:'a'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:ctx=>ctx.dataset.label+': '+(ctx.parsed.y>=1000?(ctx.parsed.y/1000).toFixed(1)+'M':ctx.parsed.y+'k')}}},scales:{x:{stacked:true,grid:{display:false},ticks:{color:'#898781',font:{size:10},maxTicksLimit:15}},y:{stacked:true,grid:{color:'#e5e4dc'},ticks:{color:'#898781',font:{size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'M':v+'k'}}}}});
+  new Chart(document.getElementById('mktChart'),{type:'bar',data:{labels:['Mexico 🇲🇽','Greece 🇬🇷','Chile 🇨🇱','Ireland 🇮🇪','Ecuador 🇪🇨','Other'],datasets:[{data:[81.2,76.1,14.0,5.6,3.0,5.0],backgroundColor:['#E8A020','#6B46C1','#9F7AEA','#C8E61F','#9F7AEA','#c3c2b7'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y.toFixed(1)+'M TC'}}},scales:{x:{grid:{display:false},ticks:{color:'#52514e',font:{size:11}}},y:{grid:{color:'#e5e4dc'},ticks:{color:'#898781',font:{size:10},callback:v=>v+'M'}}}}});
+  new Chart(document.getElementById('dowChart'),{type:'bar',data:{labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],datasets:[{data:[6737,6822,7498,9288,6462,6890,8303],backgroundColor:['#9F7AEA','#9F7AEA','#9F7AEA','#6B46C1','#9F7AEA','#9F7AEA','#C8E61F'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y.toLocaleString()+' avg TC/occ'}}},scales:{x:{grid:{display:false},ticks:{color:'#52514e',font:{size:11}}},y:{grid:{color:'#e5e4dc'},ticks:{color:'#898781',font:{size:10},callback:v=>v.toLocaleString()}}}}});
 }
 </script>
 
